@@ -1,0 +1,111 @@
+﻿@model BUSS.Models.Customer
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Login - Customer</title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="icon" href="~/Content/assets/img/favicon-ico.ico" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="~/Content/assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+		WebFont.load({
+			google: {"families":["Lato:300,400,700,900"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['@Url.Content("~/Content/assets/css/fonts.min.css")']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/atlantis-pro.css">
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+</head>
+<body class="login">
+    <div class="wrapper wrapper-login wrapper-login-full p-0">
+        <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center login-aside-bg">
+            <div class="mb-5">
+                <a href="/">
+                    <img src="~/Content/assets/img/buss-logo.svg" class="w-100" alt="Logo BUSS" />
+                </a>
+            </div>
+            <p class="subtitle text-white op-7">Ayo bergabung dengan komunitas kami untuk masa depan yang lebih baik</p>
+        </div>
+        <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
+            <div class="container container-login container-transparent animated fadeIn">
+                <h3 class="text-center">Masuk sebagai Customer</h3>
+                <div class="login-form">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email)
+                            <input type="text" name="email" class="form-control" required />
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password)
+                            <input type="password" name="password" class="form-control" required />
+                        </div>
+
+                        <div class="row form-action">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-secondary w-100 fw-bold">Masuk</button>
+                            </div>
+                        </div>
+                    }
+                    <div class="login-account mt-4">
+                        <span class="msg">Belum mempunyai akun ?</span>
+                        <a href="@Url.Action("Register", "Customer")" class="link">Daftar disini</a>
+                    </div>
+                    <div class="login-account">
+                        <span class="msg">Pegawai BUSS ?</span>
+                        <a href="@Url.Action("Login", "Pegawai")" class="link">Login disini</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="~/Content/assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="~/Content/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="~/Content/assets/js/core/popper.min.js"></script>
+    <script src="~/Content/assets/js/core/bootstrap.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="~/Content/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Content/assets/js/atlantis.min.js"></script>
+    <script>
+        if ("@TempData["SuccessMessage"]" != "") {
+            swal("Berhasil", "@TempData["SuccessMessage"]", {
+                icon: "success",
+                buttons: {
+                    confirm: {
+                        className: 'btn btn-success'
+                    }
+                },
+            });
+        }
+
+        if ("@TempData["ErrorMessage"]" != "") {
+            swal("Gagal", "@TempData["ErrorMessage"]", {
+                icon: "error",
+                buttons: {
+                    confirm: {
+                        className: 'btn btn-danger'
+                    }
+                },
+            });
+        }
+
+    </script>
+</body>
+</html>

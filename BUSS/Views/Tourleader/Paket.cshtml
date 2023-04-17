@@ -1,0 +1,169 @@
+﻿@model IEnumerable<BUSS.Models.Paket>
+
+@{
+    ViewBag.Title = "Paket";
+    ViewBag.Paket = "active";
+    Layout = "~/Views/Shared/_LayoutTourLeader.cshtml";
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">@ViewBag.Title</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="/Admin">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">@ViewBag.Title</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="card-title">Data @ViewBag.Title</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table" id="multi_filter">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Nama_Paket)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Harga)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Konsumsi)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Lama_Perjalanan)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Jenis_Paket)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Jadwal)
+                                    </th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int rowCount = 1; }
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@(rowCount++).</td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nama_Paket)
+                                        </td>
+                                        <td>
+                                            @if (item.Harga == null)
+                                            {
+                                                <text>-</text>
+                                            }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Harga)
+                                            }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Konsumsi) x
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Lama_Perjalanan) Hari
+                                        </td>
+                                        <td>
+                                            @(item.Jenis_Paket == 0 ? "Paket" : "Custom")
+                                        </td>
+                                        <td>
+                                            @if (item.Jadwal == null)
+                                            {
+                                                <text>-</text>
+                                            }
+                                            else
+                                            {
+                                                <a href="~/Content/jadwal/@item.Jadwal">@item.Jadwal</a>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("UbahJadwal", "Tourleader", new { id = item.ID_Paket })" class="btn btn-warning btn-sm mr-1">
+                                                <i class="fa fa-edit"></i> Ubah Jadwal
+                                            </a>
+                                            
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>Nama Paket</th>
+                                    <th>Harga</th>
+                                    <th>Konsumsi</th>
+                                    <th>Lama Perjalanan</th>
+                                    <th>Jenis Paket</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        if ("@TempData["SuccessMessage"]" != "") {
+            swal("Berhasil", "@TempData["SuccessMessage"]", {
+                icon: "success",
+                buttons: {
+                    confirm: {
+                        className: 'btn btn-success'
+                    }
+                },
+            });
+        }
+
+        $(document).ready(function () {
+            $('#multi_filter').DataTable({
+                initComplete: function () {
+                    var columnCount = 1;
+                    this.api().columns().every(function () {
+                        if (columnCount != 8 && columnCount != 1 && columnCount != 7) {
+                            var column = this;
+                            var select = $('<select class="form-control form-control-sm height-unset"><option value=""></option></select>')
+                                .appendTo($(column.footer()).empty())
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        }
+                        columnCount++;
+                    });
+                }
+            });
+        });
+    </script>
+}

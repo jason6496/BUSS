@@ -1,0 +1,139 @@
+﻿@model BUSS.Models.Paket
+
+@{
+    ViewBag.Title = "Detail Paket";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+
+<section class="bg-white section-page">
+    <div class="row">
+        <div class="col-md-8">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-paket" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @{
+                        int countSlide = 0;
+                    }
+                    @foreach (var detailpaket in Model.Detail_Paket)
+                    {
+                        foreach (var foto in detailpaket.Destinasi.Detail_Foto)
+                        {
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="@(countSlide == 0 ? "active" : "")"></li>
+                            countSlide++;
+                        }
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @{
+                        countSlide = 0;
+                    }
+                    @foreach (var detailpaket in Model.Detail_Paket)
+                    {
+                        foreach (var foto in detailpaket.Destinasi.Detail_Foto)
+                        {
+                            <div class="carousel-item @(countSlide == 0 ? "active" : "")">
+                                <img class="d-block w-100" src="~/Content/upload/@foto.Foto" alt="@detailpaket.Destinasi.Nama_Destinasi">
+                            </div>
+                            countSlide++;
+                        }
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+            <h3 class="mt-5 font-weight-bold">@Model.Nama_Paket</h3>
+            <p class="mt-5 font-weight-bold">Daftar Tujuan</p>
+            <table class="table table-hover">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama</th>
+                        <th>Kota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int number = 1;
+                    }
+                    @foreach (var destinasi in Model.Detail_Paket)
+                    {
+                        <tr>
+                            <td>@number.</td>
+                            <td>@destinasi.Destinasi.Nama_Destinasi</td>
+                            <td>@destinasi.Destinasi.Kota.Nama_Kota</td>
+                        </tr>
+                        number++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <h5 class="card-header">Detail Paket</h5>
+                <div class="card-body">
+                    <h5 class="card-title mb-4">@Model.Nama_Paket</h5>
+                    <div class="d-flex justify-content-between">
+                        <p class="m-0 font-weight-bold">Konsumsi</p>
+                        <p class="m-0">@Model.Konsumsi x</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="m-0 font-weight-bold">Lama Perjalanan</p>
+                        <p class="m-0">@Model.Lama_Perjalanan Hari</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="m-0 font-weight-bold">Harga</p>
+                        <p class="m-0 text-danger font-weight-bold">@Html.DisplayFor(model => model.Harga)</p>
+                    </div>
+                    <div class="d-flex flex-column justify-content-between">
+                        <p class="m-0 font-weight-bold">Keterangan</p>
+                        <p>@(Model.Keterangan == null ? "Tidak ada keterangan." : Model.Keterangan)</p>
+                    </div>
+
+                    <form action="@Url.Action("Checkout", "Transaksi")" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" value="@Model.ID_Paket" name="id" />
+                        <div class="d-flex justify-content-between">
+                            <label>Tanggal Sewa</label>
+                            <label class="text-danger font-weight-bold mr-1">*</label>
+                            <input type="date" class="form-control" name="tgl_sewa" required />
+                        </div>
+
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-warning font-weight-bold mt-3 d-block w-100"><i class="fa fa-check-circle"></i> Pesan</button>
+                        </div>
+                        <p class="font-italic detail-paket-text">Harga hanya untuk harga paket per orang, belum termasuk harga sewa bus</p>
+                        <p class="m-0 mt-4">Ingin kustom paket? <a href="@Url.Action("Custom","Paket")" class="text-primary">Klik Disini</a></p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<hr />
+
+@section scripts {
+    <script>
+        if ("@TempData["ErrorMessage"]" != "") {
+            swal("Gagal", "@TempData["ErrorMessage"]", {
+                icon: "error",
+                buttons: {
+                    confirm: {
+                        className: 'btn btn-danger'
+                    }
+                },
+            });
+        }
+    </script>    
+}

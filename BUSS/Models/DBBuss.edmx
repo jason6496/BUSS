@@ -1,0 +1,2449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BUSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="NIK" />
+          </Key>
+          <Property Name="NIK" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Nama" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Alamat" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="No_HP" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Destinasi">
+          <Key>
+            <PropertyRef Name="ID_Destinasi" />
+          </Key>
+          <Property Name="ID_Destinasi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama_Destinasi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Harga_Tiket" Type="money" Nullable="false" />
+          <Property Name="ID_Kota" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="float" Nullable="false" />
+          <Property Name="Jam_buka" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Jam_tutup" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Deskripsi" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detail_Foto">
+          <Key>
+            <PropertyRef Name="ID_Detail" />
+          </Key>
+          <Property Name="ID_Detail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Destinasi" Type="int" Nullable="false" />
+          <Property Name="Foto" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detail_Kategori">
+          <Key>
+            <PropertyRef Name="ID_KategoriWilayah" />
+            <PropertyRef Name="ID_Kota" />
+          </Key>
+          <Property Name="ID_KategoriWilayah" Type="int" Nullable="false" />
+          <Property Name="ID_Kota" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detail_Paket">
+          <Key>
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="ID_Destinasi" />
+          </Key>
+          <Property Name="ID_Paket" Type="int" Nullable="false" />
+          <Property Name="ID_Destinasi" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detail_Rating_Destinasi">
+          <Key>
+            <PropertyRef Name="NIK" />
+            <PropertyRef Name="ID_Destinasi" />
+          </Key>
+          <Property Name="NIK" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="ID_Destinasi" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="float" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="ID_Feedback" />
+          </Key>
+          <Property Name="ID_Feedback" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Transaksi" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="float" Nullable="false" />
+          <Property Name="Isi_Feedback" Type="text" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jenis_Kendaraan">
+          <Key>
+            <PropertyRef Name="ID_Jenis" />
+          </Key>
+          <Property Name="ID_Jenis" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama_Jenis" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Jumlah_Kursi" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategori_Wilayah">
+          <Key>
+            <PropertyRef Name="ID_KategoriWilayah" />
+          </Key>
+          <Property Name="ID_KategoriWilayah" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama_Wilayah" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kendaraan">
+          <Key>
+            <PropertyRef Name="ID_Kendaraan" />
+          </Key>
+          <Property Name="ID_Kendaraan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama_Kendaraan" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Jenis" Type="int" Nullable="false" />
+          <Property Name="No_Kendaraan" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Harga_kendaraan" Type="money" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kota">
+          <Key>
+            <PropertyRef Name="ID_Kota" />
+          </Key>
+          <Property Name="ID_Kota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama_Kota" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paket">
+          <Key>
+            <PropertyRef Name="ID_Paket" />
+          </Key>
+          <Property Name="ID_Paket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama_Paket" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Harga" Type="money" />
+          <Property Name="Konsumsi" Type="int" Nullable="false" />
+          <Property Name="Lama_Perjalanan" Type="int" />
+          <Property Name="Penginapan" Type="int" Nullable="false" />
+          <Property Name="Jenis_Paket" Type="int" Nullable="false" />
+          <Property Name="Jadwal" Type="varchar" MaxLength="255" />
+          <Property Name="Keterangan" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pegawai">
+          <Key>
+            <PropertyRef Name="ID_Pegawai" />
+          </Key>
+          <Property Name="ID_Pegawai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Alamat" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="No_HP" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Role" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaksi">
+          <Key>
+            <PropertyRef Name="ID_Transaksi" />
+          </Key>
+          <Property Name="ID_Transaksi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Paket" Type="int" Nullable="false" />
+          <Property Name="ID_Customer" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="ID_Pegawai" Type="int" />
+          <Property Name="Harga_total" Type="money" Nullable="false" />
+          <Property Name="Jumlah_Penumpang" Type="int" Nullable="false" />
+          <Property Name="Tanggal_Pesanan" Type="date" Nullable="false" />
+          <Property Name="Bukti_DP" Type="varchar" MaxLength="255" />
+          <Property Name="Bukti_Pelunasan" Type="varchar" MaxLength="255" />
+          <Property Name="biaya_tambahan" Type="money" />
+          <Property Name="Status_Transaksi" Type="int" Nullable="false" />
+          <Property Name="PaketLama_Perjalanan" Type="float" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaksi_Kendaraan">
+          <Key>
+            <PropertyRef Name="ID_Transaksi" />
+            <PropertyRef Name="ID_Kendaraan" />
+          </Key>
+          <Property Name="ID_Transaksi" Type="int" Nullable="false" />
+          <Property Name="ID_Kendaraan" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_DashboardCustomer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_DashboardCustomer">
+          <Key>
+            <PropertyRef Name="ID_Customer" />
+            <PropertyRef Name="tgl" />
+          </Key>
+          <Property Name="tgl" Type="date" Nullable="false" />
+          <Property Name="ID_Customer" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="jumlah" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_DestinasiTerlaris' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_DestinasiTerlaris">
+          <Key>
+            <PropertyRef Name="ID_Destinasi" />
+            <PropertyRef Name="Nama_Destinasi" />
+          </Key>
+          <Property Name="ID_Destinasi" Type="int" Nullable="false" />
+          <Property Name="Nama_Destinasi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="JumlahDipesan" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_JumlahDestinasiWilayah' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_JumlahDestinasiWilayah">
+          <Key>
+            <PropertyRef Name="ID_KategoriWilayah" />
+            <PropertyRef Name="Nama_Wilayah" />
+          </Key>
+          <Property Name="ID_KategoriWilayah" Type="int" Nullable="false" />
+          <Property Name="Nama_Wilayah" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="JumlahDestinasi" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_LaporanDestinasi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_LaporanDestinasi">
+          <Key>
+            <PropertyRef Name="ID_Destinasi" />
+            <PropertyRef Name="Nama_Destinasi" />
+            <PropertyRef Name="Harga_Tiket" />
+            <PropertyRef Name="ID_Kota" />
+            <PropertyRef Name="Rating" />
+            <PropertyRef Name="Jam_buka" />
+            <PropertyRef Name="Jam_tutup" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="ModifiedBy" />
+            <PropertyRef Name="ModifiedDate" />
+            <PropertyRef Name="Nama_Kota" />
+          </Key>
+          <Property Name="ID_Destinasi" Type="int" Nullable="false" />
+          <Property Name="Nama_Destinasi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Harga_Tiket" Type="money" Nullable="false" />
+          <Property Name="ID_Kota" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="float" Nullable="false" />
+          <Property Name="Jam_buka" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Jam_tutup" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Deskripsi" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="Nama_Kota" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_LaporanFeedback' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_LaporanFeedback">
+          <Key>
+            <PropertyRef Name="ID_Feedback" />
+            <PropertyRef Name="ID_Transaksi" />
+            <PropertyRef Name="Rating" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Nama_Paket" />
+            <PropertyRef Name="Tanggal_Pesanan" />
+            <PropertyRef Name="Nama" />
+            <PropertyRef Name="Alamat" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="ID_Feedback" Type="int" Nullable="false" />
+          <Property Name="ID_Transaksi" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="Isi_Feedback" Type="text" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Nama_Paket" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lama_Perjalanan" Type="int" />
+          <Property Name="Tanggal_Pesanan" Type="date" Nullable="false" />
+          <Property Name="Nama" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Alamat" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_LaporanTransaksi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_LaporanTransaksi">
+          <Key>
+            <PropertyRef Name="ID_Transaksi" />
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="ID_Customer" />
+            <PropertyRef Name="Harga_total" />
+            <PropertyRef Name="Jumlah_Penumpang" />
+            <PropertyRef Name="Tanggal_Pesanan" />
+            <PropertyRef Name="Status_Transaksi" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Nama_Paket" />
+            <PropertyRef Name="Nama" />
+            <PropertyRef Name="Alamat" />
+            <PropertyRef Name="No_HP" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="ID_Transaksi" Type="int" Nullable="false" />
+          <Property Name="ID_Paket" Type="int" Nullable="false" />
+          <Property Name="ID_Customer" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="ID_Pegawai" Type="int" />
+          <Property Name="Harga_total" Type="money" Nullable="false" />
+          <Property Name="Jumlah_Penumpang" Type="int" Nullable="false" />
+          <Property Name="Tanggal_Pesanan" Type="date" Nullable="false" />
+          <Property Name="Bukti_DP" Type="varchar" MaxLength="255" />
+          <Property Name="Bukti_Pelunasan" Type="varchar" MaxLength="255" />
+          <Property Name="biaya_tambahan" Type="money" />
+          <Property Name="Status_Transaksi" Type="int" Nullable="false" />
+          <Property Name="PaketLama_Perjalanan" Type="float" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Nama_Paket" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Jadwal" Type="varchar" MaxLength="255" />
+          <Property Name="Lama_Perjalanan" Type="int" />
+          <Property Name="Nama" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Alamat" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="No_HP" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_PaketHome' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_PaketHome">
+          <Key>
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="Nama_Paket" />
+            <PropertyRef Name="Rating" />
+            <PropertyRef Name="Foto" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="ID_Paket" Type="int" Nullable="false" />
+          <Property Name="Nama_Paket" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Harga" Type="money" />
+          <Property Name="Rating" Type="float" Nullable="false" />
+          <Property Name="JumlahRate" Type="int" />
+          <Property Name="Foto" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_StatusTransCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_StatusTransCount">
+          <Key>
+            <PropertyRef Name="Status_Transaksi" />
+            <PropertyRef Name="StatusTrans" />
+          </Key>
+          <Property Name="Status_Transaksi" Type="int" Nullable="false" />
+          <Property Name="StatusTrans" Type="varchar" MaxLength="22" Nullable="false" />
+          <Property Name="jumlah" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_TransaksiAdmin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_TransaksiAdmin">
+          <Key>
+            <PropertyRef Name="ID_Transaksi" />
+            <PropertyRef Name="ID_Customer" />
+            <PropertyRef Name="Harga_total" />
+            <PropertyRef Name="Jumlah_Penumpang" />
+            <PropertyRef Name="Tanggal_Pesanan" />
+            <PropertyRef Name="Status_Transaksi" />
+            <PropertyRef Name="CreatedDateTr" />
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="Nama_Paket" />
+            <PropertyRef Name="Konsumsi" />
+            <PropertyRef Name="Penginapan" />
+            <PropertyRef Name="Jenis_Paket" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="ModifiedBy" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ID_Transaksi" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Customer" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="ID_Pegawai" Type="int" />
+          <Property Name="Harga_total" Type="money" Nullable="false" />
+          <Property Name="Jumlah_Penumpang" Type="int" Nullable="false" />
+          <Property Name="Tanggal_Pesanan" Type="date" Nullable="false" />
+          <Property Name="Bukti_DP" Type="varchar" MaxLength="255" />
+          <Property Name="Bukti_Pelunasan" Type="varchar" MaxLength="255" />
+          <Property Name="biaya_tambahan" Type="money" />
+          <Property Name="Status_Transaksi" Type="int" Nullable="false" />
+          <Property Name="PaketLama_Perjalanan" Type="float" />
+          <Property Name="CreatedDateTr" Type="datetime" Nullable="false" />
+          <Property Name="ID_Paket" Type="int" Nullable="false" />
+          <Property Name="Nama_Paket" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Harga" Type="money" />
+          <Property Name="Konsumsi" Type="int" Nullable="false" />
+          <Property Name="Lama_Perjalanan" Type="int" />
+          <Property Name="Penginapan" Type="int" Nullable="false" />
+          <Property Name="Jenis_Paket" Type="int" Nullable="false" />
+          <Property Name="Jadwal" Type="varchar" MaxLength="255" />
+          <Property Name="Keterangan" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_TransaksiCount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_TransaksiCount">
+          <Key>
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="Nama_Paket" />
+          </Key>
+          <Property Name="ID_Paket" Type="int" Nullable="false" />
+          <Property Name="Nama_Paket" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="jumlah_dipesan" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BUSS.dbo.view_TransaksiCustomer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_TransaksiCustomer">
+          <Key>
+            <PropertyRef Name="ID_Transaksi" />
+            <PropertyRef Name="ID_Customer" />
+            <PropertyRef Name="Harga_total" />
+            <PropertyRef Name="Jumlah_Penumpang" />
+            <PropertyRef Name="Tanggal_Pesanan" />
+            <PropertyRef Name="Status_Transaksi" />
+            <PropertyRef Name="CreatedDateTr" />
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="Nama_Paket" />
+            <PropertyRef Name="Konsumsi" />
+            <PropertyRef Name="Penginapan" />
+            <PropertyRef Name="Jenis_Paket" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="ModifiedBy" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ID_Transaksi" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Customer" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="ID_Pegawai" Type="int" />
+          <Property Name="Harga_total" Type="money" Nullable="false" />
+          <Property Name="Jumlah_Penumpang" Type="int" Nullable="false" />
+          <Property Name="Tanggal_Pesanan" Type="date" Nullable="false" />
+          <Property Name="Bukti_DP" Type="varchar" MaxLength="255" />
+          <Property Name="Bukti_Pelunasan" Type="varchar" MaxLength="255" />
+          <Property Name="biaya_tambahan" Type="money" />
+          <Property Name="Status_Transaksi" Type="int" Nullable="false" />
+          <Property Name="PaketLama_Perjalanan" Type="float" />
+          <Property Name="CreatedDateTr" Type="datetime" Nullable="false" />
+          <Property Name="ID_Paket" Type="int" Nullable="false" />
+          <Property Name="Nama_Paket" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Harga" Type="money" />
+          <Property Name="Konsumsi" Type="int" Nullable="false" />
+          <Property Name="Lama_Perjalanan" Type="int" />
+          <Property Name="Penginapan" Type="int" Nullable="false" />
+          <Property Name="Jenis_Paket" Type="int" Nullable="false" />
+          <Property Name="Jadwal" Type="varchar" MaxLength="255" />
+          <Property Name="Keterangan" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Destinasi_Kota">
+          <End Role="Kota" Type="Self.Kota" Multiplicity="1" />
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kota">
+              <PropertyRef Name="ID_Kota" />
+            </Principal>
+            <Dependent Role="Destinasi">
+              <PropertyRef Name="ID_Kota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Destinasi_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Destinasi">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Destinasi_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Destinasi">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Foto_Destinasi">
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="1" />
+          <End Role="Detail_Foto" Type="Self.Detail_Foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destinasi">
+              <PropertyRef Name="ID_Destinasi" />
+            </Principal>
+            <Dependent Role="Detail_Foto">
+              <PropertyRef Name="ID_Destinasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Kategori_Kategori_Wilayah">
+          <End Role="Kategori_Wilayah" Type="Self.Kategori_Wilayah" Multiplicity="1" />
+          <End Role="Detail_Kategori" Type="Self.Detail_Kategori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori_Wilayah">
+              <PropertyRef Name="ID_KategoriWilayah" />
+            </Principal>
+            <Dependent Role="Detail_Kategori">
+              <PropertyRef Name="ID_KategoriWilayah" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Kategori_Kota">
+          <End Role="Kota" Type="Self.Kota" Multiplicity="1" />
+          <End Role="Detail_Kategori" Type="Self.Detail_Kategori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kota">
+              <PropertyRef Name="ID_Kota" />
+            </Principal>
+            <Dependent Role="Detail_Kategori">
+              <PropertyRef Name="ID_Kota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Paket_Destinasi">
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="1" />
+          <End Role="Detail_Paket" Type="Self.Detail_Paket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destinasi">
+              <PropertyRef Name="ID_Destinasi" />
+            </Principal>
+            <Dependent Role="Detail_Paket">
+              <PropertyRef Name="ID_Destinasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Paket_Paket">
+          <End Role="Paket" Type="Self.Paket" Multiplicity="1" />
+          <End Role="Detail_Paket" Type="Self.Detail_Paket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paket">
+              <PropertyRef Name="ID_Paket" />
+            </Principal>
+            <Dependent Role="Detail_Paket">
+              <PropertyRef Name="ID_Paket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Rating_Destinasi_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Detail_Rating_Destinasi" Type="Self.Detail_Rating_Destinasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="NIK" />
+            </Principal>
+            <Dependent Role="Detail_Rating_Destinasi">
+              <PropertyRef Name="NIK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Rating_Destinasi_Destinasi">
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="1" />
+          <End Role="Detail_Rating_Destinasi" Type="Self.Detail_Rating_Destinasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destinasi">
+              <PropertyRef Name="ID_Destinasi" />
+            </Principal>
+            <Dependent Role="Detail_Rating_Destinasi">
+              <PropertyRef Name="ID_Destinasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Transaksi">
+          <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaksi">
+              <PropertyRef Name="ID_Transaksi" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="ID_Transaksi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jenis_Kendaraan_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Jenis_Kendaraan" Type="Self.Jenis_Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Jenis_Kendaraan">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jenis_Kendaraan_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Jenis_Kendaraan" Type="Self.Jenis_Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Jenis_Kendaraan">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kategori_Wilayah_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kategori_Wilayah" Type="Self.Kategori_Wilayah" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kategori_Wilayah">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kategori_Wilayah_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kategori_Wilayah" Type="Self.Kategori_Wilayah" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kategori_Wilayah">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kendaraan_Jenis_Kendaraan">
+          <End Role="Jenis_Kendaraan" Type="Self.Jenis_Kendaraan" Multiplicity="1" />
+          <End Role="Kendaraan" Type="Self.Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jenis_Kendaraan">
+              <PropertyRef Name="ID_Jenis" />
+            </Principal>
+            <Dependent Role="Kendaraan">
+              <PropertyRef Name="ID_Jenis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kendaraan_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kendaraan" Type="Self.Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kendaraan">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kendaraan_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kendaraan" Type="Self.Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kendaraan">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kota_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kota" Type="Self.Kota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kota">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kota_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kota" Type="Self.Kota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kota">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paket_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Paket" Type="Self.Paket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Paket">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paket_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Paket" Type="Self.Paket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Paket">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaksi_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="NIK" />
+            </Principal>
+            <Dependent Role="Transaksi">
+              <PropertyRef Name="ID_Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaksi_Kendaraan_Kendaraan">
+          <End Role="Kendaraan" Type="Self.Kendaraan" Multiplicity="1" />
+          <End Role="Transaksi_Kendaraan" Type="Self.Transaksi_Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kendaraan">
+              <PropertyRef Name="ID_Kendaraan" />
+            </Principal>
+            <Dependent Role="Transaksi_Kendaraan">
+              <PropertyRef Name="ID_Kendaraan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaksi_Kendaraan_Transaksi">
+          <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="1" />
+          <End Role="Transaksi_Kendaraan" Type="Self.Transaksi_Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaksi">
+              <PropertyRef Name="ID_Transaksi" />
+            </Principal>
+            <Dependent Role="Transaksi_Kendaraan">
+              <PropertyRef Name="ID_Transaksi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaksi_Paket">
+          <End Role="Paket" Type="Self.Paket" Multiplicity="1" />
+          <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paket">
+              <PropertyRef Name="ID_Paket" />
+            </Principal>
+            <Dependent Role="Transaksi">
+              <PropertyRef Name="ID_Paket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaksi_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="0..1" />
+          <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Transaksi">
+              <PropertyRef Name="ID_Pegawai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fnGetFoto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="ID_Paket" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="BUSSModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Destinasi" EntityType="Self.Destinasi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail_Foto" EntityType="Self.Detail_Foto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail_Kategori" EntityType="Self.Detail_Kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail_Paket" EntityType="Self.Detail_Paket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail_Rating_Destinasi" EntityType="Self.Detail_Rating_Destinasi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jenis_Kendaraan" EntityType="Self.Jenis_Kendaraan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategori_Wilayah" EntityType="Self.Kategori_Wilayah" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kendaraan" EntityType="Self.Kendaraan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kota" EntityType="Self.Kota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paket" EntityType="Self.Paket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pegawai" EntityType="Self.Pegawai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaksi" EntityType="Self.Transaksi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaksi_Kendaraan" EntityType="Self.Transaksi_Kendaraan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="view_DashboardCustomer" EntityType="Self.view_DashboardCustomer" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_DashboardCustomer].[tgl] AS [tgl], 
+    [view_DashboardCustomer].[ID_Customer] AS [ID_Customer], 
+    [view_DashboardCustomer].[jumlah] AS [jumlah]
+    FROM [dbo].[view_DashboardCustomer] AS [view_DashboardCustomer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_DestinasiTerlaris" EntityType="Self.view_DestinasiTerlaris" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_DestinasiTerlaris].[ID_Destinasi] AS [ID_Destinasi], 
+    [view_DestinasiTerlaris].[Nama_Destinasi] AS [Nama_Destinasi], 
+    [view_DestinasiTerlaris].[JumlahDipesan] AS [JumlahDipesan]
+    FROM [dbo].[view_DestinasiTerlaris] AS [view_DestinasiTerlaris]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_JumlahDestinasiWilayah" EntityType="Self.view_JumlahDestinasiWilayah" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_JumlahDestinasiWilayah].[ID_KategoriWilayah] AS [ID_KategoriWilayah], 
+    [view_JumlahDestinasiWilayah].[Nama_Wilayah] AS [Nama_Wilayah], 
+    [view_JumlahDestinasiWilayah].[JumlahDestinasi] AS [JumlahDestinasi]
+    FROM [dbo].[view_JumlahDestinasiWilayah] AS [view_JumlahDestinasiWilayah]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_LaporanDestinasi" EntityType="Self.view_LaporanDestinasi" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_LaporanDestinasi].[ID_Destinasi] AS [ID_Destinasi], 
+    [view_LaporanDestinasi].[Nama_Destinasi] AS [Nama_Destinasi], 
+    [view_LaporanDestinasi].[Harga_Tiket] AS [Harga_Tiket], 
+    [view_LaporanDestinasi].[ID_Kota] AS [ID_Kota], 
+    [view_LaporanDestinasi].[Rating] AS [Rating], 
+    [view_LaporanDestinasi].[Jam_buka] AS [Jam_buka], 
+    [view_LaporanDestinasi].[Jam_tutup] AS [Jam_tutup], 
+    [view_LaporanDestinasi].[Deskripsi] AS [Deskripsi], 
+    [view_LaporanDestinasi].[Status] AS [Status], 
+    [view_LaporanDestinasi].[CreatedBy] AS [CreatedBy], 
+    [view_LaporanDestinasi].[CreatedDate] AS [CreatedDate], 
+    [view_LaporanDestinasi].[ModifiedBy] AS [ModifiedBy], 
+    [view_LaporanDestinasi].[ModifiedDate] AS [ModifiedDate], 
+    [view_LaporanDestinasi].[Nama_Kota] AS [Nama_Kota]
+    FROM [dbo].[view_LaporanDestinasi] AS [view_LaporanDestinasi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_LaporanFeedback" EntityType="Self.view_LaporanFeedback" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_LaporanFeedback].[ID_Feedback] AS [ID_Feedback], 
+    [view_LaporanFeedback].[ID_Transaksi] AS [ID_Transaksi], 
+    [view_LaporanFeedback].[Rating] AS [Rating], 
+    [view_LaporanFeedback].[Isi_Feedback] AS [Isi_Feedback], 
+    [view_LaporanFeedback].[CreatedDate] AS [CreatedDate], 
+    [view_LaporanFeedback].[Nama_Paket] AS [Nama_Paket], 
+    [view_LaporanFeedback].[Lama_Perjalanan] AS [Lama_Perjalanan], 
+    [view_LaporanFeedback].[Tanggal_Pesanan] AS [Tanggal_Pesanan], 
+    [view_LaporanFeedback].[Nama] AS [Nama], 
+    [view_LaporanFeedback].[Alamat] AS [Alamat], 
+    [view_LaporanFeedback].[Email] AS [Email]
+    FROM [dbo].[view_LaporanFeedback] AS [view_LaporanFeedback]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_LaporanTransaksi" EntityType="Self.view_LaporanTransaksi" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_LaporanTransaksi].[ID_Transaksi] AS [ID_Transaksi], 
+    [view_LaporanTransaksi].[ID_Paket] AS [ID_Paket], 
+    [view_LaporanTransaksi].[ID_Customer] AS [ID_Customer], 
+    [view_LaporanTransaksi].[ID_Pegawai] AS [ID_Pegawai], 
+    [view_LaporanTransaksi].[Harga_total] AS [Harga_total], 
+    [view_LaporanTransaksi].[Jumlah_Penumpang] AS [Jumlah_Penumpang], 
+    [view_LaporanTransaksi].[Tanggal_Pesanan] AS [Tanggal_Pesanan], 
+    [view_LaporanTransaksi].[Bukti_DP] AS [Bukti_DP], 
+    [view_LaporanTransaksi].[Bukti_Pelunasan] AS [Bukti_Pelunasan], 
+    [view_LaporanTransaksi].[biaya_tambahan] AS [biaya_tambahan], 
+    [view_LaporanTransaksi].[Status_Transaksi] AS [Status_Transaksi], 
+    [view_LaporanTransaksi].[PaketLama_Perjalanan] AS [PaketLama_Perjalanan], 
+    [view_LaporanTransaksi].[CreatedDate] AS [CreatedDate], 
+    [view_LaporanTransaksi].[Nama_Paket] AS [Nama_Paket], 
+    [view_LaporanTransaksi].[Jadwal] AS [Jadwal], 
+    [view_LaporanTransaksi].[Lama_Perjalanan] AS [Lama_Perjalanan], 
+    [view_LaporanTransaksi].[Nama] AS [Nama], 
+    [view_LaporanTransaksi].[Alamat] AS [Alamat], 
+    [view_LaporanTransaksi].[No_HP] AS [No_HP], 
+    [view_LaporanTransaksi].[Email] AS [Email]
+    FROM [dbo].[view_LaporanTransaksi] AS [view_LaporanTransaksi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_PaketHome" EntityType="Self.view_PaketHome" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_PaketHome].[ID_Paket] AS [ID_Paket], 
+    [view_PaketHome].[Nama_Paket] AS [Nama_Paket], 
+    [view_PaketHome].[Harga] AS [Harga], 
+    [view_PaketHome].[Rating] AS [Rating], 
+    [view_PaketHome].[JumlahRate] AS [JumlahRate], 
+    [view_PaketHome].[Foto] AS [Foto], 
+    [view_PaketHome].[Status] AS [Status]
+    FROM [dbo].[view_PaketHome] AS [view_PaketHome]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_StatusTransCount" EntityType="Self.view_StatusTransCount" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_StatusTransCount].[Status_Transaksi] AS [Status_Transaksi], 
+    [view_StatusTransCount].[StatusTrans] AS [StatusTrans], 
+    [view_StatusTransCount].[jumlah] AS [jumlah]
+    FROM [dbo].[view_StatusTransCount] AS [view_StatusTransCount]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_TransaksiAdmin" EntityType="Self.view_TransaksiAdmin" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_TransaksiAdmin].[ID_Transaksi] AS [ID_Transaksi], 
+    [view_TransaksiAdmin].[ID_Customer] AS [ID_Customer], 
+    [view_TransaksiAdmin].[ID_Pegawai] AS [ID_Pegawai], 
+    [view_TransaksiAdmin].[Harga_total] AS [Harga_total], 
+    [view_TransaksiAdmin].[Jumlah_Penumpang] AS [Jumlah_Penumpang], 
+    [view_TransaksiAdmin].[Tanggal_Pesanan] AS [Tanggal_Pesanan], 
+    [view_TransaksiAdmin].[Bukti_DP] AS [Bukti_DP], 
+    [view_TransaksiAdmin].[Bukti_Pelunasan] AS [Bukti_Pelunasan], 
+    [view_TransaksiAdmin].[biaya_tambahan] AS [biaya_tambahan], 
+    [view_TransaksiAdmin].[Status_Transaksi] AS [Status_Transaksi], 
+    [view_TransaksiAdmin].[PaketLama_Perjalanan] AS [PaketLama_Perjalanan], 
+    [view_TransaksiAdmin].[CreatedDateTr] AS [CreatedDateTr], 
+    [view_TransaksiAdmin].[ID_Paket] AS [ID_Paket], 
+    [view_TransaksiAdmin].[Nama_Paket] AS [Nama_Paket], 
+    [view_TransaksiAdmin].[Harga] AS [Harga], 
+    [view_TransaksiAdmin].[Konsumsi] AS [Konsumsi], 
+    [view_TransaksiAdmin].[Lama_Perjalanan] AS [Lama_Perjalanan], 
+    [view_TransaksiAdmin].[Penginapan] AS [Penginapan], 
+    [view_TransaksiAdmin].[Jenis_Paket] AS [Jenis_Paket], 
+    [view_TransaksiAdmin].[Jadwal] AS [Jadwal], 
+    [view_TransaksiAdmin].[Keterangan] AS [Keterangan], 
+    [view_TransaksiAdmin].[Status] AS [Status], 
+    [view_TransaksiAdmin].[CreatedBy] AS [CreatedBy], 
+    [view_TransaksiAdmin].[CreatedDate] AS [CreatedDate], 
+    [view_TransaksiAdmin].[ModifiedBy] AS [ModifiedBy], 
+    [view_TransaksiAdmin].[ModifiedDate] AS [ModifiedDate]
+    FROM [dbo].[view_TransaksiAdmin] AS [view_TransaksiAdmin]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_TransaksiCount" EntityType="Self.view_TransaksiCount" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_TransaksiCount].[ID_Paket] AS [ID_Paket], 
+    [view_TransaksiCount].[Nama_Paket] AS [Nama_Paket], 
+    [view_TransaksiCount].[jumlah_dipesan] AS [jumlah_dipesan]
+    FROM [dbo].[view_TransaksiCount] AS [view_TransaksiCount]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_TransaksiCustomer" EntityType="Self.view_TransaksiCustomer" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_TransaksiCustomer].[ID_Transaksi] AS [ID_Transaksi], 
+    [view_TransaksiCustomer].[ID_Customer] AS [ID_Customer], 
+    [view_TransaksiCustomer].[ID_Pegawai] AS [ID_Pegawai], 
+    [view_TransaksiCustomer].[Harga_total] AS [Harga_total], 
+    [view_TransaksiCustomer].[Jumlah_Penumpang] AS [Jumlah_Penumpang], 
+    [view_TransaksiCustomer].[Tanggal_Pesanan] AS [Tanggal_Pesanan], 
+    [view_TransaksiCustomer].[Bukti_DP] AS [Bukti_DP], 
+    [view_TransaksiCustomer].[Bukti_Pelunasan] AS [Bukti_Pelunasan], 
+    [view_TransaksiCustomer].[biaya_tambahan] AS [biaya_tambahan], 
+    [view_TransaksiCustomer].[Status_Transaksi] AS [Status_Transaksi], 
+    [view_TransaksiCustomer].[PaketLama_Perjalanan] AS [PaketLama_Perjalanan], 
+    [view_TransaksiCustomer].[CreatedDateTr] AS [CreatedDateTr], 
+    [view_TransaksiCustomer].[ID_Paket] AS [ID_Paket], 
+    [view_TransaksiCustomer].[Nama_Paket] AS [Nama_Paket], 
+    [view_TransaksiCustomer].[Harga] AS [Harga], 
+    [view_TransaksiCustomer].[Konsumsi] AS [Konsumsi], 
+    [view_TransaksiCustomer].[Lama_Perjalanan] AS [Lama_Perjalanan], 
+    [view_TransaksiCustomer].[Penginapan] AS [Penginapan], 
+    [view_TransaksiCustomer].[Jenis_Paket] AS [Jenis_Paket], 
+    [view_TransaksiCustomer].[Jadwal] AS [Jadwal], 
+    [view_TransaksiCustomer].[Keterangan] AS [Keterangan], 
+    [view_TransaksiCustomer].[Status] AS [Status], 
+    [view_TransaksiCustomer].[CreatedBy] AS [CreatedBy], 
+    [view_TransaksiCustomer].[CreatedDate] AS [CreatedDate], 
+    [view_TransaksiCustomer].[ModifiedBy] AS [ModifiedBy], 
+    [view_TransaksiCustomer].[ModifiedDate] AS [ModifiedDate]
+    FROM [dbo].[view_TransaksiCustomer] AS [view_TransaksiCustomer]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Destinasi_Kota" Association="Self.FK_Destinasi_Kota">
+            <End Role="Kota" EntitySet="Kota" />
+            <End Role="Destinasi" EntitySet="Destinasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Destinasi_Pegawai" Association="Self.FK_Destinasi_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Destinasi" EntitySet="Destinasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Destinasi_Pegawai1" Association="Self.FK_Destinasi_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Destinasi" EntitySet="Destinasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Foto_Destinasi" Association="Self.FK_Detail_Foto_Destinasi">
+            <End Role="Destinasi" EntitySet="Destinasi" />
+            <End Role="Detail_Foto" EntitySet="Detail_Foto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Kategori_Kategori_Wilayah" Association="Self.FK_Detail_Kategori_Kategori_Wilayah">
+            <End Role="Kategori_Wilayah" EntitySet="Kategori_Wilayah" />
+            <End Role="Detail_Kategori" EntitySet="Detail_Kategori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Kategori_Kota" Association="Self.FK_Detail_Kategori_Kota">
+            <End Role="Kota" EntitySet="Kota" />
+            <End Role="Detail_Kategori" EntitySet="Detail_Kategori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Paket_Destinasi" Association="Self.FK_Detail_Paket_Destinasi">
+            <End Role="Destinasi" EntitySet="Destinasi" />
+            <End Role="Detail_Paket" EntitySet="Detail_Paket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Paket_Paket" Association="Self.FK_Detail_Paket_Paket">
+            <End Role="Paket" EntitySet="Paket" />
+            <End Role="Detail_Paket" EntitySet="Detail_Paket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Rating_Destinasi_Customer" Association="Self.FK_Detail_Rating_Destinasi_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Detail_Rating_Destinasi" EntitySet="Detail_Rating_Destinasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Rating_Destinasi_Destinasi" Association="Self.FK_Detail_Rating_Destinasi_Destinasi">
+            <End Role="Destinasi" EntitySet="Destinasi" />
+            <End Role="Detail_Rating_Destinasi" EntitySet="Detail_Rating_Destinasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Transaksi" Association="Self.FK_Feedback_Transaksi">
+            <End Role="Transaksi" EntitySet="Transaksi" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jenis_Kendaraan_Pegawai" Association="Self.FK_Jenis_Kendaraan_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Jenis_Kendaraan" EntitySet="Jenis_Kendaraan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jenis_Kendaraan_Pegawai1" Association="Self.FK_Jenis_Kendaraan_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Jenis_Kendaraan" EntitySet="Jenis_Kendaraan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kategori_Wilayah_Pegawai" Association="Self.FK_Kategori_Wilayah_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Kategori_Wilayah" EntitySet="Kategori_Wilayah" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kategori_Wilayah_Pegawai1" Association="Self.FK_Kategori_Wilayah_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Kategori_Wilayah" EntitySet="Kategori_Wilayah" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kendaraan_Jenis_Kendaraan" Association="Self.FK_Kendaraan_Jenis_Kendaraan">
+            <End Role="Jenis_Kendaraan" EntitySet="Jenis_Kendaraan" />
+            <End Role="Kendaraan" EntitySet="Kendaraan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kendaraan_Pegawai" Association="Self.FK_Kendaraan_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Kendaraan" EntitySet="Kendaraan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kendaraan_Pegawai1" Association="Self.FK_Kendaraan_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Kendaraan" EntitySet="Kendaraan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kota_Pegawai" Association="Self.FK_Kota_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Kota" EntitySet="Kota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kota_Pegawai1" Association="Self.FK_Kota_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Kota" EntitySet="Kota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paket_Pegawai" Association="Self.FK_Paket_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Paket" EntitySet="Paket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paket_Pegawai1" Association="Self.FK_Paket_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Paket" EntitySet="Paket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaksi_Customer" Association="Self.FK_Transaksi_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Transaksi" EntitySet="Transaksi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaksi_Kendaraan_Kendaraan" Association="Self.FK_Transaksi_Kendaraan_Kendaraan">
+            <End Role="Kendaraan" EntitySet="Kendaraan" />
+            <End Role="Transaksi_Kendaraan" EntitySet="Transaksi_Kendaraan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaksi_Kendaraan_Transaksi" Association="Self.FK_Transaksi_Kendaraan_Transaksi">
+            <End Role="Transaksi" EntitySet="Transaksi" />
+            <End Role="Transaksi_Kendaraan" EntitySet="Transaksi_Kendaraan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaksi_Paket" Association="Self.FK_Transaksi_Paket">
+            <End Role="Paket" EntitySet="Paket" />
+            <End Role="Transaksi" EntitySet="Transaksi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaksi_Pegawai" Association="Self.FK_Transaksi_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawai" />
+            <End Role="Transaksi" EntitySet="Transaksi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BUSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="NIK" />
+          </Key>
+          <Property Name="NIK" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nama" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Alamat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="No_HP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Detail_Rating_Destinasi" Relationship="Self.FK_Detail_Rating_Destinasi_Customer" FromRole="Customer" ToRole="Detail_Rating_Destinasi" />
+          <NavigationProperty Name="Transaksis" Relationship="Self.FK_Transaksi_Customer" FromRole="Customer" ToRole="Transaksi" />
+        </EntityType>
+        <EntityType Name="Destinasi">
+          <Key>
+            <PropertyRef Name="ID_Destinasi" />
+          </Key>
+          <Property Name="ID_Destinasi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Destinasi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Harga_Tiket" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ID_Kota" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Double" Nullable="false" />
+          <Property Name="Jam_buka" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Jam_tutup" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Deskripsi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Kota" Relationship="Self.FK_Destinasi_Kota" FromRole="Destinasi" ToRole="Kota" />
+          <NavigationProperty Name="Pegawai" Relationship="Self.FK_Destinasi_Pegawai" FromRole="Destinasi" ToRole="Pegawai" />
+          <NavigationProperty Name="Pegawai1" Relationship="Self.FK_Destinasi_Pegawai1" FromRole="Destinasi" ToRole="Pegawai" />
+          <NavigationProperty Name="Detail_Foto" Relationship="Self.FK_Detail_Foto_Destinasi" FromRole="Destinasi" ToRole="Detail_Foto" />
+          <NavigationProperty Name="Detail_Paket" Relationship="Self.FK_Detail_Paket_Destinasi" FromRole="Destinasi" ToRole="Detail_Paket" />
+          <NavigationProperty Name="Detail_Rating_Destinasi" Relationship="Self.FK_Detail_Rating_Destinasi_Destinasi" FromRole="Destinasi" ToRole="Detail_Rating_Destinasi" />
+        </EntityType>
+        <EntityType Name="Detail_Foto">
+          <Key>
+            <PropertyRef Name="ID_Detail" />
+          </Key>
+          <Property Name="ID_Detail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Destinasi" Type="Int32" Nullable="false" />
+          <Property Name="Foto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Destinasi" Relationship="Self.FK_Detail_Foto_Destinasi" FromRole="Detail_Foto" ToRole="Destinasi" />
+        </EntityType>
+        <EntityType Name="Detail_Kategori">
+          <Key>
+            <PropertyRef Name="ID_KategoriWilayah" />
+            <PropertyRef Name="ID_Kota" />
+          </Key>
+          <Property Name="ID_KategoriWilayah" Type="Int32" Nullable="false" />
+          <Property Name="ID_Kota" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kategori_Wilayah" Relationship="Self.FK_Detail_Kategori_Kategori_Wilayah" FromRole="Detail_Kategori" ToRole="Kategori_Wilayah" />
+          <NavigationProperty Name="Kota" Relationship="Self.FK_Detail_Kategori_Kota" FromRole="Detail_Kategori" ToRole="Kota" />
+        </EntityType>
+        <EntityType Name="Detail_Paket">
+          <Key>
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="ID_Destinasi" />
+          </Key>
+          <Property Name="ID_Paket" Type="Int32" Nullable="false" />
+          <Property Name="ID_Destinasi" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Destinasi" Relationship="Self.FK_Detail_Paket_Destinasi" FromRole="Detail_Paket" ToRole="Destinasi" />
+          <NavigationProperty Name="Paket" Relationship="Self.FK_Detail_Paket_Paket" FromRole="Detail_Paket" ToRole="Paket" />
+        </EntityType>
+        <EntityType Name="Detail_Rating_Destinasi">
+          <Key>
+            <PropertyRef Name="NIK" />
+            <PropertyRef Name="ID_Destinasi" />
+          </Key>
+          <Property Name="NIK" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Destinasi" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Double" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Detail_Rating_Destinasi_Customer" FromRole="Detail_Rating_Destinasi" ToRole="Customer" />
+          <NavigationProperty Name="Destinasi" Relationship="Self.FK_Detail_Rating_Destinasi_Destinasi" FromRole="Detail_Rating_Destinasi" ToRole="Destinasi" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="ID_Feedback" />
+          </Key>
+          <Property Name="ID_Feedback" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Transaksi" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Double" Nullable="false" />
+          <Property Name="Isi_Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Transaksi" Relationship="Self.FK_Feedback_Transaksi" FromRole="Feedback" ToRole="Transaksi" />
+        </EntityType>
+        <EntityType Name="Jenis_Kendaraan">
+          <Key>
+            <PropertyRef Name="ID_Jenis" />
+          </Key>
+          <Property Name="ID_Jenis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Jenis" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Jumlah_Kursi" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Pegawai" Relationship="Self.FK_Jenis_Kendaraan_Pegawai" FromRole="Jenis_Kendaraan" ToRole="Pegawai" />
+          <NavigationProperty Name="Pegawai1" Relationship="Self.FK_Jenis_Kendaraan_Pegawai1" FromRole="Jenis_Kendaraan" ToRole="Pegawai" />
+          <NavigationProperty Name="Kendaraans" Relationship="Self.FK_Kendaraan_Jenis_Kendaraan" FromRole="Jenis_Kendaraan" ToRole="Kendaraan" />
+        </EntityType>
+        <EntityType Name="Kategori_Wilayah">
+          <Key>
+            <PropertyRef Name="ID_KategoriWilayah" />
+          </Key>
+          <Property Name="ID_KategoriWilayah" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Wilayah" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Detail_Kategori" Relationship="Self.FK_Detail_Kategori_Kategori_Wilayah" FromRole="Kategori_Wilayah" ToRole="Detail_Kategori" />
+          <NavigationProperty Name="Pegawai" Relationship="Self.FK_Kategori_Wilayah_Pegawai" FromRole="Kategori_Wilayah" ToRole="Pegawai" />
+          <NavigationProperty Name="Pegawai1" Relationship="Self.FK_Kategori_Wilayah_Pegawai1" FromRole="Kategori_Wilayah" ToRole="Pegawai" />
+        </EntityType>
+        <EntityType Name="Kendaraan">
+          <Key>
+            <PropertyRef Name="ID_Kendaraan" />
+          </Key>
+          <Property Name="ID_Kendaraan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Kendaraan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Jenis" Type="Int32" Nullable="false" />
+          <Property Name="No_Kendaraan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Harga_kendaraan" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Jenis_Kendaraan" Relationship="Self.FK_Kendaraan_Jenis_Kendaraan" FromRole="Kendaraan" ToRole="Jenis_Kendaraan" />
+          <NavigationProperty Name="Pegawai" Relationship="Self.FK_Kendaraan_Pegawai" FromRole="Kendaraan" ToRole="Pegawai" />
+          <NavigationProperty Name="Pegawai1" Relationship="Self.FK_Kendaraan_Pegawai1" FromRole="Kendaraan" ToRole="Pegawai" />
+          <NavigationProperty Name="Transaksi_Kendaraan" Relationship="Self.FK_Transaksi_Kendaraan_Kendaraan" FromRole="Kendaraan" ToRole="Transaksi_Kendaraan" />
+        </EntityType>
+        <EntityType Name="Kota">
+          <Key>
+            <PropertyRef Name="ID_Kota" />
+          </Key>
+          <Property Name="ID_Kota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Kota" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Destinasis" Relationship="Self.FK_Destinasi_Kota" FromRole="Kota" ToRole="Destinasi" />
+          <NavigationProperty Name="Detail_Kategori" Relationship="Self.FK_Detail_Kategori_Kota" FromRole="Kota" ToRole="Detail_Kategori" />
+          <NavigationProperty Name="Pegawai" Relationship="Self.FK_Kota_Pegawai" FromRole="Kota" ToRole="Pegawai" />
+          <NavigationProperty Name="Pegawai1" Relationship="Self.FK_Kota_Pegawai1" FromRole="Kota" ToRole="Pegawai" />
+        </EntityType>
+        <EntityType Name="Paket">
+          <Key>
+            <PropertyRef Name="ID_Paket" />
+          </Key>
+          <Property Name="ID_Paket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Paket" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Harga" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Konsumsi" Type="Int32" Nullable="false" />
+          <Property Name="Lama_Perjalanan" Type="Int32" />
+          <Property Name="Penginapan" Type="Int32" Nullable="false" />
+          <Property Name="Jenis_Paket" Type="Int32" Nullable="false" />
+          <Property Name="Jadwal" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Keterangan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Detail_Paket" Relationship="Self.FK_Detail_Paket_Paket" FromRole="Paket" ToRole="Detail_Paket" />
+          <NavigationProperty Name="Pegawai" Relationship="Self.FK_Paket_Pegawai" FromRole="Paket" ToRole="Pegawai" />
+          <NavigationProperty Name="Pegawai1" Relationship="Self.FK_Paket_Pegawai1" FromRole="Paket" ToRole="Pegawai" />
+          <NavigationProperty Name="Transaksis" Relationship="Self.FK_Transaksi_Paket" FromRole="Paket" ToRole="Transaksi" />
+        </EntityType>
+        <EntityType Name="Pegawai">
+          <Key>
+            <PropertyRef Name="ID_Pegawai" />
+          </Key>
+          <Property Name="ID_Pegawai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Alamat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="No_HP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Destinasis" Relationship="Self.FK_Destinasi_Pegawai" FromRole="Pegawai" ToRole="Destinasi" />
+          <NavigationProperty Name="Destinasis1" Relationship="Self.FK_Destinasi_Pegawai1" FromRole="Pegawai" ToRole="Destinasi" />
+          <NavigationProperty Name="Jenis_Kendaraan" Relationship="Self.FK_Jenis_Kendaraan_Pegawai" FromRole="Pegawai" ToRole="Jenis_Kendaraan" />
+          <NavigationProperty Name="Jenis_Kendaraan1" Relationship="Self.FK_Jenis_Kendaraan_Pegawai1" FromRole="Pegawai" ToRole="Jenis_Kendaraan" />
+          <NavigationProperty Name="Kategori_Wilayah" Relationship="Self.FK_Kategori_Wilayah_Pegawai" FromRole="Pegawai" ToRole="Kategori_Wilayah" />
+          <NavigationProperty Name="Kategori_Wilayah1" Relationship="Self.FK_Kategori_Wilayah_Pegawai1" FromRole="Pegawai" ToRole="Kategori_Wilayah" />
+          <NavigationProperty Name="Kendaraans" Relationship="Self.FK_Kendaraan_Pegawai" FromRole="Pegawai" ToRole="Kendaraan" />
+          <NavigationProperty Name="Kendaraans1" Relationship="Self.FK_Kendaraan_Pegawai1" FromRole="Pegawai" ToRole="Kendaraan" />
+          <NavigationProperty Name="Kotas" Relationship="Self.FK_Kota_Pegawai" FromRole="Pegawai" ToRole="Kota" />
+          <NavigationProperty Name="Kotas1" Relationship="Self.FK_Kota_Pegawai1" FromRole="Pegawai" ToRole="Kota" />
+          <NavigationProperty Name="Pakets" Relationship="Self.FK_Paket_Pegawai" FromRole="Pegawai" ToRole="Paket" />
+          <NavigationProperty Name="Pakets1" Relationship="Self.FK_Paket_Pegawai1" FromRole="Pegawai" ToRole="Paket" />
+          <NavigationProperty Name="Transaksis" Relationship="Self.FK_Transaksi_Pegawai" FromRole="Pegawai" ToRole="Transaksi" />
+        </EntityType>
+        <EntityType Name="Transaksi">
+          <Key>
+            <PropertyRef Name="ID_Transaksi" />
+          </Key>
+          <Property Name="ID_Transaksi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Paket" Type="Int32" Nullable="false" />
+          <Property Name="ID_Customer" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Pegawai" Type="Int32" />
+          <Property Name="Harga_total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Jumlah_Penumpang" Type="Int32" Nullable="false" />
+          <Property Name="Tanggal_Pesanan" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bukti_DP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bukti_Pelunasan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="biaya_tambahan" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Status_Transaksi" Type="Int32" Nullable="false" />
+          <Property Name="PaketLama_Perjalanan" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Transaksi_Customer" FromRole="Transaksi" ToRole="Customer" />
+          <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedback_Transaksi" FromRole="Transaksi" ToRole="Feedback" />
+          <NavigationProperty Name="Paket" Relationship="Self.FK_Transaksi_Paket" FromRole="Transaksi" ToRole="Paket" />
+          <NavigationProperty Name="Pegawai" Relationship="Self.FK_Transaksi_Pegawai" FromRole="Transaksi" ToRole="Pegawai" />
+          <NavigationProperty Name="Transaksi_Kendaraan" Relationship="Self.FK_Transaksi_Kendaraan_Transaksi" FromRole="Transaksi" ToRole="Transaksi_Kendaraan" />
+        </EntityType>
+        <EntityType Name="Transaksi_Kendaraan">
+          <Key>
+            <PropertyRef Name="ID_Transaksi" />
+            <PropertyRef Name="ID_Kendaraan" />
+          </Key>
+          <Property Name="ID_Transaksi" Type="Int32" Nullable="false" />
+          <Property Name="ID_Kendaraan" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kendaraan" Relationship="Self.FK_Transaksi_Kendaraan_Kendaraan" FromRole="Transaksi_Kendaraan" ToRole="Kendaraan" />
+          <NavigationProperty Name="Transaksi" Relationship="Self.FK_Transaksi_Kendaraan_Transaksi" FromRole="Transaksi_Kendaraan" ToRole="Transaksi" />
+        </EntityType>
+        <EntityType Name="view_DashboardCustomer">
+          <Key>
+            <PropertyRef Name="ID_Customer" />
+            <PropertyRef Name="tgl" />
+          </Key>
+          <Property Name="tgl" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="ID_Customer" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jumlah" Type="Int32" />
+        </EntityType>
+        <EntityType Name="view_DestinasiTerlaris">
+          <Key>
+            <PropertyRef Name="ID_Destinasi" />
+            <PropertyRef Name="Nama_Destinasi" />
+          </Key>
+          <Property Name="ID_Destinasi" Type="Int32" Nullable="false" />
+          <Property Name="Nama_Destinasi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JumlahDipesan" Type="Int32" />
+        </EntityType>
+        <EntityType Name="view_JumlahDestinasiWilayah">
+          <Key>
+            <PropertyRef Name="ID_KategoriWilayah" />
+            <PropertyRef Name="Nama_Wilayah" />
+          </Key>
+          <Property Name="ID_KategoriWilayah" Type="Int32" Nullable="false" />
+          <Property Name="Nama_Wilayah" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JumlahDestinasi" Type="Int32" />
+        </EntityType>
+        <EntityType Name="view_LaporanDestinasi">
+          <Key>
+            <PropertyRef Name="ID_Destinasi" />
+            <PropertyRef Name="Nama_Destinasi" />
+            <PropertyRef Name="Harga_Tiket" />
+            <PropertyRef Name="ID_Kota" />
+            <PropertyRef Name="Rating" />
+            <PropertyRef Name="Jam_buka" />
+            <PropertyRef Name="Jam_tutup" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="ModifiedBy" />
+            <PropertyRef Name="ModifiedDate" />
+            <PropertyRef Name="Nama_Kota" />
+          </Key>
+          <Property Name="ID_Destinasi" Type="Int32" Nullable="false" />
+          <Property Name="Nama_Destinasi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Harga_Tiket" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ID_Kota" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Double" Nullable="false" />
+          <Property Name="Jam_buka" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Jam_tutup" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Deskripsi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nama_Kota" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="view_LaporanFeedback">
+          <Key>
+            <PropertyRef Name="ID_Feedback" />
+            <PropertyRef Name="ID_Transaksi" />
+            <PropertyRef Name="Rating" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Nama_Paket" />
+            <PropertyRef Name="Tanggal_Pesanan" />
+            <PropertyRef Name="Nama" />
+            <PropertyRef Name="Alamat" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="ID_Feedback" Type="Int32" Nullable="false" />
+          <Property Name="ID_Transaksi" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="Isi_Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nama_Paket" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lama_Perjalanan" Type="Int32" />
+          <Property Name="Tanggal_Pesanan" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Nama" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Alamat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="view_LaporanTransaksi">
+          <Key>
+            <PropertyRef Name="ID_Transaksi" />
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="ID_Customer" />
+            <PropertyRef Name="Harga_total" />
+            <PropertyRef Name="Jumlah_Penumpang" />
+            <PropertyRef Name="Tanggal_Pesanan" />
+            <PropertyRef Name="Status_Transaksi" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="Nama_Paket" />
+            <PropertyRef Name="Nama" />
+            <PropertyRef Name="Alamat" />
+            <PropertyRef Name="No_HP" />
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="ID_Transaksi" Type="Int32" Nullable="false" />
+          <Property Name="ID_Paket" Type="Int32" Nullable="false" />
+          <Property Name="ID_Customer" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Pegawai" Type="Int32" />
+          <Property Name="Harga_total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Jumlah_Penumpang" Type="Int32" Nullable="false" />
+          <Property Name="Tanggal_Pesanan" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bukti_DP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bukti_Pelunasan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="biaya_tambahan" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Status_Transaksi" Type="Int32" Nullable="false" />
+          <Property Name="PaketLama_Perjalanan" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nama_Paket" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Jadwal" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Lama_Perjalanan" Type="Int32" />
+          <Property Name="Nama" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Alamat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="No_HP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="view_PaketHome">
+          <Key>
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="Nama_Paket" />
+            <PropertyRef Name="Rating" />
+            <PropertyRef Name="Foto" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="ID_Paket" Type="Int32" Nullable="false" />
+          <Property Name="Nama_Paket" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Harga" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Rating" Type="Double" Nullable="false" />
+          <Property Name="JumlahRate" Type="Int32" />
+          <Property Name="Foto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="view_StatusTransCount">
+          <Key>
+            <PropertyRef Name="Status_Transaksi" />
+            <PropertyRef Name="StatusTrans" />
+          </Key>
+          <Property Name="Status_Transaksi" Type="Int32" Nullable="false" />
+          <Property Name="StatusTrans" Type="String" MaxLength="22" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jumlah" Type="Int32" />
+        </EntityType>
+        <EntityType Name="view_TransaksiCount">
+          <Key>
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="Nama_Paket" />
+          </Key>
+          <Property Name="ID_Paket" Type="Int32" Nullable="false" />
+          <Property Name="Nama_Paket" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jumlah_dipesan" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Detail_Rating_Destinasi_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Detail_Rating_Destinasi" Type="Self.Detail_Rating_Destinasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="NIK" />
+            </Principal>
+            <Dependent Role="Detail_Rating_Destinasi">
+              <PropertyRef Name="NIK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaksi_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="NIK" />
+            </Principal>
+            <Dependent Role="Transaksi">
+              <PropertyRef Name="ID_Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Destinasi_Kota">
+          <End Role="Kota" Type="Self.Kota" Multiplicity="1" />
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kota">
+              <PropertyRef Name="ID_Kota" />
+            </Principal>
+            <Dependent Role="Destinasi">
+              <PropertyRef Name="ID_Kota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Destinasi_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Destinasi">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Destinasi_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Destinasi">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Foto_Destinasi">
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="1" />
+          <End Role="Detail_Foto" Type="Self.Detail_Foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destinasi">
+              <PropertyRef Name="ID_Destinasi" />
+            </Principal>
+            <Dependent Role="Detail_Foto">
+              <PropertyRef Name="ID_Destinasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Paket_Destinasi">
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="1" />
+          <End Role="Detail_Paket" Type="Self.Detail_Paket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destinasi">
+              <PropertyRef Name="ID_Destinasi" />
+            </Principal>
+            <Dependent Role="Detail_Paket">
+              <PropertyRef Name="ID_Destinasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Rating_Destinasi_Destinasi">
+          <End Role="Destinasi" Type="Self.Destinasi" Multiplicity="1" />
+          <End Role="Detail_Rating_Destinasi" Type="Self.Detail_Rating_Destinasi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destinasi">
+              <PropertyRef Name="ID_Destinasi" />
+            </Principal>
+            <Dependent Role="Detail_Rating_Destinasi">
+              <PropertyRef Name="ID_Destinasi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Kategori_Kategori_Wilayah">
+          <End Role="Kategori_Wilayah" Type="Self.Kategori_Wilayah" Multiplicity="1" />
+          <End Role="Detail_Kategori" Type="Self.Detail_Kategori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori_Wilayah">
+              <PropertyRef Name="ID_KategoriWilayah" />
+            </Principal>
+            <Dependent Role="Detail_Kategori">
+              <PropertyRef Name="ID_KategoriWilayah" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Kategori_Kota">
+          <End Role="Kota" Type="Self.Kota" Multiplicity="1" />
+          <End Role="Detail_Kategori" Type="Self.Detail_Kategori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kota">
+              <PropertyRef Name="ID_Kota" />
+            </Principal>
+            <Dependent Role="Detail_Kategori">
+              <PropertyRef Name="ID_Kota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Paket_Paket">
+          <End Role="Paket" Type="Self.Paket" Multiplicity="1" />
+          <End Role="Detail_Paket" Type="Self.Detail_Paket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paket">
+              <PropertyRef Name="ID_Paket" />
+            </Principal>
+            <Dependent Role="Detail_Paket">
+              <PropertyRef Name="ID_Paket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Transaksi">
+          <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaksi">
+              <PropertyRef Name="ID_Transaksi" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="ID_Transaksi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jenis_Kendaraan_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Jenis_Kendaraan" Type="Self.Jenis_Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Jenis_Kendaraan">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jenis_Kendaraan_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Jenis_Kendaraan" Type="Self.Jenis_Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Jenis_Kendaraan">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kendaraan_Jenis_Kendaraan">
+          <End Role="Jenis_Kendaraan" Type="Self.Jenis_Kendaraan" Multiplicity="1" />
+          <End Role="Kendaraan" Type="Self.Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jenis_Kendaraan">
+              <PropertyRef Name="ID_Jenis" />
+            </Principal>
+            <Dependent Role="Kendaraan">
+              <PropertyRef Name="ID_Jenis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kategori_Wilayah_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kategori_Wilayah" Type="Self.Kategori_Wilayah" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kategori_Wilayah">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kategori_Wilayah_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kategori_Wilayah" Type="Self.Kategori_Wilayah" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kategori_Wilayah">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kendaraan_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kendaraan" Type="Self.Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kendaraan">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kendaraan_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kendaraan" Type="Self.Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kendaraan">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaksi_Kendaraan_Kendaraan">
+          <End Role="Kendaraan" Type="Self.Kendaraan" Multiplicity="1" />
+          <End Role="Transaksi_Kendaraan" Type="Self.Transaksi_Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kendaraan">
+              <PropertyRef Name="ID_Kendaraan" />
+            </Principal>
+            <Dependent Role="Transaksi_Kendaraan">
+              <PropertyRef Name="ID_Kendaraan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kota_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kota" Type="Self.Kota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kota">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kota_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Kota" Type="Self.Kota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Kota">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paket_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Paket" Type="Self.Paket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Paket">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paket_Pegawai1">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="1" />
+          <End Role="Paket" Type="Self.Paket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Paket">
+              <PropertyRef Name="ModifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaksi_Paket">
+          <End Role="Paket" Type="Self.Paket" Multiplicity="1" />
+          <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paket">
+              <PropertyRef Name="ID_Paket" />
+            </Principal>
+            <Dependent Role="Transaksi">
+              <PropertyRef Name="ID_Paket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaksi_Pegawai">
+          <End Role="Pegawai" Type="Self.Pegawai" Multiplicity="0..1" />
+          <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pegawai">
+              <PropertyRef Name="ID_Pegawai" />
+            </Principal>
+            <Dependent Role="Transaksi">
+              <PropertyRef Name="ID_Pegawai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaksi_Kendaraan_Transaksi">
+          <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="1" />
+          <End Role="Transaksi_Kendaraan" Type="Self.Transaksi_Kendaraan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaksi">
+              <PropertyRef Name="ID_Transaksi" />
+            </Principal>
+            <Dependent Role="Transaksi_Kendaraan">
+              <PropertyRef Name="ID_Transaksi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BUSSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Destinasis" EntityType="Self.Destinasi" />
+          <EntitySet Name="Detail_Foto" EntityType="Self.Detail_Foto" />
+          <EntitySet Name="Detail_Kategori" EntityType="Self.Detail_Kategori" />
+          <EntitySet Name="Detail_Paket" EntityType="Self.Detail_Paket" />
+          <EntitySet Name="Detail_Rating_Destinasi" EntityType="Self.Detail_Rating_Destinasi" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+          <EntitySet Name="Jenis_Kendaraan" EntityType="Self.Jenis_Kendaraan" />
+          <EntitySet Name="Kategori_Wilayah" EntityType="Self.Kategori_Wilayah" />
+          <EntitySet Name="Kendaraans" EntityType="Self.Kendaraan" />
+          <EntitySet Name="Kotas" EntityType="Self.Kota" />
+          <EntitySet Name="Pakets" EntityType="Self.Paket" />
+          <EntitySet Name="Pegawais" EntityType="Self.Pegawai" />
+          <EntitySet Name="Transaksis" EntityType="Self.Transaksi" />
+          <EntitySet Name="Transaksi_Kendaraan" EntityType="Self.Transaksi_Kendaraan" />
+          <EntitySet Name="view_DashboardCustomer" EntityType="Self.view_DashboardCustomer" />
+          <EntitySet Name="view_DestinasiTerlaris" EntityType="Self.view_DestinasiTerlaris" />
+          <EntitySet Name="view_JumlahDestinasiWilayah" EntityType="Self.view_JumlahDestinasiWilayah" />
+          <EntitySet Name="view_LaporanDestinasi" EntityType="Self.view_LaporanDestinasi" />
+          <EntitySet Name="view_LaporanFeedback" EntityType="Self.view_LaporanFeedback" />
+          <EntitySet Name="view_LaporanTransaksi" EntityType="Self.view_LaporanTransaksi" />
+          <EntitySet Name="view_PaketHome" EntityType="Self.view_PaketHome" />
+          <EntitySet Name="view_StatusTransCount" EntityType="Self.view_StatusTransCount" />
+          <EntitySet Name="view_TransaksiCount" EntityType="Self.view_TransaksiCount" />
+          <AssociationSet Name="FK_Detail_Rating_Destinasi_Customer" Association="Self.FK_Detail_Rating_Destinasi_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Detail_Rating_Destinasi" EntitySet="Detail_Rating_Destinasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaksi_Customer" Association="Self.FK_Transaksi_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Transaksi" EntitySet="Transaksis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Destinasi_Kota" Association="Self.FK_Destinasi_Kota">
+            <End Role="Kota" EntitySet="Kotas" />
+            <End Role="Destinasi" EntitySet="Destinasis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Destinasi_Pegawai" Association="Self.FK_Destinasi_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Destinasi" EntitySet="Destinasis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Destinasi_Pegawai1" Association="Self.FK_Destinasi_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Destinasi" EntitySet="Destinasis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Foto_Destinasi" Association="Self.FK_Detail_Foto_Destinasi">
+            <End Role="Destinasi" EntitySet="Destinasis" />
+            <End Role="Detail_Foto" EntitySet="Detail_Foto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Paket_Destinasi" Association="Self.FK_Detail_Paket_Destinasi">
+            <End Role="Destinasi" EntitySet="Destinasis" />
+            <End Role="Detail_Paket" EntitySet="Detail_Paket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Rating_Destinasi_Destinasi" Association="Self.FK_Detail_Rating_Destinasi_Destinasi">
+            <End Role="Destinasi" EntitySet="Destinasis" />
+            <End Role="Detail_Rating_Destinasi" EntitySet="Detail_Rating_Destinasi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Kategori_Kategori_Wilayah" Association="Self.FK_Detail_Kategori_Kategori_Wilayah">
+            <End Role="Kategori_Wilayah" EntitySet="Kategori_Wilayah" />
+            <End Role="Detail_Kategori" EntitySet="Detail_Kategori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Kategori_Kota" Association="Self.FK_Detail_Kategori_Kota">
+            <End Role="Kota" EntitySet="Kotas" />
+            <End Role="Detail_Kategori" EntitySet="Detail_Kategori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Paket_Paket" Association="Self.FK_Detail_Paket_Paket">
+            <End Role="Paket" EntitySet="Pakets" />
+            <End Role="Detail_Paket" EntitySet="Detail_Paket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Transaksi" Association="Self.FK_Feedback_Transaksi">
+            <End Role="Transaksi" EntitySet="Transaksis" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jenis_Kendaraan_Pegawai" Association="Self.FK_Jenis_Kendaraan_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Jenis_Kendaraan" EntitySet="Jenis_Kendaraan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jenis_Kendaraan_Pegawai1" Association="Self.FK_Jenis_Kendaraan_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Jenis_Kendaraan" EntitySet="Jenis_Kendaraan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kendaraan_Jenis_Kendaraan" Association="Self.FK_Kendaraan_Jenis_Kendaraan">
+            <End Role="Jenis_Kendaraan" EntitySet="Jenis_Kendaraan" />
+            <End Role="Kendaraan" EntitySet="Kendaraans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kategori_Wilayah_Pegawai" Association="Self.FK_Kategori_Wilayah_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Kategori_Wilayah" EntitySet="Kategori_Wilayah" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kategori_Wilayah_Pegawai1" Association="Self.FK_Kategori_Wilayah_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Kategori_Wilayah" EntitySet="Kategori_Wilayah" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kendaraan_Pegawai" Association="Self.FK_Kendaraan_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Kendaraan" EntitySet="Kendaraans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kendaraan_Pegawai1" Association="Self.FK_Kendaraan_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Kendaraan" EntitySet="Kendaraans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaksi_Kendaraan_Kendaraan" Association="Self.FK_Transaksi_Kendaraan_Kendaraan">
+            <End Role="Kendaraan" EntitySet="Kendaraans" />
+            <End Role="Transaksi_Kendaraan" EntitySet="Transaksi_Kendaraan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kota_Pegawai" Association="Self.FK_Kota_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Kota" EntitySet="Kotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kota_Pegawai1" Association="Self.FK_Kota_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Kota" EntitySet="Kotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paket_Pegawai" Association="Self.FK_Paket_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Paket" EntitySet="Pakets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paket_Pegawai1" Association="Self.FK_Paket_Pegawai1">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Paket" EntitySet="Pakets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaksi_Paket" Association="Self.FK_Transaksi_Paket">
+            <End Role="Paket" EntitySet="Pakets" />
+            <End Role="Transaksi" EntitySet="Transaksis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaksi_Pegawai" Association="Self.FK_Transaksi_Pegawai">
+            <End Role="Pegawai" EntitySet="Pegawais" />
+            <End Role="Transaksi" EntitySet="Transaksis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaksi_Kendaraan_Transaksi" Association="Self.FK_Transaksi_Kendaraan_Transaksi">
+            <End Role="Transaksi" EntitySet="Transaksis" />
+            <End Role="Transaksi_Kendaraan" EntitySet="Transaksi_Kendaraan" />
+          </AssociationSet>
+          <EntitySet Name="view_TransaksiAdmin" EntityType="BUSSModel.view_TransaksiAdmin" />
+          <EntitySet Name="view_TransaksiCustomer" EntityType="BUSSModel.view_TransaksiCustomer" />
+        </EntityContainer>
+        <EntityType Name="view_TransaksiAdmin">
+          <Key>
+            <PropertyRef Name="ID_Transaksi" />
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="ID_Customer" />
+            <PropertyRef Name="Harga_total" />
+            <PropertyRef Name="Jumlah_Penumpang" />
+            <PropertyRef Name="Tanggal_Pesanan" />
+            <PropertyRef Name="Status_Transaksi" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedDateTr" />
+            <PropertyRef Name="Nama_Paket" />
+            <PropertyRef Name="Konsumsi" />
+            <PropertyRef Name="Penginapan" />
+            <PropertyRef Name="Jenis_Paket" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="ModifiedBy" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ID_Transaksi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Paket" Type="Int32" Nullable="false" />
+          <Property Name="ID_Customer" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Pegawai" Type="Int32" />
+          <Property Name="Harga_total" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Jumlah_Penumpang" Type="Int32" Nullable="false" />
+          <Property Name="Tanggal_Pesanan" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bukti_DP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bukti_Pelunasan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="biaya_tambahan" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Status_Transaksi" Type="Int32" Nullable="false" />
+          <Property Name="PaketLama_Perjalanan" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateTr" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nama_Paket" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Harga" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Konsumsi" Type="Int32" Nullable="false" />
+          <Property Name="Lama_Perjalanan" Type="Int32" />
+          <Property Name="Penginapan" Type="Int32" Nullable="false" />
+          <Property Name="Jenis_Paket" Type="Int32" Nullable="false" />
+          <Property Name="Jadwal" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Keterangan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="view_TransaksiCustomer">
+          <Key>
+            <PropertyRef Name="ID_Transaksi" />
+            <PropertyRef Name="ID_Paket" />
+            <PropertyRef Name="ID_Customer" />
+            <PropertyRef Name="Harga_total" />
+            <PropertyRef Name="Jumlah_Penumpang" />
+            <PropertyRef Name="Tanggal_Pesanan" />
+            <PropertyRef Name="Status_Transaksi" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedDateTr" />
+            <PropertyRef Name="Nama_Paket" />
+            <PropertyRef Name="Konsumsi" />
+            <PropertyRef Name="Penginapan" />
+            <PropertyRef Name="Jenis_Paket" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="ModifiedBy" />
+            <PropertyRef Name="ModifiedDate" />
+          </Key>
+          <Property Name="ID_Transaksi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Paket" Type="Int32" Nullable="false" />
+          <Property Name="ID_Customer" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Pegawai" Type="Int32" />
+          <Property Name="Harga_total" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Jumlah_Penumpang" Type="Int32" Nullable="false" />
+          <Property Name="Tanggal_Pesanan" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Bukti_DP" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bukti_Pelunasan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="biaya_tambahan" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Status_Transaksi" Type="Int32" Nullable="false" />
+          <Property Name="PaketLama_Perjalanan" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateTr" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nama_Paket" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Harga" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Konsumsi" Type="Int32" Nullable="false" />
+          <Property Name="Lama_Perjalanan" Type="Int32" />
+          <Property Name="Penginapan" Type="Int32" Nullable="false" />
+          <Property Name="Jenis_Paket" Type="Int32" Nullable="false" />
+          <Property Name="Jadwal" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Keterangan" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BUSSModelStoreContainer" CdmEntityContainer="BUSSEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="BUSSModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="NIK" ColumnName="NIK" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
+                <ScalarProperty Name="Alamat" ColumnName="Alamat" />
+                <ScalarProperty Name="No_HP" ColumnName="No_HP" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Destinasis">
+            <EntityTypeMapping TypeName="BUSSModel.Destinasi">
+              <MappingFragment StoreEntitySet="Destinasi">
+                <ScalarProperty Name="ID_Destinasi" ColumnName="ID_Destinasi" />
+                <ScalarProperty Name="Nama_Destinasi" ColumnName="Nama_Destinasi" />
+                <ScalarProperty Name="Harga_Tiket" ColumnName="Harga_Tiket" />
+                <ScalarProperty Name="ID_Kota" ColumnName="ID_Kota" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Jam_buka" ColumnName="Jam_buka" />
+                <ScalarProperty Name="Jam_tutup" ColumnName="Jam_tutup" />
+                <ScalarProperty Name="Deskripsi" ColumnName="Deskripsi" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail_Foto">
+            <EntityTypeMapping TypeName="BUSSModel.Detail_Foto">
+              <MappingFragment StoreEntitySet="Detail_Foto">
+                <ScalarProperty Name="ID_Detail" ColumnName="ID_Detail" />
+                <ScalarProperty Name="ID_Destinasi" ColumnName="ID_Destinasi" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail_Kategori">
+            <EntityTypeMapping TypeName="BUSSModel.Detail_Kategori">
+              <MappingFragment StoreEntitySet="Detail_Kategori">
+                <ScalarProperty Name="ID_KategoriWilayah" ColumnName="ID_KategoriWilayah" />
+                <ScalarProperty Name="ID_Kota" ColumnName="ID_Kota" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail_Paket">
+            <EntityTypeMapping TypeName="BUSSModel.Detail_Paket">
+              <MappingFragment StoreEntitySet="Detail_Paket">
+                <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+                <ScalarProperty Name="ID_Destinasi" ColumnName="ID_Destinasi" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail_Rating_Destinasi">
+            <EntityTypeMapping TypeName="BUSSModel.Detail_Rating_Destinasi">
+              <MappingFragment StoreEntitySet="Detail_Rating_Destinasi">
+                <ScalarProperty Name="NIK" ColumnName="NIK" />
+                <ScalarProperty Name="ID_Destinasi" ColumnName="ID_Destinasi" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="BUSSModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="ID_Feedback" ColumnName="ID_Feedback" />
+                <ScalarProperty Name="ID_Transaksi" ColumnName="ID_Transaksi" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Isi_Feedback" ColumnName="Isi_Feedback" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jenis_Kendaraan">
+            <EntityTypeMapping TypeName="BUSSModel.Jenis_Kendaraan">
+              <MappingFragment StoreEntitySet="Jenis_Kendaraan">
+                <ScalarProperty Name="ID_Jenis" ColumnName="ID_Jenis" />
+                <ScalarProperty Name="Nama_Jenis" ColumnName="Nama_Jenis" />
+                <ScalarProperty Name="Jumlah_Kursi" ColumnName="Jumlah_Kursi" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategori_Wilayah">
+            <EntityTypeMapping TypeName="BUSSModel.Kategori_Wilayah">
+              <MappingFragment StoreEntitySet="Kategori_Wilayah">
+                <ScalarProperty Name="ID_KategoriWilayah" ColumnName="ID_KategoriWilayah" />
+                <ScalarProperty Name="Nama_Wilayah" ColumnName="Nama_Wilayah" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kendaraans">
+            <EntityTypeMapping TypeName="BUSSModel.Kendaraan">
+              <MappingFragment StoreEntitySet="Kendaraan">
+                <ScalarProperty Name="ID_Kendaraan" ColumnName="ID_Kendaraan" />
+                <ScalarProperty Name="Nama_Kendaraan" ColumnName="Nama_Kendaraan" />
+                <ScalarProperty Name="ID_Jenis" ColumnName="ID_Jenis" />
+                <ScalarProperty Name="No_Kendaraan" ColumnName="No_Kendaraan" />
+                <ScalarProperty Name="Harga_kendaraan" ColumnName="Harga_kendaraan" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kotas">
+            <EntityTypeMapping TypeName="BUSSModel.Kota">
+              <MappingFragment StoreEntitySet="Kota">
+                <ScalarProperty Name="ID_Kota" ColumnName="ID_Kota" />
+                <ScalarProperty Name="Nama_Kota" ColumnName="Nama_Kota" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pakets">
+            <EntityTypeMapping TypeName="BUSSModel.Paket">
+              <MappingFragment StoreEntitySet="Paket">
+                <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+                <ScalarProperty Name="Nama_Paket" ColumnName="Nama_Paket" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+                <ScalarProperty Name="Konsumsi" ColumnName="Konsumsi" />
+                <ScalarProperty Name="Lama_Perjalanan" ColumnName="Lama_Perjalanan" />
+                <ScalarProperty Name="Penginapan" ColumnName="Penginapan" />
+                <ScalarProperty Name="Jenis_Paket" ColumnName="Jenis_Paket" />
+                <ScalarProperty Name="Jadwal" ColumnName="Jadwal" />
+                <ScalarProperty Name="Keterangan" ColumnName="Keterangan" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pegawais">
+            <EntityTypeMapping TypeName="BUSSModel.Pegawai">
+              <MappingFragment StoreEntitySet="Pegawai">
+                <ScalarProperty Name="ID_Pegawai" ColumnName="ID_Pegawai" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
+                <ScalarProperty Name="Alamat" ColumnName="Alamat" />
+                <ScalarProperty Name="No_HP" ColumnName="No_HP" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transaksis">
+            <EntityTypeMapping TypeName="BUSSModel.Transaksi">
+              <MappingFragment StoreEntitySet="Transaksi">
+                <ScalarProperty Name="ID_Transaksi" ColumnName="ID_Transaksi" />
+                <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+                <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+                <ScalarProperty Name="ID_Pegawai" ColumnName="ID_Pegawai" />
+                <ScalarProperty Name="Harga_total" ColumnName="Harga_total" />
+                <ScalarProperty Name="Jumlah_Penumpang" ColumnName="Jumlah_Penumpang" />
+                <ScalarProperty Name="Tanggal_Pesanan" ColumnName="Tanggal_Pesanan" />
+                <ScalarProperty Name="Bukti_DP" ColumnName="Bukti_DP" />
+                <ScalarProperty Name="Bukti_Pelunasan" ColumnName="Bukti_Pelunasan" />
+                <ScalarProperty Name="biaya_tambahan" ColumnName="biaya_tambahan" />
+                <ScalarProperty Name="Status_Transaksi" ColumnName="Status_Transaksi" />
+                <ScalarProperty Name="PaketLama_Perjalanan" ColumnName="PaketLama_Perjalanan" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transaksi_Kendaraan">
+            <EntityTypeMapping TypeName="BUSSModel.Transaksi_Kendaraan">
+              <MappingFragment StoreEntitySet="Transaksi_Kendaraan">
+                <ScalarProperty Name="ID_Transaksi" ColumnName="ID_Transaksi" />
+                <ScalarProperty Name="ID_Kendaraan" ColumnName="ID_Kendaraan" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_DashboardCustomer">
+            <EntityTypeMapping TypeName="BUSSModel.view_DashboardCustomer">
+              <MappingFragment StoreEntitySet="view_DashboardCustomer">
+                <ScalarProperty Name="tgl" ColumnName="tgl" />
+                <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+                <ScalarProperty Name="jumlah" ColumnName="jumlah" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_DestinasiTerlaris">
+            <EntityTypeMapping TypeName="BUSSModel.view_DestinasiTerlaris">
+              <MappingFragment StoreEntitySet="view_DestinasiTerlaris">
+                <ScalarProperty Name="ID_Destinasi" ColumnName="ID_Destinasi" />
+                <ScalarProperty Name="Nama_Destinasi" ColumnName="Nama_Destinasi" />
+                <ScalarProperty Name="JumlahDipesan" ColumnName="JumlahDipesan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_JumlahDestinasiWilayah">
+            <EntityTypeMapping TypeName="BUSSModel.view_JumlahDestinasiWilayah">
+              <MappingFragment StoreEntitySet="view_JumlahDestinasiWilayah">
+                <ScalarProperty Name="ID_KategoriWilayah" ColumnName="ID_KategoriWilayah" />
+                <ScalarProperty Name="Nama_Wilayah" ColumnName="Nama_Wilayah" />
+                <ScalarProperty Name="JumlahDestinasi" ColumnName="JumlahDestinasi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_LaporanDestinasi">
+            <EntityTypeMapping TypeName="BUSSModel.view_LaporanDestinasi">
+              <MappingFragment StoreEntitySet="view_LaporanDestinasi">
+                <ScalarProperty Name="ID_Destinasi" ColumnName="ID_Destinasi" />
+                <ScalarProperty Name="Nama_Destinasi" ColumnName="Nama_Destinasi" />
+                <ScalarProperty Name="Harga_Tiket" ColumnName="Harga_Tiket" />
+                <ScalarProperty Name="ID_Kota" ColumnName="ID_Kota" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Jam_buka" ColumnName="Jam_buka" />
+                <ScalarProperty Name="Jam_tutup" ColumnName="Jam_tutup" />
+                <ScalarProperty Name="Deskripsi" ColumnName="Deskripsi" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Nama_Kota" ColumnName="Nama_Kota" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_LaporanFeedback">
+            <EntityTypeMapping TypeName="BUSSModel.view_LaporanFeedback">
+              <MappingFragment StoreEntitySet="view_LaporanFeedback">
+                <ScalarProperty Name="ID_Feedback" ColumnName="ID_Feedback" />
+                <ScalarProperty Name="ID_Transaksi" ColumnName="ID_Transaksi" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Isi_Feedback" ColumnName="Isi_Feedback" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Nama_Paket" ColumnName="Nama_Paket" />
+                <ScalarProperty Name="Lama_Perjalanan" ColumnName="Lama_Perjalanan" />
+                <ScalarProperty Name="Tanggal_Pesanan" ColumnName="Tanggal_Pesanan" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
+                <ScalarProperty Name="Alamat" ColumnName="Alamat" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_LaporanTransaksi">
+            <EntityTypeMapping TypeName="BUSSModel.view_LaporanTransaksi">
+              <MappingFragment StoreEntitySet="view_LaporanTransaksi">
+                <ScalarProperty Name="ID_Transaksi" ColumnName="ID_Transaksi" />
+                <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+                <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+                <ScalarProperty Name="ID_Pegawai" ColumnName="ID_Pegawai" />
+                <ScalarProperty Name="Harga_total" ColumnName="Harga_total" />
+                <ScalarProperty Name="Jumlah_Penumpang" ColumnName="Jumlah_Penumpang" />
+                <ScalarProperty Name="Tanggal_Pesanan" ColumnName="Tanggal_Pesanan" />
+                <ScalarProperty Name="Bukti_DP" ColumnName="Bukti_DP" />
+                <ScalarProperty Name="Bukti_Pelunasan" ColumnName="Bukti_Pelunasan" />
+                <ScalarProperty Name="biaya_tambahan" ColumnName="biaya_tambahan" />
+                <ScalarProperty Name="Status_Transaksi" ColumnName="Status_Transaksi" />
+                <ScalarProperty Name="PaketLama_Perjalanan" ColumnName="PaketLama_Perjalanan" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Nama_Paket" ColumnName="Nama_Paket" />
+                <ScalarProperty Name="Jadwal" ColumnName="Jadwal" />
+                <ScalarProperty Name="Lama_Perjalanan" ColumnName="Lama_Perjalanan" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
+                <ScalarProperty Name="Alamat" ColumnName="Alamat" />
+                <ScalarProperty Name="No_HP" ColumnName="No_HP" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_PaketHome">
+            <EntityTypeMapping TypeName="BUSSModel.view_PaketHome">
+              <MappingFragment StoreEntitySet="view_PaketHome">
+                <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+                <ScalarProperty Name="Nama_Paket" ColumnName="Nama_Paket" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="JumlahRate" ColumnName="JumlahRate" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_StatusTransCount">
+            <EntityTypeMapping TypeName="BUSSModel.view_StatusTransCount">
+              <MappingFragment StoreEntitySet="view_StatusTransCount">
+                <ScalarProperty Name="Status_Transaksi" ColumnName="Status_Transaksi" />
+                <ScalarProperty Name="StatusTrans" ColumnName="StatusTrans" />
+                <ScalarProperty Name="jumlah" ColumnName="jumlah" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_TransaksiCount">
+            <EntityTypeMapping TypeName="BUSSModel.view_TransaksiCount">
+              <MappingFragment StoreEntitySet="view_TransaksiCount">
+                <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+                <ScalarProperty Name="Nama_Paket" ColumnName="Nama_Paket" />
+                <ScalarProperty Name="jumlah_dipesan" ColumnName="jumlah_dipesan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_TransaksiAdmin">
+            <EntityTypeMapping TypeName="BUSSModel.view_TransaksiAdmin">
+              <MappingFragment StoreEntitySet="view_TransaksiAdmin">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Keterangan" ColumnName="Keterangan" />
+                <ScalarProperty Name="Jadwal" ColumnName="Jadwal" />
+                <ScalarProperty Name="Jenis_Paket" ColumnName="Jenis_Paket" />
+                <ScalarProperty Name="Penginapan" ColumnName="Penginapan" />
+                <ScalarProperty Name="Lama_Perjalanan" ColumnName="Lama_Perjalanan" />
+                <ScalarProperty Name="Konsumsi" ColumnName="Konsumsi" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+                <ScalarProperty Name="Nama_Paket" ColumnName="Nama_Paket" />
+                <ScalarProperty Name="CreatedDateTr" ColumnName="CreatedDateTr" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="PaketLama_Perjalanan" ColumnName="PaketLama_Perjalanan" />
+                <ScalarProperty Name="Status_Transaksi" ColumnName="Status_Transaksi" />
+                <ScalarProperty Name="biaya_tambahan" ColumnName="biaya_tambahan" />
+                <ScalarProperty Name="Bukti_Pelunasan" ColumnName="Bukti_Pelunasan" />
+                <ScalarProperty Name="Bukti_DP" ColumnName="Bukti_DP" />
+                <ScalarProperty Name="Tanggal_Pesanan" ColumnName="Tanggal_Pesanan" />
+                <ScalarProperty Name="Jumlah_Penumpang" ColumnName="Jumlah_Penumpang" />
+                <ScalarProperty Name="Harga_total" ColumnName="Harga_total" />
+                <ScalarProperty Name="ID_Pegawai" ColumnName="ID_Pegawai" />
+                <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+                <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+                <ScalarProperty Name="ID_Transaksi" ColumnName="ID_Transaksi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_TransaksiCustomer">
+            <EntityTypeMapping TypeName="BUSSModel.view_TransaksiCustomer">
+              <MappingFragment StoreEntitySet="view_TransaksiCustomer">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Keterangan" ColumnName="Keterangan" />
+                <ScalarProperty Name="Jadwal" ColumnName="Jadwal" />
+                <ScalarProperty Name="Jenis_Paket" ColumnName="Jenis_Paket" />
+                <ScalarProperty Name="Penginapan" ColumnName="Penginapan" />
+                <ScalarProperty Name="Lama_Perjalanan" ColumnName="Lama_Perjalanan" />
+                <ScalarProperty Name="Konsumsi" ColumnName="Konsumsi" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+                <ScalarProperty Name="Nama_Paket" ColumnName="Nama_Paket" />
+                <ScalarProperty Name="CreatedDateTr" ColumnName="CreatedDateTr" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="PaketLama_Perjalanan" ColumnName="PaketLama_Perjalanan" />
+                <ScalarProperty Name="Status_Transaksi" ColumnName="Status_Transaksi" />
+                <ScalarProperty Name="biaya_tambahan" ColumnName="biaya_tambahan" />
+                <ScalarProperty Name="Bukti_Pelunasan" ColumnName="Bukti_Pelunasan" />
+                <ScalarProperty Name="Bukti_DP" ColumnName="Bukti_DP" />
+                <ScalarProperty Name="Tanggal_Pesanan" ColumnName="Tanggal_Pesanan" />
+                <ScalarProperty Name="Jumlah_Penumpang" ColumnName="Jumlah_Penumpang" />
+                <ScalarProperty Name="Harga_total" ColumnName="Harga_total" />
+                <ScalarProperty Name="ID_Pegawai" ColumnName="ID_Pegawai" />
+                <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+                <ScalarProperty Name="ID_Paket" ColumnName="ID_Paket" />
+                <ScalarProperty Name="ID_Transaksi" ColumnName="ID_Transaksi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

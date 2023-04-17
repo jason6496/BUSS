@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="afa77076b1704b6cb9f9dce1bc8b7135" Name="Diagram1">
+        <EntityTypeShape EntityType="BUSSModel.Customer" Width="1.5" PointX="6" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Destinasi" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Detail_Foto" Width="1.5" PointX="7.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Detail_Kategori" Width="1.5" PointX="5.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Detail_Paket" Width="1.5" PointX="7.5" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Detail_Rating_Destinasi" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Feedback" Width="1.5" PointX="10.5" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Jenis_Kendaraan" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Kategori_Wilayah" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Kendaraan" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Kota" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Paket" Width="1.5" PointX="3" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Pegawai" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Transaksi" Width="1.5" PointX="8.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.Transaksi_Kendaraan" Width="1.5" PointX="10.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.view_DashboardCustomer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.view_DestinasiTerlaris" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.view_JumlahDestinasiWilayah" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.view_LaporanDestinasi" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.view_LaporanFeedback" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.view_LaporanTransaksi" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.view_PaketHome" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.view_StatusTransCount" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BUSSModel.view_TransaksiCount" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="BUSSModel.FK_Detail_Rating_Destinasi_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Transaksi_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Destinasi_Kota" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Destinasi_Pegawai" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Destinasi_Pegawai1" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Detail_Foto_Destinasi" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Detail_Paket_Destinasi" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Detail_Rating_Destinasi_Destinasi" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Detail_Kategori_Kategori_Wilayah" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Detail_Kategori_Kota" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Detail_Paket_Paket" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Feedback_Transaksi" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Jenis_Kendaraan_Pegawai" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Jenis_Kendaraan_Pegawai1" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Kendaraan_Jenis_Kendaraan" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Kategori_Wilayah_Pegawai" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Kategori_Wilayah_Pegawai1" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Kendaraan_Pegawai" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Kendaraan_Pegawai1" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Transaksi_Kendaraan_Kendaraan" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Kota_Pegawai" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Kota_Pegawai1" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Paket_Pegawai" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Paket_Pegawai1" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Transaksi_Paket" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Transaksi_Pegawai" ManuallyRouted="false" />
+        <AssociationConnector Association="BUSSModel.FK_Transaksi_Kendaraan_Transaksi" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BUSSModel.view_TransaksiAdmin" Width="1.5" PointX="12.125" PointY="3.125" />
+        <EntityTypeShape EntityType="BUSSModel.view_TransaksiCustomer" Width="1.5" PointX="10" PointY="3.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

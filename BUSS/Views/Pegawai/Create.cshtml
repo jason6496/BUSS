@@ -1,0 +1,118 @@
+﻿@model BUSS.Models.Pegawai
+
+@{ ViewBag.Title = "Pegawai";
+    ViewBag.SidebarMenu = "Pegawai"; }
+
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">@ViewBag.Title</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="/Admin">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/@ViewBag.Title">@ViewBag.Title</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/Admin/@ViewBag.Title/Create">Tambah</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="card-title">Data @ViewBag.Title</h3>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Nama)
+                                    <label class="text-danger">*</label>
+                                    @Html.EditorFor(model => model.Nama, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nama, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Alamat)
+                                    <label class="text-danger">*</label>
+                                    @Html.EditorFor(model => model.Alamat, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Alamat, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.No_HP)
+                                    <label class="text-danger">*</label>
+                                    @Html.EditorFor(model => model.No_HP, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.No_HP, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Simpan" class="btn btn-primary" />
+                                    <a href="@Url.Action("Index", ViewBag.Title)" class="btn btn-warning">Batal</a>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email)
+                                    <label class="text-danger">*</label>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Role)
+                                    <label class="text-danger">*</label>
+                                    @Html.DropDownListFor(model => model.Role, new List<SelectListItem>
+                                                                                                {
+                                        new SelectListItem() {Text = "Admin", Value="1"},
+                                        new SelectListItem() {Text = "Tour Leader", Value="2"}
+                                    }, "Pilih Role", new { @class = "form-control" })
+
+                                    @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#Nama").keypress(function (e) {
+                var key = e.keyCode;
+                if (key >= 48 && key <= 57) {
+                    e.preventDefault();
+                }
+            });
+
+            $("#No_HP").keypress(function (e) {
+                var key = e.keyCode;
+                if (key > 31 && (key < 48 || key > 57)) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+    </script>
+        
+}

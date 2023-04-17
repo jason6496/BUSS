@@ -1,0 +1,257 @@
+﻿@model IEnumerable<BUSS.Models.view_TransaksiCustomer>
+@{
+    ViewBag.Title = "Pesanan";
+    ViewBag.Pesanan = "active";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">@ViewBag.Title</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="/Admin">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Pesanan", "Customer")">@ViewBag.Title</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="card-title">Data @ViewBag.Title</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table" id="multi_filter">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Nama Paket</th>
+                                    <th>Harga Total</th>
+                                    <th>DP</th>
+                                    <th>Tanggal Sewa</th>
+                                    <th>Jadwal</th>
+                                    <th>Status Transaksi</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int rowCount = 1; }
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@(rowCount++).</td>
+                                        <td>
+                                            @item.Nama_Paket
+                                        </td>
+                                        <td>
+                                            @string.Format("Rp{0:0,0}", item.Harga_total)
+                                        </td>
+                                        <td>
+                                            @string.Format("Rp{0:0,0}", item.Harga_total / 2)
+                                        </td>
+                                        <td>
+                                            @item.Tanggal_Pesanan.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            @if (item.Jadwal == null)
+                                            {
+                                                <text>-</text>
+                                            }
+                                            else
+                                            {
+                                                <a href="~/Content/jadwal/@item.Jadwal">@item.Jadwal</a>
+                                            }
+                                        </td>
+                                        <td>
+                                            @{
+                                                switch (item.Status_Transaksi)
+                                                {
+                                                    case 0:
+                                                        {
+                                                            <text>Menunggu Pembayaran DP</text>
+                                                            break;
+                                                        }
+                                                    case 1:
+                                                        {
+                                                            <text>Pembayaran DP diproses</text>
+                                                            break;
+                                                        }
+                                                    case 2:
+                                                        {
+                                                            <text>Menunggu Pelunasan</text>
+                                                            break;
+                                                        }
+                                                    case 3:
+                                                        {
+                                                            <text>Pelunasan diproses</text>
+                                                            break;
+                                                        }
+                                                    case 4:
+                                                        {
+                                                            <text>Lunas</text>
+                                                            break;
+                                                        }
+                                                    case 5:
+                                                        {
+                                                            <text>Selesai</text>
+                                                            break;
+                                                        }
+                                                    case 6:
+                                                        {
+                                                            <text>Feedback Terkirim</text>
+                                                            break;
+                                                        }
+                                                    default:
+                                                        {
+                                                            <text>Dibatalkan</text>
+                                                            break;
+                                                        }
+                                                }
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Details", "Transaksi", new { id = item.ID_Transaksi })" class="btn btn-info btn-sm mr-1">
+                                                <i class="fa fa-eye"></i> Detil
+                                            </a>
+                                            @if (item.Status_Transaksi == 0)
+                                            {
+                                                <a href="@Url.Action("UploadDP", "Transaksi", new { id = item.ID_Transaksi })" class="btn btn-warning btn-sm mr-1">
+                                                    <i class="fa fa-money-bill-wave-alt"></i> Bayar DP
+                                                </a>
+                                            }
+                                            else if (item.Status_Transaksi == 2)
+                                            {
+                                                <a href="@Url.Action("UploadPelunasan", "Transaksi", new { id = item.ID_Transaksi })" class="btn btn-warning btn-sm mr-1">
+                                                    <i class="fa fa-money-bill-wave-alt"></i> Pelunasan
+                                                </a>
+                                            }
+
+                                            @if (item.Status_Transaksi == 5)
+                                            {
+                                                <a href="@Url.Action("Create", "Feedbacks", new { id = item.ID_Transaksi })" class="btn btn-success btn-sm mr-1">
+                                                    <i class="fa fa-comment-dots"></i> Isi Ulasan
+                                                </a>
+                                            }
+
+                                            @if (item.Status_Transaksi == 0 && item.Status_Transaksi == 2 && item.Status_Transaksi == 4)
+                                            {
+                                                <form action="@Url.Action("Pembatalan", "Transaksi")" method="post" class="d-inline deleteForm">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="id" value="@item.ID_Transaksi" />
+                                                    <button type="submit" class="btn btn-danger btn-sm btnBatal"><i class="fa fa-times-circle"></i> Batalkan</button>
+                                                </form>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>Nama Paket</th>
+                                    <th>Harga Total</th>
+                                    <th>DP</th>
+                                    <th>Tanggal Sewa</th>
+                                    <th>Jadwal</th>
+                                    <th>Status Transaksi</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        if ("@TempData["SuccessMessage"]" != "") {
+            swal("Berhasil", "@TempData["SuccessMessage"]", {
+                icon: "success",
+                buttons: {
+                    confirm: {
+                        className: 'btn btn-success'
+                    }
+                },
+            });
+        }
+
+        $(".btnBatal").on("click", function (e) {
+            e.preventDefault(); // prevent form submit
+            var form = event.target.form; // storing the form
+            swal({
+                title: "Yakin ingin membatalkan pesanan ini?",
+                text: "Anda tidak akan bisa mengembalikan data ini",
+                icon: 'warning',
+                buttons: {
+                    confirm: {
+                        text: 'Batalkan',
+                        className: 'btn btn-success'
+                    },
+                    cancel: {
+                        visible: true,
+                        className: 'btn btn-danger'
+                    }
+                }
+            }).then((isConfirm) => {
+                if (isConfirm) {
+                    form.submit();          // submitting the form when user press yes
+                } else {
+                    swal("Dibatalkan", "", "error");
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('#multi_filter').DataTable({
+                "language": {
+                    "lengthMenu": "_MENU_ data per halaman",
+                    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    "zeroRecords": "Tidak ada data.",
+                    "search": "Pencarian :",
+                    "infoFiltered": "(tersaring dari total _MAX_ data)",
+                    "paginate": {
+                        "previous": "Sebelumnya",
+                        "next": "Selanjutnya"
+                    }
+                },
+                initComplete: function () {
+                    var columnCount = 1;
+                    this.api().columns().every(function () {
+                        if (columnCount != 8 && columnCount != 1) {
+                            var column = this;
+                            var select = $('<select class="form-control form-control-sm height-unset"><option value=""></option></select>')
+                                .appendTo($(column.footer()).empty())
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        }
+                        columnCount++;
+                    });
+                }
+            });
+        });
+    </script>
+}
