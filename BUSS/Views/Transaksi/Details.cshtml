@@ -1,7 +1,7 @@
 ﻿@model BUSS.Models.Transaksi
 
 @{
-    ViewBag.Title = "Detail Pesanan";
+    ViewBag.Title = "Detalle del Pedids";
     ViewBag.Pesanan = "active";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
@@ -138,7 +138,7 @@
                         {
                             <form action="@Url.Action("KonfirmasiDP", "Transaksi")" method="post">
                                 <div class="d-flex flex-column justify-content-between">
-                                    <p class="m-0 font-weight-bold">Konfirmasi Pembayaran DP</p>
+                                    <p class="m-0 font-weight-bold">Confirmacion de pago</p>
                                     <div class="d-flex">
                                         <input type="hidden" name="ID_Transaksi" value="@Model.ID_Transaksi" />
                                         <input type="submit" name="submit" value="Valid" class="btn btn-success btn-sm mr-3" />
@@ -152,7 +152,7 @@
                         {
                             <form action="@Url.Action("KonfirmasiPelunasan", "Transaksi")" method="post">
                                 <div class="d-flex flex-column justify-content-between">
-                                    <p class="m-0 font-weight-bold">Konfirmasi Pembayaran DP</p>
+                                    <p class="m-0 font-weight-bold">Confirmacion de pago de DP</p>
                                     <div class="d-flex">
                                         <input type="hidden" value="@Model.ID_Transaksi" />
                                         <input type="submit" name="submit" value="Valid" class="btn btn-success btn-sm mr-3" />
@@ -167,7 +167,7 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Paket</h5>
+                <h5 class="card-header">Detalle del paquete</h5>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <p class="m-0 font-weight-bold">Nama Paket</p>
@@ -203,7 +203,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Kendaraan</h5>
+                <h5 class="card-header">Detalle del Vehiculo</h5>
                 <div class="card-body">
                     <div class="row">
                         <table class="table" id="table-bus">

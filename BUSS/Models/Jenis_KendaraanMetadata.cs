@@ -17,7 +17,7 @@ namespace BUSS.Models
 
         public int ID_Jenis { get; set; }
 
-        [DisplayName("Jenis Kendaraan")]
+        [DisplayName("Tipo de Transporte.")]
         [Required(ErrorMessage = "Jenis kendaraan wajib diisi!")]
         public string Nama_Jenis { get; set; }
 
