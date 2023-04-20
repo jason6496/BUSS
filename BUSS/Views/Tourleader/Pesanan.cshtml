@@ -89,49 +89,49 @@
                                                 {
                                                     case 0:
                                                         {
-                                                            <text>Menunggu Pembayaran DP</text>
+                                                            <text>Esperando el pago inicial</text>
                                                             break;
                                                         }
                                                     case 1:
                                                         {
-                                                            <text>Pembayaran DP diproses</text>
+                                                            <text>Se procesa el pago inicial</text>
                                                             break;
                                                         }
                                                     case 2:
                                                         {
-                                                            <text>Menunggu Pelunasan</text>
+                                                            <text>Esperando la redención</text>
                                                             break;
                                                         }
                                                     case 3:
                                                         {
-                                                            <text>Pelunasan diproses</text>
+                                                            <text>El pago es procesado</text>
                                                             break;
                                                         }
                                                     case 4:
                                                         {
-                                                            <text>Lunas</text>
+                                                            <text>pagado</text>
                                                             break;
                                                         }
                                                     case 5:
                                                         {
-                                                            <text>Selesai</text>
+                                                            <text>Finalizado</text>
                                                             break;
                                                         }
                                                     case 6:
                                                         {
-                                                            <text>Isi Feedback</text>
+                                                            <text>Rellenar comentarios</text>
                                                             break;
                                                         }
                                                     default:
                                                         {
-                                                            <text>Dibatalkan</text>
+                                                            <text>Cancelado</text>
                                                             break;
                                                         }
                                                 }
                                             }
                                         </td>
                                         <td>
-                                            <a href="@Url.Action("DetailTransaksi", "Transaksi", new { id = item.ID_Transaksi })" class="btn btn-info btn-sm mr-1">
+                                            <a href="@Url.Action("Detalles de la transacción", "Transaccion", new { id = item.ID_Transaksi })" class="btn btn-info btn-sm mr-1">
                                                 <i class="fa fa-eye"></i> Detil
                                             </a>
                                         </td>
@@ -141,12 +141,12 @@
                             <tfoot>
                                 <tr>
                                     <th></th>
-                                    <th>Nama Paket</th>
-                                    <th>Harga Total</th>
+                                    <th>Nombre del paquete</th>
+                                    <th>Precio total</th>
                                     <th>DP</th>
-                                    <th>Tanggal Sewa</th>
+                                    <th>Fecha de alquiler</th>
                                     <th></th>
-                                    <th>Status Transaksi</th>
+                                    <th>Estado de la transacción</th>
                                     <th></th>
                                 </tr>
                             </tfoot>
@@ -187,11 +187,11 @@
             var form = event.target.form; // storing the form
             swal({
                 title: "Yakin ingin membatalkan pesanan ini?",
-                text: "Anda tidak akan bisa mengembalikan data ini",
+                text: "no podra restaurar estos datos",
                 icon: 'warning',
                 buttons: {
                     confirm: {
-                        text: 'Batalkan',
+                        text: 'Cancelar',
                         className: 'btn btn-success'
                     },
                     cancel: {

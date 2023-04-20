@@ -10,9 +10,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header">Detail Pembayaran</h5>
+                <h5 class="card-header">Detalle del Pago</h5>
                 <div class="card-body">
-                    <h3>Silahkan melakukan pembayaran DP sejumlah <text class="text-danger font-weight-bold">@string.Format("Rp{0:0,0}", Model.Harga_total/2)</text> ke</h3>
+                    <h3>Realice un pago de DP de una cierta cantidad <text class="text-danger font-weight-bold">@string.Format("Rp{0:0,0}", Model.Harga_total/2)</text> a</h3>
                     <h5 class="text-center mt-2 mb-4">Rekening BRI <text class="text-danger font-weight-bold">6355612388123</text> A.N PT. Travel BUSS</h5>
                     <div class="d-flex justify-content-center">
                         <a href="@Url.Action("UploadDP", "Transaksi", new { id = Model.ID_Transaksi })" class="btn btn-primary d-inline-block">Unggah Bukti Transfer</a>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="d-flex flex-column justify-content-between">
                         <p class="m-0 font-weight-bold">Keterangan</p>
-                        <p>@(Model.Paket.Keterangan == null ? "Tidak ada keterangan." : Model.Paket.Keterangan)</p>
+                        <p>@(Model.Paket.Keterangan == null ? "Sin Descripcion." : Model.Paket.Keterangan)</p>
                     </div>
 
                 </div>
@@ -94,7 +94,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Kendaraan</h5>
+                <h5 class="card-header">Detalles del Vehiculo</h5>
                 <div class="card-body">
                     <div class="row">
                         <table class="table" id="table-bus">
