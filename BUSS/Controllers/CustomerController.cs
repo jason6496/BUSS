@@ -159,7 +159,7 @@ namespace BUSS.Controllers
                     var obj = db.Customers.Where(a => a.Email.Equals(email) && a.Password.Equals(password)).FirstOrDefault();
                     if (obj != null)
                     {
-                        TempData["SuccessMessage"] = "Login berhasil!";
+                        TempData["SuccessMessage"] = "¡Inicio de sesión correcto!";
                         Session["NIK"] = obj.NIK.ToString();
                         Session["Name"] = obj.Nama.ToString();
                         Session["UserName"] = obj.Email.ToString();

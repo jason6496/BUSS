@@ -1,24 +1,24 @@
 ﻿@model BUSS.Models.Feedback
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Editar</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Feedback</h4>
+        <h4>Comentario</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID_Feedback)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ID_Transaksi, "ID_Transaksi", htmlAttributes: new { @class = "control-label col-md-2" })
+            Id registro
             <div class="col-md-10">
                 @Html.DropDownList("ID_Transaksi", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ID_Transaksi, "", new { @class = "text-danger" })
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+            Calificacion
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Isi_Feedback, htmlAttributes: new { @class = "control-label col-md-2" })
+            Rellenar comentario
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Isi_Feedback, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Isi_Feedback, "", new { @class = "text-danger" })
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            Fecha de creación
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
@@ -51,12 +51,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </div>

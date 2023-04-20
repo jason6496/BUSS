@@ -27,7 +27,7 @@ namespace BUSS.Models
         public decimal Harga_Tiket { get; set; }
 
         [DisplayName("Kota")]
-        [Required(ErrorMessage = "Kota wajib diisi!")]
+        [Required(ErrorMessage = "Se requiere ciudad!")]
         public int ID_Kota { get; set; }
         
         public double Rating { get; set; }

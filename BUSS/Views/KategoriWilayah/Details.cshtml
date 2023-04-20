@@ -47,7 +47,7 @@
 
                         <div class="form-group">
                             <input type="submit" value="Simpan" class="btn btn-primary" />
-                            <a href="@Url.Action("Index", "KategoriWilayah")" class="btn btn-warning">Batal</a>
+                            <a href="@Url.Action("Index", "KategoriWilayah")" class="btn btn-warning">Cancelar</a>
                         </div>
                     }
                 </div>
@@ -82,7 +82,7 @@
                                                 @Html.AntiForgeryToken()
                                                 <input type="hidden" name="ID_KategoriWilayah" value="@item.ID_KategoriWilayah" />
                                                 <input type="hidden" name="ID_Kota" value="@item.ID_Kota" />
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> No podrá restaurar estos datos.</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -99,7 +99,7 @@
 @section scripts {
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {

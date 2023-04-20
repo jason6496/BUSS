@@ -48,7 +48,7 @@ namespace BUSS.Controllers
                 kota.ModifiedDate = DateTime.Now;
                 db.Kotas.Add(kota);
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Data berhasil ditambah!";
+                TempData["SuccessMessage"] = "¡Datos agregados con éxito!";
                 return RedirectToAction("Index");
             }
 
@@ -89,7 +89,7 @@ namespace BUSS.Controllers
                 kota.ModifiedDate = DateTime.Now;
                 db.Entry(kota).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Data berhasil diubah!";
+                TempData["SuccessMessage"] = "¡Los datos se cambiaron con éxito!";
                 return RedirectToAction("Index");
             }
             return View(kota);
@@ -103,7 +103,7 @@ namespace BUSS.Controllers
             Kota kota = db.Kotas.Find(id);
             kota.Status = 0;
             db.SaveChanges();
-            TempData["SuccessMessage"] = "Data berhasil dihapus!";
+            TempData["SuccessMessage"] = "¡Datos eliminados con éxito!";
             return RedirectToAction("Index");
         }
 

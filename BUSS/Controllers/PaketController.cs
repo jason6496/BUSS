@@ -111,7 +111,7 @@ namespace BUSS.Controllers
                 db.Pakets.Add(paket);
                 db.SaveChanges();
 
-                TempData["SuccessMessage"] = "Data berhasil ditambah!";
+                TempData["SuccessMessage"] = "¡Datos agregados con éxito!";
 
                 return RedirectToAction("Details", "Paket", new { @id = paket.ID_Paket });
             }
@@ -152,7 +152,7 @@ namespace BUSS.Controllers
                 paket.ModifiedDate = DateTime.Now;
                 db.Entry(paket).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Data berhasil diubah!";
+                TempData["SuccessMessage"] = "¡Los datos se cambiaron con éxito!";
                 return RedirectToAction("Index");
             }
             return View(paket);
@@ -181,7 +181,7 @@ namespace BUSS.Controllers
             Paket paket = db.Pakets.Find(id);
             paket.Status = 0;
             db.SaveChanges();
-            TempData["SuccessMessage"] = "Data berhasil dihapus!";
+            TempData["SuccessMessage"] = "¡Datos eliminados con éxito!";
             return RedirectToAction("Index");
         }
 

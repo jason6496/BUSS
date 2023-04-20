@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Dashboard = "active";
-    ViewBag.Title = "Pegawai";
+    ViewBag.Title = "Empleado";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,8 +9,8 @@
     <div class="page-inner py-5">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
             <div>
-                <h2 class="text-white pb-2 fw-bold">Dashboard</h2>
-                <h5 class="text-white op-7 mb-2">Selamat Datang, @Session["Name"]!</h5>
+                <h2 class="text-white pb-2 fw-bold">Tableros</h2>
+                <h5 class="text-white op-7 mb-2">Bienvenido, @Session["Name"]!</h5>
             </div>
         </div>
     </div>
@@ -20,14 +20,14 @@
         <div class="col-md-6">
             <div class="card full-height">
                 <div class="card-body">
-                    <div class="card-title">Data Transaksi</div>
+                    <div class="card-title">Datos de la transacción</div>
                     <div class="table-responsive mt-4">
                         <table class="table dttable">
                             <thead>
                                 <tr>
                                     <td>No</td>
-                                    <td>Status Transaksi</td>
-                                    <td>Jumlah</td>
+                                    <td>Estado de la transacción</td>
+                                    <td>Cantidad</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,11 +49,11 @@
         <div class="col-md-6">
             <div class="card full-height">
                 <div class="card-body">
-                    <div class="card-title">Statistik</div>
+                    <div class="card-title">Estadísticas</div>
                     <div class="row py-3">
                         <div class="col-md-12 d-flex justify-content-around">
                             <div>
-                                <h6 class="fw-bold text-uppercase text-success op-8">Jumlah Transaksi</h6>
+                                <h6 class="fw-bold text-uppercase text-success op-8">Número de transacciones</h6>
                                 <h3 align="center" class="fw-bold">@ViewBag.trCount</h3>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
 @section scripts {
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {

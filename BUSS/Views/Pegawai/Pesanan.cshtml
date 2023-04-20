@@ -106,7 +106,7 @@
                                                         }
                                                     default:
                                                         {
-                                                            <text>Dibatalkan</text>
+                                                            <text>Cancelado</text>
                                                             break;
                                                         }
                                                 }
@@ -149,7 +149,7 @@
 @section scripts {
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {
@@ -175,7 +175,7 @@
             var form = event.target.form; // storing the form
             swal({
                 title: "Yakin ingin membatalkan pesanan ini?",
-                text: "Anda tidak akan bisa mengembalikan data ini",
+                text: "No podrá restaurar estos datos.",
                 icon: 'warning',
                 buttons: {
                     confirm: {
@@ -191,7 +191,7 @@
                 if (isConfirm) {
                     form.submit();          // submitting the form when user press yes
                 } else {
-                    swal("Dibatalkan", "", "error");
+                    swal("Cancelado", "", "error");
                 }
             });
         });

@@ -69,7 +69,7 @@ namespace BUSS.Controllers
                 db.Destinasis.Add(destinasi);
                 db.SaveChanges();
 
-                TempData["SuccessMessage"] = "Data berhasil ditambah!";
+                TempData["SuccessMessage"] = "¡Datos agregados con éxito!";
 
                 return RedirectToAction("Details", "Destinasi", new { @id = destinasi.ID_Destinasi });
                 
@@ -116,7 +116,7 @@ namespace BUSS.Controllers
 
                 db.Entry(destinasi).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Data berhasil diubah!";
+                TempData["SuccessMessage"] = "¡Los datos se cambiaron con éxito!";
                 return RedirectToAction("Index");
             }
             ViewBag.ID_Kota = new SelectList(db.Kotas.Where(k => k.Status == 1).OrderBy(k => k.Nama_Kota), "ID_Kota", "Nama_Kota", destinasi.ID_Kota);
@@ -131,7 +131,7 @@ namespace BUSS.Controllers
             Destinasi destinasi = db.Destinasis.Find(id);
             destinasi.Status = 0;
             db.SaveChanges();
-            TempData["SuccessMessage"] = "Data berhasil dihapus!";
+            TempData["SuccessMessage"] = "¡Datos eliminados con éxito!";
             return RedirectToAction("Index");
         }
 
@@ -166,7 +166,7 @@ namespace BUSS.Controllers
             Destinasi destinasi = db.Destinasis.Find(id);
 
             //assigning file uploaded status to ViewBag for showing message to user.  
-            TempData["SuccessMessage"] = files.Count().ToString() + " foto berhasil diunggah.";
+            TempData["SuccessMessage"] = files.Count().ToString() + " foto cargada correctamente.";
 
             return View(destinasi);
         }

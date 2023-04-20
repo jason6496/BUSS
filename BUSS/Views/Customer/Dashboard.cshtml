@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Dashboard";
+    ViewBag.Title = "Tableros";
     ViewBag.Dashboard = "active";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
@@ -9,8 +9,8 @@
     <div class="page-inner py-5">
         <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
             <div>
-                <h2 class="text-white pb-2 fw-bold">Dashboard</h2>
-                <h5 class="text-white op-7 mb-2">Selamat Datang, @Session["Name"]!</h5>
+                <h2 class="text-white pb-2 fw-bold">Tableros</h2>
+                <h5 class="text-white op-7 mb-2">Bienvenido, @Session["Name"]!</h5>
             </div>
         </div>
     </div>
@@ -20,15 +20,15 @@
         <div class="col-md-6">
             <div class="card full-height">
                 <div class="card-body">
-                    <div class="card-title">Transaksi Terakhir Anda</div>
+                    <div class="card-title">Su última transacción</div>
                     <div class="table-responsive mt-4">
                         <table class="table" id="example2">
                         <thead>
                             <tr>
                                 <td>No</td>
-                                <td>Paket</td>
-                                <td>Harga Total</td>
-                                <td>Status</td>
+                                <td>Paquete</td>
+                                <td>Precio total</td>
+                                <td>Estado</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,51 +40,41 @@
                                     <td>@item.Paket.Nama_Paket</td>
                                     <td>@string.Format("{0:0,0}", item.Harga_total)</td>
                                     <td>
-                                        @{
-                                            switch (item.Status_Transaksi)
+                                        @{ switch (item.Status_Transaksi)
                                             {
                                                 case 0:
                                                     {
-                                                        <text>Menunggu Pembayaran DP</text>
-                                                        break;
-                                                    }
-                                                case 1:
-                                                    {
-                                                        <text>Pembayaran DP diproses</text>
-                                                        break;
-                                                    }
-                                                case 2:
-                                                    {
-                                                        <text>Menunggu Pelunasan</text>
-                                                        break;
-                                                    }
-                                                case 3:
-                                                    {
-                                                        <text>Pelunasan diproses</text>
-                                                        break;
-                                                    }
-                                                case 4:
-                                                    {
-                                                        <text>Lunas</text>
-                                                        break;
-                                                    }
-                                                case 5:
-                                                    {
-                                                        <text>Selesai</text>
-                                                        break;
-                                                    }
-                                                case 6:
-                                                    {
-                                                        <text>Feedback Terkirim</text>
-                                                        break;
-                                                    }
-                                                default:
-                                                    {
-                                                        <text>Dibatalkan</text>
-                                                        break;
-                                                    }
-                                            }
-                                        }
+                                    <text>Iniciales esperando el pago</text> break;
+                                }
+                            case 1:
+                                {
+                                    <text>Se procesa el pago inicial</text> break;
+                                }
+                            case 2:
+                                {
+                                    <text>Esperando la redención</text> break;
+                                }
+                            case 3:
+                                {
+                                    <text>El pago es procesado</text> break;
+                                }
+                            case 4:
+                                {
+                                    <text>Pagado</text> break;
+                                }
+                            case 5:
+                                {
+                                    <text>Finalizado</text> break;
+                                }
+                            case 6:
+                                {
+                                    <text>Comentarios enviados</text> break;
+                                }
+                            default:
+                                {
+                                    <text>Cancelado</text> break;
+                                }
+                        } }
                                     </td>
                                 </tr>
                             }
@@ -97,15 +87,15 @@
         <div class="col-md-6">
             <div class="card full-height">
                 <div class="card-body">
-                    <div class="card-title">Statistik Pembelian</div>
+                    <div class="card-title">Estadísticas de compra</div>
                     <div class="row py-3">
                         <div class="col-md-12 d-flex justify-content-around">
                             <div>
-                                <h6 class="fw-bold text-uppercase text-success op-8">Jumlah Pembelian</h6>
+                                <h6 class="fw-bold text-uppercase text-success op-8">Monto de la compra</h6>
                                 <h3 class="fw-bold">@ViewBag.trCount</h3>
                             </div>
                             <div>
-                                <h6 class="fw-bold text-uppercase text-danger op-8">Total Pembelian</h6>
+                                <h6 class="fw-bold text-uppercase text-danger op-8">Totales de compra</h6>
                                 <h3 class="fw-bold">@string.Format("{0:0,0}", ViewBag.trSum)</h3>
                             </div>
                         </div>
@@ -124,7 +114,7 @@
 @section scripts {
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {
@@ -155,7 +145,7 @@
             data: {
                 labels: dtDate,
                 datasets: [{
-                    label: "Pembelian",
+                    label: "Compra",
                     backgroundColor: '#ff9e27',
                     borderColor: 'rgb(23, 125, 255)',
                     data: dtCount,
