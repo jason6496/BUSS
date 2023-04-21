@@ -1,7 +1,7 @@
 ﻿@model BUSS.Models.Paket
 
 @{
-    ViewBag.Title = "Custom Paket";
+    ViewBag.Title = "Paquetes Perzonalizados";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
@@ -9,21 +9,21 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header">Kategori Wilayah</h5>
+                <h5 class="card-header">Region Categoria</h5>
                 <div class="card-body">
 
                     @using (Html.BeginForm())
                     {
                         <div class="form-group">
-                            <label for="Kategori Wilayah">Kategori Wilayah</label>
+                            <label for="Kategori Wilayah">Region Categoria</label>
                             <div class="d-flex">
                                 <select class="form-control" name="id">
                                     @foreach (var ka in ViewBag.Kategori_Wilayah)
                                     {
-                                        <option value="@ka.ID_KategoriWilayah" @(ViewBag.SelectedKategori == ka.ID_KategoriWilayah ? "selected" : "")>@ka.Nama_Wilayah</option>
+                                        <option value="@ka.ID_KategoriWilayah" @(ViewBag.SelectedKategori == ka.ID_KategoriWilayah ? "Seleccionado" : "")>@ka.Nama_Wilayah</option>
                                     }
                                 </select>
-                                <button type="submit" class="btn btn-primary ml-3"><i class="fa fa-eyes"></i> Lihat Destinasi</button>
+                                <button type="submit" class="btn btn-primary ml-3"><i class="fa fa-eyes"></i> Ver Destinos</button>
                             </div>
                         </div>
                     }
@@ -34,16 +34,16 @@
 
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header">Daftar Destinasi</h5>
+                <h5 class="card-header">Lista de Destinos</h5>
                 <div class="card-body">
                     <table class="table" id="table-destinasi">
                         <thead>
                             <tr>
-                                <th>Nama Destinasi</th>
-                                <th>Kota</th>
-                                <th>Harga Tiket</th>
-                                <th>Jam Operasional</th>
-                                <th>Aksi</th>
+                                <th>Nombre destino</th>
+                                <th>Ciudad</th>
+                                <th>Vuelo</th>
+                                <th>Horario de Funcionamiento</th>
+                                <th>Accion</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,7 +57,7 @@
                                         <td>@string.Format("{0:0,0}", dest.Harga_Tiket)</td>
                                         <td>@dest.Jam_buka.ToString("hh\\:mm") - @dest.Jam_tutup.ToString("hh\\:mm")</td>
                                         <td>
-                                            <button type="button" class="btn btn-warning btn-sm btnTambah">Tambah</button>
+                                            <button type="button" class="btn btn-warning btn-sm btnTambah">Mas</button>
                                         </td>
                                     </tr>
                                 }
@@ -72,29 +72,29 @@
 
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header">Daftar Destinasi</h5>
+                <h5 class="card-header">Lista de Destinos</h5>
                 <div class="card-body">
 
                     @using (Html.BeginForm("CheckoutCustom", "Transaksi", FormMethod.Post, new { id = "checkoutForm" }))
                     {
                     <div class="d-flex">
                         <div class="form-group">
-                            <label>Nama Paket</label>
+                            <label>Nombre del paquete</label>
                             <label class="text-danger">*</label>
-                            <input type="text" value="" name="Nama_Paket" class="form-control" required />
+                            <input type="text" value="" name="Nombre del Paquete" class="form-control" required />
                         </div>
                         <div class="form-group ml-3">
-                            <label>Tgl. Sewa</label>
+                            <label>Fecha. Alquilar</label>
                             <label class="text-danger">*</label>
-                            <input type="date" value="" name="tgl_sewa" class="form-control" required />
+                            <input type="date" value="" name="Fecha Alquiler" class="form-control" required />
                         </div>
                         <div class="form-group ml-3">
-                            <label>Lama Perjalanan</label>
+                            <label>Duracion del viaje</label>
                             <label class="text-danger">*</label>
-                            <input type="number" value="" name="Lama_Perjalanan" id="Lama_Perjalanan" class="form-control" required />
+                            <input type="number" value="" name="Duracion del Viaje" id="Lama_Perjalanan" class="form-control" required />
                         </div>
                         <div class="form-group ml-3">
-                            <label>Konsumsi</label>
+                            <label>Consumo</label>
                             <label class="text-danger"></label><br />
                             <h4 id="Konsumsi">0</h4>
                         </div>
@@ -102,21 +102,21 @@
                         <div class="form-group ml-3 d-none" id="rdPenginapan">
                             @Html.LabelFor(model => model.Penginapan)
                             <label class="text-danger">*</label><br />
-                            <input type="radio" value="1" name="Penginapan" id="penginapan_ya" required />
-                            <label for="penginapan-ya">Ya</label>
-                            <input type="radio" value="0" class="ml-3" name="Penginapan" id="penginapan_tidak" required checked />
-                            <label for="penginapan-tidak">Tidak</label>
+                            <input type="radio" value="1" name="Alojamiento" id="penginapan_ya" required />
+                            <label for="penginapan-ya">Si</label>
+                            <input type="radio" value="0" class="ml-3" name="Alojamiento" id="penginapan_tidak" required checked />
+                            <label for="penginapan-tidak">No</label>
                         </div>
                     </div>
 
                         <table class="table" id="table-destinasi-terpilih">
                             <thead>
                                 <tr>
-                                    <th>Nama Destinasi</th>
-                                    <th>Kota</th>
-                                    <th>Harga Tiket</th>
-                                    <th>Jam Operasional</th>
-                                    <th>Aksi</th>
+                                    <th>Nombre del Destino</th>
+                                    <th>Ciudad</th>
+                                    <th>Precio de la Entrada</th>
+                                    <th>Hora Operativa</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -124,8 +124,8 @@
                         </table>
 
                         <div class="form-group">
-                            <h3 class="font-weight-bold text-danger" id="totalHargaTiket">Total Harga Tiket : 0</h3>
-                            <input type="hidden" id="Harga" name="Harga" value="" required />
+                            <h3 class="font-weight-bold text-danger" id="totalHargaTiket">Precio Total de la Entrada : 0</h3>
+                            <input type="hidden" id="Harga" name="Precio" value="" required />
                         </div>
 
                         <div id="inputdata">
@@ -133,7 +133,7 @@
 
                         <div id="hiddenForDestinasi"></div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" id="btnSubmit"> Checkout</button>
+                            <button type="submit" class="btn btn-primary" id="btnSubmit"> Verificar</button>
                         </div>
                     }
                 </div>
@@ -151,7 +151,7 @@
         })
 
         if ("@TempData["ErrorMessage"]" != "") {
-            swal("Gagal", "@TempData["ErrorMessage"]", {
+            swal("Error", "@TempData["ErrorMessage"]", {
                 icon: "error",
                 buttons: {
                     confirm: {
@@ -172,7 +172,7 @@
                             <td>${row.find('td:eq(2)').html()}</td>
                             <td>${row.find('td:eq(3)').html()}</td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm btnDelete">Hapus</button>
+                                <button type="button" class="btn btn-danger btn-sm btnDelete">Limpiar</button>
                             </td>
                         </tr>`);
 
@@ -192,7 +192,7 @@
                             <td>${row.find('td:eq(2)').html()}</td>
                             <td>${row.find('td:eq(3)').html()}</td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm btnTambah">Tambah</button>
+                                <button type="button" class="btn btn-warning btn-sm btnTambah">Mas</button>
                             </td>
                         </tr>`);
 
@@ -214,7 +214,7 @@
 
                 if (countBus != 0) {
                     if ("@Session["NIK"]" == "") {
-                        swal("Gagal", "Silahkan login terlebih dahulu sebelum memesan!", {
+                        swal("Error", "Inicie sesion antes de Realizar el pedido", {
                             icon: "error",
                             buttons: {
                                 confirm: {
@@ -232,7 +232,7 @@
 
                         if (isvalid) form.submit();
                         else {
-                            swal("Gagal", "Lengkapi semua isian!", {
+                            swal("Error", "Complete todos los campos!", {
                                 icon: "error",
                                 buttons: {
                                     confirm: {
@@ -243,7 +243,7 @@
                         }
                     }
                 } else {
-                    swal("Gagal", "Silahkan pilih destinasi terlebih dahulu", {
+                    swal("Error", "Seleccione un destino primero", {
                         icon: "error",
                         buttons: {
                             confirm: {
@@ -279,7 +279,7 @@
             let konsumsi = (lamaPerjalanan * 2) * 30000;
             let total = $("#penginapan_ya").is(':checked') ? 50000 * (lamaPerjalanan - 1) + SumRow(2) + konsumsi : SumRow(2) + konsumsi;
 
-            $("#totalHargaTiket").text("Total Harga Tiket : " + formatter.format(total));
+            $("#totalHargaTiket").text("Precio total del boleto : " + formatter.format(total));
 
             $("#Harga").val(total);
         }
