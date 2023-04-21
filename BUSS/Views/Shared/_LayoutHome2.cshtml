@@ -31,13 +31,13 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav align-items-center">
                     <a class="nav-item-2" href="@Url.Action("Index", "Home")">Home</a>
-                    <a class="nav-item-2" href="@Url.Action("Destinasi", "Home")">Destinasi</a>
-                    <a class="nav-item-2" href="@Url.Action("Paket", "Home")">Paket</a>
-                    <a class="nav-item-2" href="@Url.Action("CustomPaket", "Home")">Custom Paket</a>
+                    <a class="nav-item-2" href="@Url.Action("Destinasi", "Home")">Destino</a>
+                    <a class="nav-item-2" href="@Url.Action("Paket", "Home")">Paquete</a>
+                    <a class="nav-item-2" href="@Url.Action("CustomPaket", "Home")">Paquete Personalizado</a>
 
                     @if (Session["IsCustomer"] != null && (bool)Session["IsCustomer"] == true)
                     {
-                        <a class="nav-item-2" href="@Url.Action("Logout", "Customer")"> Logout</a>
+                        <a class="nav-item-2" href="@Url.Action("Logout", "Customer")"> Cerrar sesion</a>
                         <a class="btn btn-rounded btn-transparent ml-3 h-50" href="@Url.Action("Dashboard", "Customer")">
                             <i class="fa fa-user mr-2"></i> @Session["Name"].ToString()
                         </a>
@@ -46,7 +46,7 @@
                     {
                         <a class="btn btn-rounded btn-transparent ml-3 h-50" href="@Url.Action("Login", "Customer")">
                             <i class="fa fa-user mr-2"></i> Login
-                            / Daftar
+                            / Lista
                         </a>
                     }
                 </div>
@@ -69,7 +69,7 @@
                 <h5 class="list-title">Menu</h5>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Destinasi</a></li>
+                    <li><a href="#">Destiono</a></li>
                     <li><a href="#">Blog</a></li>
                 </ul>
             </div>
@@ -141,7 +141,7 @@
             </div>
         </div>
         <div class="footer-down">
-            <p class="text-center mb-0">&copy; 2020 BusTravel</p>
+            <p class="text-center mb-0">&copy; 2023 BusTravel</p>
         </div>
     </footer>
 
