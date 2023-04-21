@@ -81,17 +81,17 @@
                         <div class="form-group">
                             <label>Nombre del paquete</label>
                             <label class="text-danger">*</label>
-                            <input type="text" value="" name="Nombre del Paquete" class="form-control" required />
+                            <input type="text" value="" name="Nama_Paket" class="form-control" required />
                         </div>
                         <div class="form-group ml-3">
                             <label>Fecha. Alquilar</label>
                             <label class="text-danger">*</label>
-                            <input type="date" value="" name="Fecha Alquiler" class="form-control" required />
+                            <input type="date" value="" name="tgl_sewa" class="form-control" required />
                         </div>
                         <div class="form-group ml-3">
                             <label>Duracion del viaje</label>
                             <label class="text-danger">*</label>
-                            <input type="number" value="" name="Duracion del Viaje" id="Lama_Perjalanan" class="form-control" required />
+                            <input type="number" value="" name="Lama_Perjalanan" id="Lama_Perjalanan" class="form-control" required />
                         </div>
                         <div class="form-group ml-3">
                             <label>Consumo</label>
@@ -102,9 +102,9 @@
                         <div class="form-group ml-3 d-none" id="rdPenginapan">
                             @Html.LabelFor(model => model.Penginapan)
                             <label class="text-danger">*</label><br />
-                            <input type="radio" value="1" name="Alojamiento" id="penginapan_ya" required />
+                            <input type="radio" value="1" name="Penginapan" id="penginapan_ya" required />
                             <label for="penginapan-ya">Si</label>
-                            <input type="radio" value="0" class="ml-3" name="Alojamiento" id="penginapan_tidak" required checked />
+                            <input type="radio" value="0" class="ml-3" name="Penginapan" id="penginapan_tidak" required checked />
                             <label for="penginapan-tidak">No</label>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
 
                         <div class="form-group">
                             <h3 class="font-weight-bold text-danger" id="totalHargaTiket">Precio Total de la Entrada : 0</h3>
-                            <input type="hidden" id="Harga" name="Precio" value="" required />
+                            <input type="hidden" id="Harga" name="Harga" value="" required />
                         </div>
 
                         <div id="inputdata">
