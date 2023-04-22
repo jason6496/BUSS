@@ -22,7 +22,7 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="#">Edit</a>
+                <a href="#">Editar</a>
             </li>
         </ul>
     </div>
@@ -60,9 +60,9 @@
                                                                                     @Html.LabelFor(model => model.Penginapan)
                                                                                     <label class="text-danger">*</label><br />
                                                                                     <input type="radio" value="1" name="Penginapan" id="penginapan_ya" required checked />
-                                                                                    <label for="penginapan_ya">Ya</label>
+                                                                                    <label for="penginapan_ya">Si</label>
                                                                                     <input type="radio" value="0" class="ml-3" name="Penginapan" id="penginapan_tidak" required />
-                                                                                    <label for="penginapan_tidak">Tidak</label>
+                                                                                    <label for="penginapan_tidak">No</label>
                                                                                 </div>
 
 
@@ -74,7 +74,7 @@
 
                                                                                 <div class="form-group">
                                                                                     <input type="submit" value="Simpan" class="btn btn-primary" />
-                                                                                    <a href="@Url.Action("Index", "Paket")" class="btn btn-warning">Batal</a>
+                                                                                    <a href="@Url.Action("Index", "Paket")" class="btn btn-warning">Cancelado</a>
                                                                                 </div>
 
                                                                             </div>

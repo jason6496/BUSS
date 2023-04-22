@@ -27,13 +27,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Data @ViewBag.Title</h3>
+                    <h3 class="card-title">Datos @ViewBag.Title</h3>
                     <form action="@Url.Action("PrintPesanan", "Laporan")" method="get" class="d-inline">
                         <input type="hidden" value="@(ViewBag.status == null ? "" : ViewBag.status)" name="Status" />
                         <input type="hidden" name="date_1" value="@(ViewBag.date_1 == null ? "" : ViewBag.date_1.ToString("yyyy-MM-dd"))" class="form-control" />
                         <input type="hidden" name="date_2" value="@(ViewBag.date_2 == null ? "" : ViewBag.date_2.ToString("yyyy-MM-dd"))" class="form-control" />
                                 
-                        <button type="submit" class="btn btn-success"><i class="fa fa-print"></i> Cetak</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-print"></i> Imprimir</button>
                     </form>
                 </div>
                 <div class="card-body">
@@ -43,26 +43,28 @@
                                 <label>Status</label>
                                 <select name="status" class="form-control" >
                                     <option value="">Pilih Status</option>
-                                    <option value="0" @(ViewBag.status == "0" ? "selected" : "")>Menunggu Pembayaran DP</option>
-                                    <option value="1" @(ViewBag.status == "1" ? "selected" : "")>Pembayaran DP diproses</option>
-                                    <option value="2" @(ViewBag.status == "2" ? "selected" : "")>Menunggu Pelunasan</option>
-                                    <option value="3" @(ViewBag.status == "3" ? "selected" : "")>Pelunasan diproses</option>
-                                    <option value="4" @(ViewBag.status == "4" ? "selected" : "")>Lunas</option>
-                                    <option value="5" @(ViewBag.status == "5" ? "selected" : "")>Selesai</option>
-                                    <option value="6" @(ViewBag.status == "6" ? "selected" : "")>Isi Feedback</option>
-                                    <option value="7" @(ViewBag.status == "7" ? "selected" : "")>Dibatalkan</option>
+                                    <option value="0" @(ViewBag.status == "0" ? "selected" : "")>Esperando el pago inicial</option>
+                                    <option value="1" @(ViewBag.status == "1" ? "selected" : "")>Se procesa el pago inicial</option>
+                                    <option value="2" @(ViewBag.status == "2" ? "selected" : "")>Esperando la redención</option>
+                                    <option value="3" @(ViewBag.status == "3" ? "selected" : "")>El pago es procesado</option>
+                                    <option value="4" @(ViewBag.status == "4" ? "selected" : "")>Pagado</option>
+                                    <option value="5" @(ViewBag.status == "5" ? "selected" : "")>Finalizado</option>
+                                    <option value="6" @(ViewBag.status == "6" ? "selected" : "")>Rellenar Comentarios</option>
+                                    <option value="7" @(ViewBag.status == "7" ? "selected" : "")>Cancelado</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Tanggal Mulai</label>
+                                <label>Fecha de Inico </label>
                                 <input type="date" name="date_1" value="@(ViewBag.date_1 == null ? "" : ViewBag.date_1.ToString("yyyy-MM-dd"))" class="form-control" />
                             </div>
                             <div class="form-group">
-                                <label>Tanggal Akhir</label>
+                                <label>
+                                    Fecha final
+                                </label>
                                 <input type="date" name="date_2" value="@(ViewBag.date_2 == null ? "" : ViewBag.date_2.ToString("yyyy-MM-dd"))" class="form-control" />
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary mt-4"><i class="fa fa-search"></i> Cari</button>
+                                <button type="submit" class="btn btn-primary mt-4"><i class="fa fa-search"></i> Buscar </button>
                             </div>
                         </div>
                     </form>
@@ -122,42 +124,42 @@
                                                 {
                                                     case 0:
                                                         {
-                                                            <text>Menunggu Pembayaran DP</text>
+                                                            <text>Esperando el pago inicial</text>
                                                             break;
                                                         }
                                                     case 1:
                                                         {
-                                                            <text>Pembayaran DP diproses</text>
+                                                            <text>Se procesa el pago inicial</text>
                                                             break;
                                                         }
                                                     case 2:
                                                         {
-                                                            <text>Menunggu Pelunasan</text>
+                                                            <text>Esperando la redención</text>
                                                             break;
                                                         }
                                                     case 3:
                                                         {
-                                                            <text>Pelunasan diproses</text>
+                                                            <text>El pago es procesado</text>
                                                             break;
                                                         }
                                                     case 4:
                                                         {
-                                                            <text>Lunas</text>
+                                                            <text>Pagado</text>
                                                             break;
                                                         }
                                                     case 5:
                                                         {
-                                                            <text>Selesai</text>
+                                                            <text>Finalizado</text>
                                                             break;
                                                         }
                                                     case 6:
                                                         {
-                                                            <text>Isi Feedback</text>
+                                                            <text>Rellenar Comentarios </text>
                                                             break;
                                                         }
                                                     default:
                                                         {
-                                                            <text>Dibatalkan</text>
+                                                            <text>Cancelado</text>
                                                             break;
                                                         }
                                                 }
