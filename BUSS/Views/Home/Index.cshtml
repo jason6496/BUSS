@@ -2,8 +2,8 @@
 
 @{
     Layout = null;
-    ViewBag.Title = "Home Page";
-    ViewBag.SidebarMenu = "Pegawai";
+    ViewBag.Title = "Pagina Principal";
+    ViewBag.SidebarMenu = "Empleado";
 }
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel BUSS</title>
+    <title>Viajes en Autobus</title>
     <link rel="icon" href="~/Content/assets/img/favicon-ico.ico" type="image/x-icon" />
     <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/assets/flickity-docs/flickity.min.css">
@@ -26,7 +26,7 @@
     <header>
         <nav class="navbar navbar-expand-lg fixed-top py-0 navbar-dark">
             <a class="navbar-brand" href="/">
-                <h2 class="font-weight-bold">BUSS</h2>
+                <h2 class="font-weight-bold">AUTOBUS</h2>
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -36,14 +36,14 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav align-items-center">
-                    <a class="nav-item-2" href="@Url.Action("Index", "Home")">Home</a>
-                    <a class="nav-item-2" href="@Url.Action("Destinasi", "Home")">Destinasi</a>
-                    <a class="nav-item-2" href="@Url.Action("Paket", "Home")">Paket</a>
-                    <a class="nav-item-2" href="@Url.Action("CustomPaket", "Home")">Custom Paket</a>
+                    <a class="nav-item-2" href="@Url.Action("Index", "Home")">Inicio</a>
+                    <a class="nav-item-2" href="@Url.Action("Destinasi", "Home")">Destinos</a>
+                    <a class="nav-item-2" href="@Url.Action("Paket", "Home")">Paquete</a>
+                    <a class="nav-item-2" href="@Url.Action("CustomPaket", "Home")">Paquetes Personalizados</a>
 
                     @if (Session["IsCustomer"] != null && (bool)Session["IsCustomer"] == true)
                     {
-                        <a class="nav-item-2" href="@Url.Action("Logout", "Customer")"> Logout</a>
+                        <a class="nav-item-2" href="@Url.Action("Logout", "Customer")"> Cerrar Sesion</a>
                         <a class="btn btn-rounded btn-transparent ml-3 h-50" href="@Url.Action("Dashboard", "Customer")">
                             <i class="fa fa-user mr-2"></i> @Session["Name"].ToString()
                         </a>
@@ -51,8 +51,8 @@
                     else
                     {
                         <a class="btn btn-rounded btn-transparent ml-3 h-50" href="@Url.Action("Login", "Customer")">
-                            <i class="fa fa-user mr-2"></i> Login
-                            / Daftar
+                            <i class="fa fa-user mr-2"></i> Acceso
+                            / login
                         </a>
                     }
                 </div>
@@ -71,17 +71,18 @@
             <div class="vertical-line"></div>
         </div>
         <div class="carousel-content">
-            <h2 class="carousel-title">BUSS</h2>
+            <h2 class="carousel-title">AUTOBUS</h2>
             <p>
-                BUSS Travel merupakan bisnis penyewaan Bus sekaligus paket perjalanannya. Kami dapat menerima pesanan dari customer minimal 4 hari sebelum keberangkatan. Kami akan mempermudah perjalanan.
+                Autobus es un negocio de alquiler de autobuses y paquetes de viajes. Podemos aceptar pedidos de clientes al menos 4 días antes de la salida. Haremos el viaje más fácil.
+
             </p>
             <a href="#" class="btn btn-explore btn-warning font-weight-bold">
-                EXPLORE <i class="ml-2 fas fa-long-arrow-alt-right"></i>
+                Explorar <i class="ml-2 fas fa-long-arrow-alt-right"></i>
             </a>
         </div>
         <div class="carousel" data-flickity='{ "wrapAround": true }'>
             <div class="carousel-cell">
-                <h4>Gunung Bromo</h4>
+                <h4>Monte Bromo</h4>
                 <div class="my-rating mb-2" data-rating="3"></div>
                 <div class="image-container">
                     <div class="overlay"></div>
@@ -89,7 +90,7 @@
                 </div>
             </div>
             <div class="carousel-cell">
-                <h4>Candi Borobudur</h4>
+                <h4>Monte Blanco</h4>
                 <div class="my-rating mb-2" data-rating="4.2"></div>
                 <div class="image-container">
                     <div class="overlay"></div>
@@ -97,7 +98,7 @@
                 </div>
             </div>
             <div class="carousel-cell">
-                <h4>Pantai Pasir Putih</h4>
+                <h4>Playa de Arena Blanca</h4>
                 <div class="my-rating mb-2" data-rating="4.7"></div>
                 <div class="image-container">
                     <div class="overlay"></div>
@@ -111,10 +112,10 @@
     <section class="destination bg-white">
         <div class="section-title">
             <div>
-                <h3 class="">Paket Wisata</h3>
-                <p>Ini lho, paket wisata favorit customer.</p>
+                <h3 class="">Paquetes turistos</h3>
+                <p>Este es el paquete Turistico favorito del cliente</p>
             </div>
-            <a href="#">Lihat Semua <i class="fas fa-long-arrow-alt-right"></i></a>
+            <a href="#">Ver Todo <i class="fas fa-long-arrow-alt-right"></i></a>
         </div>
         <div class="row">
             @foreach (var item in Model)
@@ -146,10 +147,10 @@
     <section class="bg-white">
         <div class="section-title">
             <div>
-                <h3 class="">Inspirasi Liburan</h3>
-                <p>Sebelum berwisata, ada baiknya baca artikel-artikel berikut</p>
+                <h3 class="">Inspiracion Viajera</h3>
+                <p> Antes de viajar, es mejor leer los siguientes artículos </p>
             </div>
-            <a href="#">Lihat Semua <i class="fas fa-long-arrow-alt-right"></i></a>
+            <a href="#">Ver todo <i class="fas fa-long-arrow-alt-right"></i></a>
         </div>
         <div class="row inspirasi-liburan">
             <div class="col-xs-12 col-sm-6 col-md-3 my-2">
@@ -158,8 +159,8 @@
                         <img class="card-img" src="~/Content/assets/img/home/des1.jpg" alt="Card image">
                         <div class="card-img-overlay">
                             <div class="card-overlay-content">
-                                <p class="card-text mb-1">Pengalaman tak terlupakan di</p>
-                                <h5 class="card-title text-white">Curug</h5>
+                                <p class="card-text mb-1">Experiencia inolvidable en</p>
+                                <h5 class="card-title text-white">Cascada</h5>
                             </div>
                         </div>
                     </div>
@@ -171,8 +172,8 @@
                         <img class="card-img" src="~/Content/assets/img/home/des7.jpg" alt="Card image">
                         <div class="card-img-overlay">
                             <div class="card-overlay-content">
-                                <p class="card-text mb-1">Rehat Sejenak di</p>
-                                <h5 class="card-title text-white">Candi Borobudur</h5>
+                                <p class="card-text mb-1">Tomas un descanso en</p>
+                                <h5 class="card-title text-white">Templo de la Montaña</h5>
                             </div>
                         </div>
                     </div>
@@ -184,8 +185,8 @@
                         <img class="card-img" src="~/Content/assets/img/home/des6.jpg" alt="Card image">
                         <div class="card-img-overlay">
                             <div class="card-overlay-content">
-                                <p class="card-text mb-1">7 Tips sebelum pergi</p>
-                                <h5 class="card-title text-white">Muncak</h5>
+                                <p class="card-text mb-1">7 consejos antes de partir</p>
+                                <h5 class="card-title text-white">Cima</h5>
                             </div>
                         </div>
                     </div>
@@ -197,8 +198,8 @@
                         <img class="card-img" src="~/Content/assets/img/home/des4.jpg" alt="Card image">
                         <div class="card-img-overlay">
                             <div class="card-overlay-content">
-                                <p class="card-text mb-1">Isi weekendmu ke</p>
-                                <h5 class="card-title text-white">Pantai Pasir Putih</h5>
+                                <p class="card-text mb-1">Llena tu fin de semana para</p>
+                                <h5 class="card-title text-white">Playa de arena blanca</h5>
                             </div>
                         </div>
                     </div>
@@ -210,8 +211,8 @@
     <!-- Section Why -->
     <section class="subscription bg-white mt-5 d-flex justify-content-center align-items-center">
         <div class="">
-            <h3 class="text-center">Kalau bukan sekarang, kapan lagi?</h3>
-            <p class="text-center">Yuk pesan sekarang, dan rasakan liburan menyenangkan bareng orang tersayang!</p>
+            <h3 class="text-center">¿Si no es ahora, cuando?</h3>
+            <p class="text-center"> ¡Ordene ahora y disfrute de unas vacaciones divertidas con sus seres queridos!</p>
         </div>
     </section>
 
@@ -221,24 +222,24 @@
                 <div class="footer-logo">
                     BusTravel
                 </div>
-                <p>BUSS Travel merupakan bisnis penyewaan Bus sekaligus paket perjalanannya. Kami dapat menerima pesanan dari customer minimal 4 hari sebelum keberangkatan. Kami akan mempermudah perjalanan.</p>
+                <p>Autobus es un negocio de alquiler de autobuses y paquetes de viajes. Podemos aceptar pedidos de clientes al menos 4 días antes de la salida. Haremos el viaje más fácil.</p>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-2 list">
                 <h5 class="list-title">Menu</h5>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Destinasi</a></li>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Destinos</a></li>
                     <li><a href="#">Blog</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3 list">
-                <h5 class="list-title">Kontak Kami</h5>
+                <h5 class="list-title">Contactenos</h5>
                 <ul>
                     <li>
                         <a href="#">
                             <div class="contact-list">
                                 <div class="icon"><i class="fa fa-phone mr-2 mt-1"></i></div>
-                                <div class="text">+0352-8362233</div>
+                                <div class="text">+50683622331</div>
                             </div>
                         </a>
                     </li>
@@ -246,7 +247,7 @@
                         <a href="#">
                             <div class="contact-list">
                                 <div class="icon"><i class="fab fa-whatsapp mr-2 mt-1"></i></div>
-                                <div class="text">0812 3433 1541</div>
+                                <div class="text">8712 1541</div>
                             </div>
                         </a>
                     </li>
@@ -262,14 +263,14 @@
                         <a href="#">
                             <div class="contact-list">
                                 <div class="icon"><i class="fa fa-map-marker-alt mr-2 mt-1"></i></div>
-                                <div class="text">Jl. Jati V D No. 8, Sungai Bambu, Tanjung Priok, Jakarta Utara</div>
+                                <div class="text">La Información. Calle Cucubres nº 49, Planta 1ª. Heredia, 28045, Costa Rica</div>
                             </div>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-2 list">
-                <h5 class="list-title">Ikuti Kami</h5>
+                <h5 class="list-title">Siganos</h5>
                 <ul>
                     <li>
                         <a href="#">
@@ -335,7 +336,7 @@
         });
 
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exito", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {

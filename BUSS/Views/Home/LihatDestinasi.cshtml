@@ -1,7 +1,7 @@
 ﻿@model BUSS.Models.Destinasi
 
 @{
-    ViewBag.Title = "Detail Paket";
+    ViewBag.Title = "Detalles del paquete";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
@@ -16,7 +16,7 @@
                     }
                     @foreach (var detailfoto in Model.Detail_Foto)
                     {
-                        <li data-target="#carouselExampleIndicators" data-slide-to="@countSlide" class="@(countSlide == 0 ? "active" : "")"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="@countSlide" class="@(countSlide == 0 ? "activo" : "")"></li>
                         countSlide++;
                     }
                 </ol>
@@ -35,11 +35,11 @@
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                    <span class="sr-only">Anterior</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
+                    <span class="sr-only">Siguiente</span>
                 </a>
             </div>
 
@@ -50,7 +50,7 @@
 
         <div class="col-md-4">
             <div class="card">
-                <h5 class="card-header">Detail Paket</h5>
+                <h5 class="card-header">Detalles del paquete</h5>
                 <div class="card-body">
                     <h5 class="card-title mb-4">@Model.Nama_Destinasi</h5>
                     <div class="d-flex justify-content-between my-1">
@@ -58,21 +58,21 @@
                         <p class="m-0">@Model.Kota.Nama_Kota</p>
                     </div>
                     <div class="d-flex justify-content-between my-1">
-                        <p class="m-0 font-weight-bold">Rating</p>
+                        <p class="m-0 font-weight-bold">Calificaciones</p>
                         <p class="m-0">@String.Format("{0:0.0}", Model.Rating)  <i class="fa fa-star"></i></p>
                     </div>
                     <div class="d-flex justify-content-between my-1">
-                        <p class="m-0 font-weight-bold">Harga Tiket</p>
+                        <p class="m-0 font-weight-bold">Precio de la entrada</p>
                         <p class="m-0 text-danger font-weight-bold">@Html.DisplayFor(model => model.Harga_Tiket)</p>
                     </div>
                     <div class="d-flex justify-content-between my-1">
-                        <p class="m-0 font-weight-bold">Jam Operasional</p>
+                        <p class="m-0 font-weight-bold">Hora operativa</p>
                         <p class="m-0">@Html.DisplayFor(model => model.Jam_buka) - @Html.DisplayFor(model => model.Jam_tutup)</p>
                     </div>
 
                     <div class="my-1 mb-4">
-                        <p class="m-0 font-weight-bold">Beri Rating!</p>
-                        <form action="@Url.Action("UpdateStar", "Home")" method="post">
+                        <p class="m-0 font-weight-bold">Tasa!</p>
+                        <form action="@Url.Action("Actualizar", "Inicio")" method="post">
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(model => model.ID_Destinasi)
                             <div class="d-flex justify-content-between">
@@ -87,7 +87,7 @@
                     </div>
 
 
-                    <a href="@Url.Action("Destinasi", "Home")" class="btn btn-warning font-weight-bold text-center d-inline-block w-100">Lihat Destinasi lainnya <i class="fa fa-chevron-right"></i></a>
+                    <a href="@Url.Action("Destinos", "Inicios")" class="btn btn-warning font-weight-bold text-center d-inline-block w-100">Ver otros destinos<i class="fa fa-chevron-right"></i></a>
 
                 </div>
             </div>
@@ -103,7 +103,7 @@
     <script type="text/javascript">
 
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exito", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {
@@ -114,7 +114,7 @@
         }
 
         if ("@TempData["ErrorMessage"]" != "") {
-            swal("Gagal", "@TempData["ErrorMessage"]", {
+            swal("Error", "@TempData["ErrorMessage"]", {
                 icon: "error",
                 buttons: {
                     confirm: {
