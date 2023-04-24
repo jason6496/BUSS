@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<BUSS.Models.Jenis_Kendaraan>
 
 @{
-    ViewBag.Title = "Jenis Kendaraan";
-    ViewBag.SidebarMenu = "Jenis Kendaraan";
+    ViewBag.Title = "Tipo de transporte";
+    ViewBag.SidebarMenu = "Tipo de transporte";
 }
 
 <div class="page-inner">
@@ -27,7 +27,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3 class="card-title">Data @ViewBag.SidebarMenu</h3>
-                    <a href="@Url.Action("Create", "Jenis_Kendaraan")" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Tambah Data</a>
+                    <a href="@Url.Action("Create", "Jenis_Kendaraan")" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar Datos</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -41,7 +41,7 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.Jumlah_Kursi)
                                     </th>
-                                    <th>Aksi</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,12 +58,12 @@
                                         </td>
                                         <td>
                                             <a href="@Url.Action("Edit", "Jenis_Kendaraan", new { id = item.ID_Jenis })" class="btn btn-warning btn-sm mr-1">
-                                                <i class="fa fa-edit"></i> Ubah
+                                                <i class="fa fa-edit"></i> Cambiar
                                             </a>
                                             <form action="@Url.Action("Delete", "Jenis_Kendaraan")" method="post" class="d-inline">
                                                 @Html.AntiForgeryToken()
                                                 <input type="hidden" name="id" value="@item.ID_Jenis" />
-                                                <button type="submit" class="btn btn-danger deleteBtn btn-sm"><i class="fa fa-trash"></i> Hapus</button>
+                                                <button type="submit" class="btn btn-danger deleteBtn btn-sm"><i class="fa fa-trash"></i> Limpiar</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -80,7 +80,7 @@
 @section scripts {
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exito", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {

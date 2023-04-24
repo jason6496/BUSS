@@ -1,7 +1,7 @@
 ﻿@model BUSS.Models.Jenis_Kendaraan
 
-@{ ViewBag.Title = "Tambah Jenis Kendaraan";
-    ViewBag.SidebarMenu = "Jenis Kendaraan"; }
+@{ ViewBag.Title = "Añadir tipo de vehículo";
+    ViewBag.SidebarMenu = "Tipo de transporte"; }
 
 <div class="page-inner">
     <div class="page-header">
@@ -22,7 +22,7 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="/Admin/Jenis_Kendaraan/Create">Tambah</a>
+                <a href="/Admin/Jenis_Kendaraan/Create">Mas</a>
             </li>
         </ul>
     </div>
@@ -54,7 +54,7 @@
 
                                 <div class="form-group">
                                     <input type="submit" value="Simpan" class="btn btn-primary" />
-                                    <a href="@Url.Action("Index", "Jenis_Kendaraan")" class="btn btn-warning">Batal</a>
+                                    <a href="@Url.Action("Index", "Jenis_Kendaraan")" class="btn btn-warning">Cancelado</a>
                                 </div>
                             </div>
                         </div>}
