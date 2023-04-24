@@ -65,107 +65,109 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-user animated fadeIn">
-                                <div class="dropdown-user-scroll scrollbar-outer">
-                                    <li>
-                                        <div class="user-box">
-                                            <div class="avatar-lg"><img src="~/Content/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
-                                            <div class="u-text">
-                                                @Session["Name"]                                                
-                                                <p class="text-muted">@Session["Email"]</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="@Url.Action("Profil", "Pegawai")">Profil Saya</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/Pegawai/Logout">Keluar</a>
-                                    </li>
-                                </div>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <!-- End Navbar -->
-        </div>
-
-        @if (Session["ID_Pegawai"] == null || Session["Role"].ToString() != "1")
-        {
-            Response.Redirect("~/Pegawai/Login");
-        } 
-
-        <!-- Sidebar -->
-        <div class="sidebar sidebar-style-2">
-            <div class="sidebar-wrapper scrollbar scrollbar-inner">
-                <div class="sidebar-content">
-                    <div class="user">
-                        <div class="avatar-sm float-left mr-2">
-                            <img src="~/Content/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
-                        </div>
-                        <div class="info">
-                            <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                                <span>
-                                    @Session["Name"].ToString()
-                                    <span class="user-level">
-                                        @if (Session["Role"].ToString() == "1")
-                                        {
-                                            <text>Admin</text>
-                                        }
-                                        else if (Session["Role"].ToString() == "2")
-                                        {
-                                            <text>Tourleader</text>
-                                        }
-                                        else if (Session["Role"].ToString() == "3")
-                                        {
-                                            <text>Customer</text>
-                                        }
-                                        else
-                                        {
-                                            <text>Manager</text>
-                                        }
-                                    </span>
-                                    <span class="caret"></span>
-                                </span>
-                            </a>
-                            <div class="clearfix"></div>
-
-                            <div class="collapse in" id="collapseExample">
-                                <ul class="nav">
-                                    <li>
-                                        <a href="#profile">
-                                            <span class="link-collapse">My Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#edit">
-                                            <span class="link-collapse">Edit Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#settings">
-                                            <span class="link-collapse">Settings</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <div class="dropdown-user-scroll scrollbar-outer"></div>
                             </div>
+                        <li>
+                            <div class="user-box">
+                                <div class="avatar-lg"><img src="~/Content/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
+                                <div class="u-text">
+                                    @Session["Name"]
+                                    <p class="text-muted">@Session["Email"]</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="@Url.Action("Profil", "Pegawai")">Profil Saya</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/Pegawai/Logout">Keluar</a>
+                        </li>
+
+                
+                </ul>
+                
+                
+        </div>
+        </nav>
+        <!-- End Navbar -->
+    </div>
+
+    @if (Session["ID_Pegawai"] == null || Session["Role"].ToString() != "1")
+    {
+        Response.Redirect("~/Pegawai/Login");
+    }
+
+    <!-- Sidebar -->
+    <div class="sidebar sidebar-style-2">
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+            <div class="sidebar-content">
+                <div class="user">
+                    <div class="avatar-sm float-left mr-2">
+                        <img src="~/Content/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    <div class="info">
+                        <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                            <span>
+                                @Session["Name"].ToString()
+                                <span class="user-level">
+                                    @if (Session["Role"].ToString() == "1")
+                                    {
+                                        <text>Admin</text>
+                                    }
+                                    else if (Session["Role"].ToString() == "2")
+                                    {
+                                        <text>Tourleader</text>
+                                    }
+                                    else if (Session["Role"].ToString() == "3")
+                                    {
+                                        <text>Customer</text>
+                                    }
+                                    else
+                                    {
+                                        <text>Manager</text>
+                                    }
+                                </span>
+                                <span class="caret"></span>
+                            </span>
+                        </a>
+                        <div class="clearfix"></div>
+
+                        <div class="collapse in" id="collapseExample">
+                            <ul class="nav">
+                                <li>
+                                    <a href="#profile">
+                                        <span class="link-collapse">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#edit">
+                                        <span class="link-collapse">Edit Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#settings">
+                                        <span class="link-collapse">Settings</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <ul class="nav nav-primary">
-                        <li class="nav-item @ViewBag.Dashboard">
-                            <a href="/Dashboard" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </span>
-                            <h4 class="text-section">Master</h4>
-                        </li>
-                        @{
-                            List<KeyValue> sidebarMenu = new List<KeyValue> {
+                </div>
+                <ul class="nav nav-primary">
+                    <li class="nav-item @ViewBag.Dashboard">
+                        <a href="/Dashboard" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-section">
+                        <span class="sidebar-mini-icon">
+                            <i class="fa fa-ellipsis-h"></i>
+                        </span>
+                        <h4 class="text-section">Master</h4>
+                    </li>
+                    @{
+                        List<KeyValue> sidebarMenu = new List<KeyValue> {
                                 new KeyValue("Pegawai", "/Pegawai"),
                                 new KeyValue("Kota", "/Kota"),
                                 new KeyValue("Kategori Wilayah", "/KategoriWilayah"),
@@ -177,7 +179,7 @@
                                 new KeyValue("Pemesanan", "/Pegawai/Pesanan")
                             };
 
-                            List<String> navIcon = new List<String> {
+                        List<String> navIcon = new List<String> {
                                 "fa fa-user",
                                 "fas fa-building",
                                 "fas fa-map",
@@ -189,77 +191,78 @@
                                 "fas fa-calendar-check"
                             };
 
-                            for (int i = 0; i < sidebarMenu.Count; i++)
+                        for (int i = 0; i < sidebarMenu.Count; i++)
+                        {
+                            if (ViewBag.SidebarMenu == sidebarMenu[i].value1)
                             {
-                                if (ViewBag.SidebarMenu == sidebarMenu[i].value1)
-                                {
-                                    <li class="nav-item active">
-                                        <a href="@sidebarMenu[i].value2" aria-expanded="false">
-                                            <i class="@navIcon[i]"></i>
-                                            <span class="sub-item">@sidebarMenu[i].value1</span>
-                                        </a>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li class="nav-item">
-                                        <a href="@sidebarMenu[i].value2" aria-expanded="false">
-                                            <i class="@navIcon[i]"></i>
-                                            <span class="sub-item">@sidebarMenu[i].value1</span>
-                                        </a>
-                                    </li>
-                                }
+                                <li class="nav-item active">
+                                    <a href="@sidebarMenu[i].value2" aria-expanded="false">
+                                        <i class="@navIcon[i]"></i>
+                                        <span class="sub-item">@sidebarMenu[i].value1</span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a href="@sidebarMenu[i].value2" aria-expanded="false">
+                                        <i class="@navIcon[i]"></i>
+                                        <span class="sub-item">@sidebarMenu[i].value1</span>
+                                    </a>
+                                </li>
+                            }
 
-                                if (i == 7)
-                                {
-                                    <li class="nav-section">
-                                        <span class="sidebar-mini-icon">
-                                            <i class="fa fa-ellipsis-h"></i>
-                                        </span>
-                                        <h4 class="text-section">Transaksi</h4>
-                                    </li>
-                                }
+                            if (i == 7)
+                            {
+                                <li class="nav-section">
+                                    <span class="sidebar-mini-icon">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </span>
+                                    <h4 class="text-section">Transaksi</h4>
+                                </li>
                             }
                         }
-                    </ul>
-                </div>
+                    }
+                </ul>
             </div>
         </div>
-        <!-- End Sidebar -->
+    </div>
+    <!-- End Sidebar -->
 
-        <div class="main-panel">
-            <div class="container">
-                @RenderBody()
-            </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://www.themekita.com">
-                                    ThemeKita
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Help
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Licenses
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="copyright ml-auto">
-                        2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
-                    </div>
-                </div>
-            </footer>
+    <div class="main-panel">
+        <div class="container">
+            @RenderBody()
         </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.themekita.com">
+                                ThemeKita
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Help
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                Licenses
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright ml-auto">
+                    2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     </div>
+    
     <!--   Core JS Files   -->
     <script src="~/Content/assets/js/core/jquery.3.2.1.min.js"></script>
     <script src="~/Content/assets/js/core/popper.min.js"></script>
@@ -364,7 +367,7 @@
                 });
             });
 
-            
+
         });
     </script>
     @RenderSection("scripts", required: false)
