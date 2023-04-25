@@ -1,8 +1,8 @@
 ﻿@model BUSS.Models.Kendaraan
 
 
-@{ ViewBag.Title = "Ubah Kendaraan";
-                ViewBag.SidebarMenu = "Kendaraan"; }
+@{ ViewBag.Title = "Cambiar vehículo";
+                ViewBag.SidebarMenu = "Vehículo"; }
 
 <div class="page-inner">
     <div class="page-header">
@@ -23,7 +23,7 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="#">Ubah</a>
+                <a href="#">Cambiar</a>
             </li>
         </ul>
     </div>
@@ -72,7 +72,7 @@
 
                                                                                 <div class="form-group">
                                                                                     <input type="submit" value="Simpan" class="btn btn-primary" />
-                                                                                    <a href="@Url.Action("Index", @ViewBag.SidebarMenu)" class="btn btn-warning">Batal</a>
+                                                                                    <a href="@Url.Action("Index", @ViewBag.SidebarMenu)" class="btn btn-warning">Cancelado</a>
                                                                                 </div>
 
                                                                             </div>

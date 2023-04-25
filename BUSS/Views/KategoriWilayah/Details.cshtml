@@ -1,8 +1,8 @@
 ﻿@model BUSS.Models.Kategori_Wilayah
 
 @{
-    ViewBag.Title = "Detail Kategori Wilayah";
-    ViewBag.SidebarMenu = "Kategori Wilayah";
+    ViewBag.Title = "Región Categoría Detalles";
+    ViewBag.SidebarMenu = "Región Categoría";
 }
 
 <div class="page-inner">
@@ -24,7 +24,7 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="#">Detail</a>
+                <a href="#">Detalles</a>
             </li>
         </ul>
     </div>
@@ -32,7 +32,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Tambahkan Kota</h3>
+                    <h3 class="card-title">Añadir Ciudad</h3>
                 </div>
                 <div class="card-body">
                     @using (Html.BeginForm("AddDetails", "KategoriWilayah", FormMethod.Post))
@@ -47,7 +47,7 @@
 
                         <div class="form-group">
                             <input type="submit" value="Simpan" class="btn btn-primary" />
-                            <a href="@Url.Action("Index", "KategoriWilayah")" class="btn btn-warning">Batal</a>
+                            <a href="@Url.Action("Index", "KategoriWilayah")" class="btn btn-warning">Cancelado</a>
                         </div>
                     }
                 </div>
@@ -64,8 +64,8 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kota</th>
-                                    <th>Aksi</th>
+                                    <th>Ciudad</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,7 +82,7 @@
                                                 @Html.AntiForgeryToken()
                                                 <input type="hidden" name="ID_KategoriWilayah" value="@item.ID_KategoriWilayah" />
                                                 <input type="hidden" name="ID_Kota" value="@item.ID_Kota" />
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Limpiar</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -99,7 +99,7 @@
 @section scripts {
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exito", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {
@@ -110,7 +110,7 @@
         }
 
         if ("@TempData["ErrorMessage"]" != "") {
-            swal("Gagal", "@TempData["ErrorMessage"]", {
+            swal("Error", "@TempData["ErrorMessage"]", {
                 icon: "error",
                 buttons: {
                     confirm: {
