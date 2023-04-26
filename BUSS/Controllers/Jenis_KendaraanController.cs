@@ -51,7 +51,7 @@ namespace BUSS.Controllers
 
                 db.Jenis_Kendaraan.Add(jenis_Kendaraan);
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Data berhasil ditambah!";
+                TempData["SuccessMessage"] = "¡Datos agregados con éxito!";
                 return RedirectToAction("Index");
             }
 
@@ -92,7 +92,7 @@ namespace BUSS.Controllers
                 jenis_Kendaraan.ModifiedDate = DateTime.Now;
                 db.Entry(jenis_Kendaraan).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Data berhasil diubah!";
+                TempData["SuccessMessage"] = "¡Los datos se cambiaron con éxito!";
                 return RedirectToAction("Index");
             }
             return View(jenis_Kendaraan);
@@ -106,7 +106,7 @@ namespace BUSS.Controllers
             Jenis_Kendaraan jenis_Kendaraan = db.Jenis_Kendaraan.Find(id);
             jenis_Kendaraan.Status = 0;
             db.SaveChanges();
-            TempData["SuccessMessage"] = "Data berhasil dihapus!";
+            TempData["SuccessMessage"] = "¡Datos eliminados con éxito!";
             return RedirectToAction("Index");
         }
 

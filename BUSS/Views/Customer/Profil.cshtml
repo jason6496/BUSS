@@ -1,18 +1,18 @@
 ﻿@model BUSS.Models.Customer
 
 @{
-    ViewBag.Title = "Profil";
+    ViewBag.Title = "Perfil";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 
 
 <div class="page-inner">
-    <h4 class="page-title">User Profile</h4>
+    <h4 class="page-title">Perfiles de usuario</h4>
     <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Profil Pengguna</h4>
+                    <h4 class="card-title">Perfil del usuario</h4>
                 </div>
                 <div class="card-body">
                     <form action="@Url.Action("Profil", "Customer")" method="post">
@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Nama)
+                                    Nombre
                                     <label class="text-danger">*</label>
                                     @Html.EditorFor(model => model.Nama, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Nama, "", new { @class = "text-danger" })
@@ -31,7 +31,7 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.No_HP)
+                                    ´Número de télefono
                                     <label class="text-danger">*</label>
                                     @Html.EditorFor(model => model.No_HP, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.No_HP, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Email)
+                                    Correo
                                     <label class="text-danger">*</label>
                                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -49,14 +49,14 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Alamat)
+                            Dirección
                             <label class="text-danger">*</label>
                             @Html.EditorFor(model => model.Alamat, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Alamat, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Perbaru Profil</button>
+                            <button type="submit" class="btn btn-primary">Actualización del perfil</button>
                         </div>
                     </form>
                 </div>
@@ -65,29 +65,29 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Password</h4>
+                    <h4 class="card-title">Contraseña</h4>
                 </div>
                 <div class="card-body">
                     <form action="@Url.Action("UbahPassword", "Customer")" method="post" id="passwordForm">
                         <input type="hidden" value="@Model.NIK" name="NIK" />
                         <div class="form-group">
-                            <label>Password Sekarang</label>
+                            <label>Actual Contraseña</label>
                             <label class="text-danger">*</label>
                             <input type="password" value="" id="password" name="password" class="form-control" />
                             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            <label>Password Baru</label>
+                            <label>Nueva contraseña</label>
                             <label class="text-danger">*</label>
                             <input type="password" value="" id="newpassword" name="newpassword" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <label>Konfirmasi Password</label>
+                            <label>Confirmar Contraseña</label>
                             <label class="text-danger">*</label>
                             <input type="password" value="" id="confirmpassword" name="confirmpassword" class="form-control" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Ubah Password</button>
+                            <button type="submit" class="btn btn-primary">Cambiar la contraseña</button>
                         </div>
                     </form>
                 </div>
@@ -101,7 +101,7 @@
     <script>
 
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {
@@ -123,13 +123,13 @@
             },
             messages: {
                 password: {
-                    required: "Password sekarang wajib diisi!",
+                    required: "¡Ahora se requiere contraseña!",
                 },
                 newpassword: {
-                    required: "Password baru diisi!",
+                    required: "¡Se ha introducido una nueva contraseña!",
                 },
                 confirmpassword: {
-                    equalTo: "Password harus sama dengan password baru!"
+                    equalTo: "¡La contraseña debe ser la misma que la nueva contraseña!"
                 }
             }
         });

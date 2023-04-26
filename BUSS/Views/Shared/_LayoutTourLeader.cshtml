@@ -316,11 +316,11 @@
         $(document).ready(function () {
             $('#example2').DataTable({
                 "language": {
-                    "lengthMenu": "_MENU_ Data per halaman",
-                    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
-                    "zeroRecords": "Tidak ada data.",
-                    "search": "Pencarian :",
-                    "nextPage": "Selanjutnya"
+                    "lengthMenu": "_MENU_ Datos por página",
+                    "info": "Devuelve  _START_  a  _END_  de  _TOTAL_  entradas",
+                    "zeroRecords": "Sin datos.", Yakin ingin menghapus data ini?
+                    "search": "Buscar :",
+                    "nextPage": "Siguiente"
                 },
             });
 
@@ -328,16 +328,16 @@
                 e.preventDefault();
                 var form = $(this);
                 swal({
-                    title: 'Yakin ingin menghapus data ini?',
-                    text: "Anda tidak akan bisa mengembalikan data ini",
+                    title: '¿Está seguro de que desea eliminar estos datos?',
+                    text: "No podrá restaurar estos datos.",
                     icon: 'warning',
                     buttons: {
                         confirm: {
-                            text: 'Hapus',
+                            text: 'Eliminar',
                             className: 'btn btn-danger'
                         },
                         cancel: {
-                            text: 'Batal',
+                            text: 'Cancelar',
                             visible: true,
                             className: 'btn btn-success'
                         }

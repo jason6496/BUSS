@@ -117,11 +117,11 @@
                             <button type="submit" id="btnSubmit" class="btn btn-warning text-center font-weight-bold mr-2">Pesan</button>
                             @if (ViewBag.ID_Destinasi == null)
                             {
-                                <a href="@Url.Action("LihatPaket", "Home", new { id = Model.Paket.ID_Paket })" class="btn btn-danger text-center font-weight-bold">Batal</a>
+                        <a href="@Url.Action("LihatPaket", "Home", new { id = Model.Paket.ID_Paket })" class="btn btn-danger text-center font-weight-bold">Cancelar</a>
                             }
                             else
                             {
-                                <a href="@Url.Action("CustomPaket", "Home")" class="btn btn-danger text-center font-weight-bold">Batal</a>
+                                <a href="@Url.Action("CustomPaket", "Home")" class="btn btn-danger text-center font-weight-bold">Cancelar</a>
                             }
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                         <td>${array[2]}</td>
                         <td>${txtMoney(parseInt(array[3]))}</td>
                         <td>
-                            <button type="button" class="btn btn-danger btn-sm btnDelete">Hapus</button>
+                            <button type="button" class="btn btn-danger btn-sm btnDelete">No podrá restaurar estos datos.</button>
                         </td>
                     </tr>`);
 

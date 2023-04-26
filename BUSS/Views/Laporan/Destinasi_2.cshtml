@@ -121,7 +121,7 @@
     <script src="//cdn.datatables.net/plug-ins/1.10.22/api/sum().js"></script>
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {
@@ -146,14 +146,14 @@
             $('#multi_filter').DataTable({
                 dom: 'rtip',
                 "language": {
-                    "lengthMenu": "_MENU_ Data per halaman",
-                    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entries",
-                    "zeroRecords": "Tidak ada data.",
-                    "search": "Pencarian :",
+                    "lengthMenu": "_MENU_ Datos por página",
+                    "info": "Devuelve  _START_  a  _END_  de  _TOTAL_  entradas",
+                    "zeroRecords": "Sin datos.",
+                    "search": "Buscar :",
                     "infoFiltered": "(tersaring dari total _MAX_ data)",
                     "paginate": {
-                        "previous": "Sebelumnya",
-                        "next": "Selanjutnya"
+                        "previous": "Previamente",
+                        "next": "Siguiente"
                     }
                 },
                 drawCallback: function () {

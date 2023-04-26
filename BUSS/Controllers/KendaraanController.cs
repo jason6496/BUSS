@@ -50,7 +50,7 @@ namespace BUSS.Controllers
                 kendaraan.ModifiedDate = DateTime.Now;
                 db.Kendaraans.Add(kendaraan);
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Data berhasil ditambah!";
+                TempData["SuccessMessage"] = "¡Datos agregados con éxito!";
                 return RedirectToAction("Index");
             }
 
@@ -93,7 +93,7 @@ namespace BUSS.Controllers
                 kendaraan.ModifiedDate = DateTime.Now;
                 db.Entry(kendaraan).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Data berhasil diubah!";
+                TempData["SuccessMessage"] = "¡Los datos se cambiaron con éxito!";
                 return RedirectToAction("Index");
             }
             ViewBag.ID_Jenis = new SelectList(db.Jenis_Kendaraan.Where(k => k.Status == 1).OrderBy(k => k.Nama_Jenis), "ID_Jenis", "Nama_Jenis", kendaraan.ID_Jenis);
@@ -108,7 +108,7 @@ namespace BUSS.Controllers
             Kendaraan kendaraan = db.Kendaraans.Find(id);
             kendaraan.Status = 0;
             db.SaveChanges();
-            TempData["SuccessMessage"] = "Data berhasil dihapus!";
+            TempData["SuccessMessage"] = "¡Datos eliminados con éxito!";
             return RedirectToAction("Index");
         }
 

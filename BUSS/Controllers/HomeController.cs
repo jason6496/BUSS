@@ -140,7 +140,7 @@ namespace BUSS.Controllers
 
                 db.SaveChanges();
 
-                TempData["SuccessMessage"] = "Berhasil memberikan rating.";
+                TempData["SuccessMessage"] = "Calificado con éxito.";
 
                 return RedirectToAction("LihatDestinasi", "Home", new { id = dest.ID_Destinasi });
                 //return Json(new { result = true, data = drd }, JsonRequestBehavior.AllowGet);

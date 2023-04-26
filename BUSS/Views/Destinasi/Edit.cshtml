@@ -1,7 +1,7 @@
 ﻿@model BUSS.Models.Destinasi
 
-@{ ViewBag.Title = "Ubah Destinasi";
-                ViewBag.SidebarMenu = "Destinasi"; }
+@{ ViewBag.Title = "Editar destino";
+                ViewBag.SidebarMenu = "Destinos"; }
 
 <div class="page-inner">
     <div class="page-header">
@@ -16,13 +16,13 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="@Url.Action("Index", ViewBag.SidebarMenu)">@ViewBag.SidebarMenu</a>
+                <a href="@Url.Action("Index", "Destinasi")">@ViewBag.SidebarMenu</a>
             </li>
             <li class="separator">
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="#">Ubah</a>
+                <a href="#">Editar</a>
             </li>
         </ul>
     </div>
@@ -43,29 +43,29 @@
                                                                             <div class="col-md-4">
 
                                                                                 <div class="form-group">
-                                                                                    @Html.LabelFor(model => model.Nama_Destinasi)
+                                                                                    Nombre del destino
                                                                                     <label class="text-danger">*</label>
                                                                                     @Html.EditorFor(model => model.Nama_Destinasi, new { htmlAttributes = new { @class = "form-control" } })
                                                                                     @Html.ValidationMessageFor(model => model.Nama_Destinasi, "", new { @class = "text-danger" })
                                                                                 </div>
 
                                                                                 <div class="form-group">
-                                                                                    @Html.LabelFor(model => model.Harga_Tiket)
+                                                                                    Precio del ticket
                                                                                     <label class="text-danger">*</label>
                                                                                     @Html.EditorFor(model => model.Harga_Tiket, new { htmlAttributes = new { @class = "form-control" } })
                                                                                     @Html.ValidationMessageFor(model => model.Harga_Tiket, "", new { @class = "text-danger" })
                                                                                 </div>
 
                                                                                 <div class="form-group">
-                                                                                    @Html.LabelFor(model => model.ID_Kota)
+                                                                                    Ciudad
                                                                                     <label class="text-danger">*</label>
                                                                                     @Html.DropDownList("ID_Kota", null, "Pilih Kota", htmlAttributes: new { @class = "form-control" })
                                                                                     @Html.ValidationMessageFor(model => model.ID_Kota, "", new { @class = "text-danger" })
                                                                                 </div>
 
                                                                                 <div class="form-group">
-                                                                                    <input type="submit" value="Simpan" class="btn btn-primary" />
-                                                                                    <a href="@Url.Action("Index", @ViewBag.SidebarMenu)" class="btn btn-warning">Batal</a>
+                                                                                    <input type="submit" value="Agregar" class="btn btn-primary" />
+                                                                                    <a href="@Url.Action("Index", "Destinasi")" class="btn btn-warning">Cancelar</a>
                                                                                 </div>
 
                                                                             </div>
@@ -73,21 +73,21 @@
                                                                             <div class="col-md-4">
 
                                                                                 <div class="form-group">
-                                                                                    @Html.LabelFor(model => model.Jam_buka)
+                                                                                    Horario de salida
                                                                                     <label class="text-danger">*</label>
                                                                                     @Html.EditorFor(model => model.Jam_buka, new { htmlAttributes = new { @class = "form-control" } })
                                                                                     @Html.ValidationMessageFor(model => model.Jam_buka, "", new { @class = "text-danger" })
                                                                                 </div>
 
                                                                                 <div class="form-group">
-                                                                                    @Html.LabelFor(model => model.Jam_tutup)
+                                                                                    Horario de llegada
                                                                                     <label class="text-danger">*</label>
                                                                                     @Html.EditorFor(model => model.Jam_tutup, new { htmlAttributes = new { @class = "form-control" } })
                                                                                     @Html.ValidationMessageFor(model => model.Jam_tutup, "", new { @class = "text-danger" })
                                                                                 </div>
 
                                                                                 <div class="form-group">
-                                                                                    @Html.LabelFor(model => model.Deskripsi)
+                                                                                    Descripción
                                                                                     @Html.EditorFor(model => model.Deskripsi, new { htmlAttributes = new { @class = "form-control" } })
                                                                                     @Html.ValidationMessageFor(model => model.Deskripsi, "", new { @class = "text-danger" })
                                                                                 </div>

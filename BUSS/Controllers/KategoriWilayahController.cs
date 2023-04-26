@@ -115,7 +115,7 @@ namespace BUSS.Controllers
                 db.Kategori_Wilayah.Add(kategori_Wilayah);
                 db.SaveChanges();
 
-                TempData["SuccessMessage"] = "Data berhasil ditambah!";
+                TempData["SuccessMessage"] = "¡Datos agregados con éxito!";
 
                 return RedirectToAction("Details", "KategoriWilayah", new { @id = kategori_Wilayah.ID_KategoriWilayah });
             }
@@ -157,7 +157,7 @@ namespace BUSS.Controllers
                 kategori_Wilayah.ModifiedDate = DateTime.Now;
                 db.Entry(kategori_Wilayah).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Data berhasil diubah!";
+                TempData["SuccessMessage"] = "¡Los datos se cambiaron con éxito!";
                 return RedirectToAction("Index");
             }
             return View(kategori_Wilayah);
@@ -186,7 +186,7 @@ namespace BUSS.Controllers
             Kategori_Wilayah kategori_Wilayah = db.Kategori_Wilayah.Find(id);
             kategori_Wilayah.Status = 0;
             db.SaveChanges();
-            TempData["SuccessMessage"] = "Data berhasil dihapus!";
+            TempData["SuccessMessage"] = "¡Datos eliminados con éxito!";
             return RedirectToAction("Index");
         }
 

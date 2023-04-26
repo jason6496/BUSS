@@ -1,7 +1,7 @@
 ﻿@model BUSS.Models.Feedback
 
 @{
-    ViewBag.Title = "Kirim Feedback";
+    ViewBag.Title = "Comentarios";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 <div class="page-inner">
@@ -17,13 +17,13 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="@Url.Action("Pesanan", "Customer")">Pesanan</a>
+                <a href="@Url.Action("Pesanan", "Customer")">Orden</a>
             </li>
             <li class="separator">
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="">Feedback</a>
+                <a href="">Comentario</a>
             </li>
         </ul>
     </div>
@@ -31,7 +31,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Data @ViewBag.Title</h3>
+                    <h3 class="card-title">Tabla de @ViewBag.Title</h3>
                 </div>
                 <div class="card-body">
 
@@ -44,7 +44,7 @@
                                 <input type="hidden" name="ID_Transaksi" value="@ViewBag.ID_Transaksi" />
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Rating)
+                                    Calificacion
                                     <label class="text-danger">*</label><br />
                                     <div class="rate2"></div>
                                     <input type="hidden" name="Rating" id="Rating" value="" />
@@ -53,13 +53,13 @@
 
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Isi_Feedback)
+                                    Rellenar comentario
                                     @Html.EditorFor(model => model.Isi_Feedback, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Isi_Feedback, "", new { @class = "text-danger" })
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Kirim Feedback</button>    
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Enviar comentarios</button>    
                                 </div>
                             </div>
                         </div>

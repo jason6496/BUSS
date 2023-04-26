@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Login - Customer</title>
+    <title>Iniciar sesión - Clientes</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <link rel="icon" href="~/Content/assets/img/favicon-ico.ico" type="image/x-icon" />
 
@@ -38,38 +38,38 @@
                     <img src="~/Content/assets/img/buss-logo.svg" class="w-100" alt="Logo BUSS" />
                 </a>
             </div>
-            <p class="subtitle text-white op-7">Ayo bergabung dengan komunitas kami untuk masa depan yang lebih baik</p>
+            <p class="subtitle text-white op-7">Ven y únete a nuestra comunidad por un futuro mejor</p>
         </div>
         <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
             <div class="container container-login container-transparent animated fadeIn">
-                <h3 class="text-center">Masuk sebagai Customer</h3>
+                <h3 class="text-center">Iniciar sesión como cliente</h3>
                 <div class="login-form">
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Email)
+                            Correo
                             <input type="text" name="email" class="form-control" required />
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Password)
+                            Contraseña
                             <input type="password" name="password" class="form-control" required />
                         </div>
 
                         <div class="row form-action">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-secondary w-100 fw-bold">Masuk</button>
+                                <button type="submit" class="btn btn-secondary w-100 fw-bold">Ingresar</button>
                             </div>
                         </div>
                     }
                     <div class="login-account mt-4">
-                        <span class="msg">Belum mempunyai akun ?</span>
-                        <a href="@Url.Action("Register", "Customer")" class="link">Daftar disini</a>
+                        <span class="msg">¿Aún no tienes una cuenta?</span>
+                        <a href="@Url.Action("Register", "Customer")" class="link">Registrar aquí</a>
                     </div>
                     <div class="login-account">
-                        <span class="msg">Pegawai BUSS ?</span>
-                        <a href="@Url.Action("Login", "Pegawai")" class="link">Login disini</a>
+                        <span class="msg">¿Empleado de BUSS?</span>
+                        <a href="@Url.Action("Login", "Pegawai")" class="link">Entre aquí</a>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
     <script src="~/Content/assets/js/atlantis.min.js"></script>
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {
@@ -96,7 +96,7 @@
         }
 
         if ("@TempData["ErrorMessage"]" != "") {
-            swal("Gagal", "@TempData["ErrorMessage"]", {
+            swal("Error", "@TempData["ErrorMessage"]", {
                 icon: "error",
                 buttons: {
                     confirm: {

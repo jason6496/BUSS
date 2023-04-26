@@ -9,7 +9,7 @@ namespace BUSS.Models
     public class Detail_KategoriMetadata
     {
         public int ID_KategoriWilayah { get; set; }
-        [Required(ErrorMessage = "Kota wajib diisi!")]
+        [Required(ErrorMessage = "Se requiere ciudad!")]
         public int ID_Kota { get; set; }
         public int Status { get; set; }
 

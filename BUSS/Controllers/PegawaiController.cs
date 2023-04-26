@@ -66,7 +66,7 @@ namespace BUSS.Controllers
 
                 sendEmail(pegawai);
 
-                TempData["SuccessMessage"] = "Data berhasil ditambah!";
+                TempData["SuccessMessage"] = "¡Datos agregados con éxito!";
 
                 return RedirectToAction("Index");
             }
@@ -81,7 +81,7 @@ namespace BUSS.Controllers
             var senderEmail = new MailAddress("travelbussofficial@gmail.com", "Travel BUSS Official");
             var receiverEmail = new MailAddress(pegawai.Email, pegawai.Nama);
             var password = "projectprg4";
-            var sub = "Registrasi Pegawai BUSS Berhasil";
+            var sub = "El registro de empleados de BUSS es exitoso";
             var body = string.Format(message, pegawai.Nama, pegawai.Email, pegawai.Password);
             var smtp = new SmtpClient
             {
@@ -136,7 +136,7 @@ namespace BUSS.Controllers
                 pegawai.ModifiedDate = DateTime.Now;
                 db.Entry(pegawai).State = EntityState.Modified;
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Data berhasil diubah!";
+                TempData["SuccessMessage"] = "¡Los datos se cambiaron con éxito!";
                 return RedirectToAction("Index");
             }
             return View(pegawai);
@@ -150,7 +150,7 @@ namespace BUSS.Controllers
             Pegawai pegawai = db.Pegawais.Find(id);
             pegawai.Status = 0;
             db.SaveChanges();
-            TempData["SuccessMessage"] = "Data berhasil dihapus!";
+            TempData["SuccessMessage"] = "¡Datos eliminados con éxito!";
             return RedirectToAction("Index");
         }
 
@@ -170,7 +170,7 @@ namespace BUSS.Controllers
                     var obj = db.Pegawais.Where(a => a.Email.Equals(email) && a.Password.Equals(password)).FirstOrDefault();
                     if (obj != null)
                     {
-                        TempData["SuccessMessage"] = "Login berhasil!";
+                        TempData["SuccessMessage"] = "¡Inicio de sesión correcto!";
                         Session["ID_Pegawai"] = obj.ID_Pegawai;
                         Session["Name"] = obj.Nama.ToString();
                         Session["Email"] = obj.Email.ToString();

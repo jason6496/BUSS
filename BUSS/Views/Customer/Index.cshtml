@@ -2,8 +2,8 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Customer";
-    ViewBag.SidebarMenu = "Customer";
+    ViewBag.Title = "Cliente";
+    ViewBag.SidebarMenu = "Cliente";
 }
 
 <div class="page-inner">
@@ -19,7 +19,7 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="/Admin/@ViewBag.Title">@ViewBag.Title</a>
+                <a href="@Url.Action("Index", "Customer")">@ViewBag.Title</a>
             </li>
         </ul>
     </div>
@@ -27,7 +27,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Data @ViewBag.Title</h3>
+                    <h3 class="card-title">Tabla @ViewBag.Title</h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -36,19 +36,19 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.NIK)
+                                        Id.
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Nama)
+                                        Nombre.
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Alamat)
+                                        Dirección.
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.No_HP)
+                                        Teléfono Móvil.
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Email)
+                                        Email.
                                     </th>
                                 </tr>
                             </thead>
@@ -87,7 +87,7 @@
 @section scripts {
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {

@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<BUSS.Models.Destinasi>
 
 @{
-    ViewBag.Title = "Destinasi";
-    ViewBag.SidebarMenu = "Destinasi";
+    ViewBag.Title = "Destinos";
+    ViewBag.SidebarMenu = "Destinos";
 }
 
 <div class="page-inner">
@@ -18,7 +18,7 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="@Url.Action("Index", ViewBag.Title)">@ViewBag.Title</a>
+                <a href="@Url.Action("Index", "Destinasi")">@ViewBag.Title</a>
             </li>
         </ul>
     </div>
@@ -26,8 +26,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Data @ViewBag.Title</h3>
-                    <a href="@Url.Action("Create", ViewBag.Title)" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Tambah Data</a>
+                    <h3 class="card-title">Tabla @ViewBag.Title</h3>
+                    <a href="@Url.Action("Create", "Destinasi")" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar datos</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -36,24 +36,24 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Nama_Destinasi)
+                                        Nombre del destino
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Kota.Nama_Kota)
+                                        Nombre de la ciudad
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Harga_Tiket)
+                                        Precio del ticket
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Rating)
+                                        Calificacion
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Jam_buka)
+                                        Horario de salida
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Jam_tutup)
+                                        Horario de llegada
                                     </th>
-                                    <th>Aksi</th>
+                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,15 +82,15 @@
                                         </td>
                                         <td>
                                             <a href="@Url.Action("Edit", "Destinasi", new { id = item.ID_Destinasi })" class="btn btn-warning btn-sm mr-1">
-                                                <i class="fa fa-edit"></i> Ubah
+                                                <i class="fa fa-edit"></i> Editar
                                             </a>
                                             <a href="@Url.Action("Details", "Destinasi", new { id = item.ID_Destinasi })" class="btn btn-info btn-sm mr-1">
-                                                <i class="fa fa-eye"></i> Detil
+                                                <i class="fa fa-eye"></i> Detalle
                                             </a>
                                             <form action="@Url.Action("Delete", "Destinasi")" method="post" class="d-inline">
                                                 @Html.AntiForgeryToken()
                                                 <input type="hidden" name="id" value="@item.ID_Destinasi" />
-                                                <button type="submit" class="btn btn-danger deleteBtn btn-sm"><i class="fa fa-trash"></i> Hapus</button>
+                                                <button type="submit" class="btn btn-danger deleteBtn btn-sm"><i class="fa fa-trash"></i> Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -107,7 +107,7 @@
 @section scripts {
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {

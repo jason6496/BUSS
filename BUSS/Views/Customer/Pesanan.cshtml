@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<BUSS.Models.view_TransaksiCustomer>
 @{
-    ViewBag.Title = "Pesanan";
+    ViewBag.Title = "Orden";
     ViewBag.Pesanan = "active";
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 
@@ -27,7 +27,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Data @ViewBag.Title</h3>
+                    <h3 class="card-title">Tabla @ViewBag.Title</h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -35,13 +35,13 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Nama Paket</th>
-                                    <th>Harga Total</th>
-                                    <th>DP</th>
-                                    <th>Tanggal Sewa</th>
-                                    <th>Jadwal</th>
-                                    <th>Status Transaksi</th>
-                                    <th>Aksi</th>
+                                    <th>Nombre del paquete</th>
+                                    <th>Precio total</th>
+                                    <th>Pago inicial</th>
+                                    <th>Fecha de alquiler</th>
+                                    <th>Calendario</th>
+                                    <th>Estado de la transacción</th>
+                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,10 +54,10 @@
                                             @item.Nama_Paket
                                         </td>
                                         <td>
-                                            @string.Format("Rp{0:0,0}", item.Harga_total)
+                                            @string.Format("{0:0,0}", item.Harga_total)
                                         </td>
                                         <td>
-                                            @string.Format("Rp{0:0,0}", item.Harga_total / 2)
+                                            @string.Format("{0:0,0}", item.Harga_total / 2)
                                         </td>
                                         <td>
                                             @item.Tanggal_Pesanan.ToString("dd/MM/yyyy")
@@ -73,74 +73,64 @@
                                             }
                                         </td>
                                         <td>
-                                            @{
-                                                switch (item.Status_Transaksi)
+                                            @{ switch (item.Status_Transaksi)
                                                 {
                                                     case 0:
                                                         {
-                                                            <text>Menunggu Pembayaran DP</text>
-                                                            break;
-                                                        }
-                                                    case 1:
-                                                        {
-                                                            <text>Pembayaran DP diproses</text>
-                                                            break;
-                                                        }
-                                                    case 2:
-                                                        {
-                                                            <text>Menunggu Pelunasan</text>
-                                                            break;
-                                                        }
-                                                    case 3:
-                                                        {
-                                                            <text>Pelunasan diproses</text>
-                                                            break;
-                                                        }
-                                                    case 4:
-                                                        {
-                                                            <text>Lunas</text>
-                                                            break;
-                                                        }
-                                                    case 5:
-                                                        {
-                                                            <text>Selesai</text>
-                                                            break;
-                                                        }
-                                                    case 6:
-                                                        {
-                                                            <text>Feedback Terkirim</text>
-                                                            break;
-                                                        }
-                                                    default:
-                                                        {
-                                                            <text>Dibatalkan</text>
-                                                            break;
-                                                        }
-                                                }
-                                            }
+                                        <text>Esperando el pago inicial</text> break;
+                                    }
+                                case 1:
+                                    {
+                                        <text>Se procesa el pago inicial</text> break;
+                                    }
+                                case 2:
+                                    {
+                                        <text>Esperando la redención</text> break;
+                                    }
+                                case 3:
+                                    {
+                                        <text>El pago es procesado</text> break;
+                                    }
+                                case 4:
+                                    {
+                                        <text>Pagado</text> break;
+                                    }
+                                case 5:
+                                    {
+                                        <text>Finalizado</text> break;
+                                    }
+                                case 6:
+                                    {
+                                        <text>Comentarios enviados</text> break;
+                                    }
+                                default:
+                                    {
+                                        <text>Cancelado</text> break;
+                                    }
+                            } }
                                         </td>
                                         <td>
                                             <a href="@Url.Action("Details", "Transaksi", new { id = item.ID_Transaksi })" class="btn btn-info btn-sm mr-1">
-                                                <i class="fa fa-eye"></i> Detil
+                                                <i class="fa fa-eye"></i> Detalle
                                             </a>
                                             @if (item.Status_Transaksi == 0)
                                             {
-                                                <a href="@Url.Action("UploadDP", "Transaksi", new { id = item.ID_Transaksi })" class="btn btn-warning btn-sm mr-1">
-                                                    <i class="fa fa-money-bill-wave-alt"></i> Bayar DP
-                                                </a>
+                                        <a href="@Url.Action("UploadDP", "Transaksi", new { id = item.ID_Transaksi })" class="btn btn-warning btn-sm mr-1">
+                                            <i class="fa fa-money-bill-wave-alt"></i> Pago inicial
+                                        </a>
                                             }
                                             else if (item.Status_Transaksi == 2)
                                             {
-                                                <a href="@Url.Action("UploadPelunasan", "Transaksi", new { id = item.ID_Transaksi })" class="btn btn-warning btn-sm mr-1">
-                                                    <i class="fa fa-money-bill-wave-alt"></i> Pelunasan
-                                                </a>
+                                        <a href="@Url.Action("UploadPelunasan", "Transaksi", new { id = item.ID_Transaksi })" class="btn btn-warning btn-sm mr-1">
+                                            <i class="fa fa-money-bill-wave-alt"></i> Redención
+                                        </a>
                                             }
 
                                             @if (item.Status_Transaksi == 5)
                                             {
-                                                <a href="@Url.Action("Create", "Feedbacks", new { id = item.ID_Transaksi })" class="btn btn-success btn-sm mr-1">
-                                                    <i class="fa fa-comment-dots"></i> Isi Ulasan
-                                                </a>
+                                        <a href="@Url.Action("Create", "Feedbacks", new { id = item.ID_Transaksi })" class="btn btn-success btn-sm mr-1">
+                                            <i class="fa fa-comment-dots"></i> Revisión de contenido
+                                        </a>
                                             }
 
                                             @if (item.Status_Transaksi == 0 && item.Status_Transaksi == 2 && item.Status_Transaksi == 4)
@@ -148,7 +138,7 @@
                                                 <form action="@Url.Action("Pembatalan", "Transaksi")" method="post" class="d-inline deleteForm">
                                                     @Html.AntiForgeryToken()
                                                     <input type="hidden" name="id" value="@item.ID_Transaksi" />
-                                                    <button type="submit" class="btn btn-danger btn-sm btnBatal"><i class="fa fa-times-circle"></i> Batalkan</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm btnBatal"><i class="fa fa-times-circle"></i> Cancelar</button>
                                                 </form>
                                             }
                                         </td>
@@ -158,12 +148,12 @@
                             <tfoot>
                                 <tr>
                                     <th></th>
-                                    <th>Nama Paket</th>
-                                    <th>Harga Total</th>
-                                    <th>DP</th>
-                                    <th>Tanggal Sewa</th>
-                                    <th>Jadwal</th>
-                                    <th>Status Transaksi</th>
+                                    <th>Nombre del paquete</th>
+                                    <th>Precio total</th>
+                                    <th>Pago inicial</th>
+                                    <th>Fecha de alquiler</th>
+                                    <th>Calendario</th>
+                                    <th>Estado de la transacción</th>
                                     <th></th>
                                 </tr>
                             </tfoot>
@@ -178,7 +168,7 @@
 @section scripts {
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Berhasil", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {
@@ -192,12 +182,12 @@
             e.preventDefault(); // prevent form submit
             var form = event.target.form; // storing the form
             swal({
-                title: "Yakin ingin membatalkan pesanan ini?",
-                text: "Anda tidak akan bisa mengembalikan data ini",
+                title: "¿Está seguro de que desea cancelar este pedido?",
+                text: "No podrá restaurar estos datos.",
                 icon: 'warning',
                 buttons: {
                     confirm: {
-                        text: 'Batalkan',
+                        text: 'Cancelar',
                         className: 'btn btn-success'
                     },
                     cancel: {
@@ -209,7 +199,7 @@
                 if (isConfirm) {
                     form.submit();          // submitting the form when user press yes
                 } else {
-                    swal("Dibatalkan", "", "error");
+                    swal("Cancelado", "", "error");
                 }
             });
         });
@@ -217,14 +207,14 @@
         $(document).ready(function () {
             $('#multi_filter').DataTable({
                 "language": {
-                    "lengthMenu": "_MENU_ data per halaman",
-                    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                    "zeroRecords": "Tidak ada data.",
-                    "search": "Pencarian :",
+                    "lengthMenu": "_MENU_ datos por página",
+                    "info": "Devuelve _START_ a _END_ de _TOTAL_ datos",
+                    "zeroRecords": "Sin datos.",
+                    "search": "Buscar :",
                     "infoFiltered": "(tersaring dari total _MAX_ data)",
                     "paginate": {
-                        "previous": "Sebelumnya",
-                        "next": "Selanjutnya"
+                        "previous": "Previamente",
+                        "next": "Siguiente"
                     }
                 },
                 initComplete: function () {

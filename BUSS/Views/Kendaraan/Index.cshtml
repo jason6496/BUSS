@@ -74,7 +74,7 @@
                                             <form action="@Url.Action("Delete", @ViewBag.SidebarMenu)" method="post" class="d-inline">
                                                 @Html.AntiForgeryToken()
                                                 <input type="hidden" name="id" value="@item.ID_Kendaraan" />
-                                                <button type="submit" class="btn btn-danger deleteBtn btn-sm"><i class="fa fa-trash"></i> Limpiar</button>
+                                                <button type="submit" class="btn btn-danger deleteBtn btn-sm"><i class="fa fa-trash"></i> Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -91,7 +91,7 @@
 @section scripts {
     <script>
         if ("@TempData["SuccessMessage"]" != "") {
-            swal("Exito", "@TempData["SuccessMessage"]", {
+            swal("Exitoso", "@TempData["SuccessMessage"]", {
                 icon: "success",
                 buttons: {
                     confirm: {

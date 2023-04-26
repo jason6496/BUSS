@@ -8,21 +8,21 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Rating)
+            Calificacion
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Isi_Feedback)
+            Comentario
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
+            Fecha de creación
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Transaksi.ID_Customer)
+            Cliente
         </th>
         <th></th>
     </tr>
@@ -42,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.Transaksi.ID_Customer)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Feedback }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Feedback }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Feedback })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_Feedback }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.ID_Feedback }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_Feedback })
         </td>
     </tr>
 }
