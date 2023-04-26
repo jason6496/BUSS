@@ -22,7 +22,7 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="#">Detail</a>
+                <a href="#">Detalles</a>
             </li>
         </ul>
     </div>
@@ -30,7 +30,7 @@
         <div class="col-md-3">
             <div class="card full-height">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Tambahkan Destinasi</h3>
+                    <h3 class="card-title">Agregar un Destino </h3>
                 </div>
                 <div class="card-body">
                     @using (Html.BeginForm("AddDetails", "Paket", FormMethod.Post))
@@ -38,7 +38,7 @@
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(model => model.ID_Paket)
                         <div class="form-group">
-                            <label for="Destinasi">Destinasi</label> <label class="text-danger">*</label>
+                            <label for="Destinasi">Destinos </label> <label class="text-danger">*</label>
                             @Html.DropDownList("ID_Destinasi", null, "Pilih Destinasi", htmlAttributes: new { @class = "form-control", @required = "true" })
                         </div>
 
@@ -79,7 +79,7 @@
                     </div>
                     <div class="row">
                         <h5 class="col-sm-2 font-weight-bold">@Html.DisplayNameFor(model => model.Lama_Perjalanan)</h5>
-                        <h5 class="col-sm-10">@Html.DisplayFor(model => model.Lama_Perjalanan) Hari</h5>
+                        <h5 class="col-sm-10">@Html.DisplayFor(model => model.Lama_Perjalanan) Dia</h5>
                     </div>
                     <div class="row">
                         <h5 class="col-sm-2 font-weight-bold">Menginap</h5>
@@ -106,7 +106,7 @@
         <div class="col-md-12">
             <div class="card full-height">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Daftar Destinasi</h3>
+                    <h3 class="card-title">Lista de destinos </h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -114,12 +114,12 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Nama Destinasi</th>
-                                    <th>Kota</th>
-                                    <th>Harga Tiket</th>
-                                    <th>Rating</th>
-                                    <th>Jam Operasional</th>
-                                    <th>Aksi</th>
+                                    <th>Nombre del Destino</th>
+                                    <th>Ciudad</th>
+                                    <th>Precio de la entrada</th>
+                                    <th>Calificaciones</th>
+                                    <th>Hora Operativa </th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>

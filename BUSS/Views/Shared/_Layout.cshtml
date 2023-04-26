@@ -64,33 +64,31 @@
                                     <img src="~/Content/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
                                 </div>
                             </a>
-                            <div class="dropdown-menu dropdown-user animated fadeIn">
-                                <div class="dropdown-user-scroll scrollbar-outer"></div>
-                            </div>
-                        <li>
-                            <div class="user-box">
-                                <div class="avatar-lg"><img src="~/Content/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
-                                <div class="u-text">
-                                    @Session["Name"]
-                                    <p class="text-muted">@Session["Email"]</p>
+                            <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                <div class="dropdown-user-scroll scrollbar-outer">
+                                    <li>
+                                        <div class="user-box">
+                                            <div class="avatar-lg"><img src="~/Content/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
+                                            <div class="u-text">
+                                                @Session["Name"]                                                
+                                                <p class="text-muted">@Session["Email"]</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="@Url.Action("Perfil", "Empleado")">Mi Perfil </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/Pegawai/Logout">Salir</a>
+                                    </li>
                                 </div>
-                            </div>
+                            </ul>
                         </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="@Url.Action("Profil", "Pegawai")">Profil Saya</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/Pegawai/Logout">Keluar</a>
-                        </li>
-
-                
-                </ul>
-                
-                
+                    </ul>
+                </div>
+            </nav>
+            <!-- End Navbar -->
         </div>
-        </nav>
-        <!-- End Navbar -->
-    </div>
 
     @if (Session["ID_Pegawai"] == null || Session["Role"].ToString() != "1")
     {
@@ -132,42 +130,44 @@
                         </a>
                         <div class="clearfix"></div>
 
-                        <div class="collapse in" id="collapseExample">
-                            <ul class="nav">
-                                <li>
-                                    <a href="#profile">
-                                        <span class="link-collapse">My Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#edit">
-                                        <span class="link-collapse">Edit Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#settings">
-                                        <span class="link-collapse">Settings</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div class="collapse in" id="collapseExample">
+                                <ul class="nav">
+                                    <li>
+                                        <a href="#profile">
+                                            <span class="link-collapse">Mi Perfil</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#edit">
+                                            <span class="link-collapse">Editar Perfil</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#settings">
+                                            <span class="link-collapse">Ajustes</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <ul class="nav nav-primary">
-                    <li class="nav-item @ViewBag.Dashboard">
-                        <a href="/Dashboard" aria-expanded="false">
-                            <i class="fas fa-home"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="nav-section">
-                        <span class="sidebar-mini-icon">
-                            <i class="fa fa-ellipsis-h"></i>
-                        </span>
-                        <h4 class="text-section">Master</h4>
-                    </li>
-                    @{
-                        List<KeyValue> sidebarMenu = new List<KeyValue> {
+                    <ul class="nav nav-primary">
+                        <li class="nav-item @ViewBag.Dashboard">
+                            <a href="/Dashboard" aria-expanded="false">
+                                <i class="fas fa-home"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-section">
+                            <span class="sidebar-mini-icon">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </span>
+                            <h4 class="text-section">Master</h4>
+                        </li>
+                        @{
+
+                        
+                            List<KeyValue> sidebarMenu = new List<KeyValue> {
                                 new KeyValue("Pegawai", "/Pegawai"),
                                 new KeyValue("Kota", "/Kota"),
                                 new KeyValue("Kategori Wilayah", "/KategoriWilayah"),
@@ -212,54 +212,54 @@
                                 </li>
                             }
 
-                            if (i == 7)
-                            {
-                                <li class="nav-section">
-                                    <span class="sidebar-mini-icon">
-                                        <i class="fa fa-ellipsis-h"></i>
-                                    </span>
-                                    <h4 class="text-section">Transaksi</h4>
-                                </li>
+                                if (i == 7)
+                                {
+                                    <li class="nav-section">
+                                        <span class="sidebar-mini-icon">
+                                            <i class="fa fa-ellipsis-h"></i>
+                                        </span>
+                                        <h4 class="text-section">Transaccion</h4>
+                                    </li>
+                                }
                             }
                         }
-                    }
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- End Sidebar -->
-
-    <div class="main-panel">
-        <div class="container">
-            @RenderBody()
-        </div>
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://www.themekita.com">
-                                ThemeKita
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Help
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Licenses
-                            </a>
-                        </li>
                     </ul>
-                </nav>
-                <div class="copyright ml-auto">
-                    2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="main-panel">
+            <div class="container">
+                @RenderBody()
+            </div>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.themekita.com">
+                                    Nuestro Tema 
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Help
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Licenses
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright ml-auto">
+                        2018, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">ThemeKita</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
 
     </div>
     

@@ -27,7 +27,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Data @ViewBag.Title</h3>
+                    <h3 class="card-title">Datos @ViewBag.Title</h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -38,14 +38,14 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.Paket.Nama_Paket)
                                     </th>
-                                    <th>Customer</th>
-                                    <th>Jumlah Penumpang</th>
-                                    <th>Lama Perjalanan</th>
-                                    <th>Tanggal Sewa</th>
-                                    <th>Jadwal</th>
-                                    <th>Status Transaksi</th>
+                                    <th>Clientesth>
+                                    <th>Numero de pasajeros </th>
+                                    <th>Longitud de viajes</th>
+                                    <th>Fecha de Arrendamiento</th>
+                                    <th>JHorario</th>
+                                    <th>Estado de la transaccion</th>
                                     <th>DP</th>
-                                    <th>Harga Total</th>
+                                    <th>Precio Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,46 +84,47 @@
                                             switch (item.Status_Transaksi)
                                             {
                                                 case 0:
-                                                    {
-                                                        <text>Menunggu Pembayaran DP</text>
-                                                        break;
-                                                    }
-                                                case 1:
-                                                    {
-                                                        <text>Pembayaran DP diproses</text>
-                                                        break;
-                                                    }
-                                                case 2:
-                                                    {
-                                                        <text>Menunggu Pelunasan</text>
-                                                        break;
-                                                    }
-                                                case 3:
-                                                    {
-                                                        <text>Pelunasan diproses</text>
-                                                        break;
-                                                    }
-                                                case 4:
-                                                    {
-                                                        <text>Lunas</text>
-                                                        break;
-                                                    }
-                                                case 5:
-                                                    {
-                                                        <text>Selesai</text>
-                                                        break;
-                                                    }
-                                                case 6:
-                                                    {
-                                                        <text>Isi Feedback</text>
-                                                        break;
-                                                    }
-                                                default:
-                                                    {
-                                                        <text>Cancelado</text>
-                                                        break;
-                                                    }
+                                            {
+                                            <text>Esperando el pago inicial</text>
+                                                break;
                                             }
+                                        case 1:
+                                            {
+                                            <text>Se procesa el pago inicial</text>
+                                                break;
+                                            }
+                                        case 2:
+                                            {
+                                            <text>Esperando la redención</text>
+                                                break;
+                                            }
+                                        case 3:
+                                            {
+                                            <text>El pago es procesado</text>
+                                                break;
+                                            }
+                                        case 4:
+                                            {
+                                            <text>Pagado</text>
+                                                break;
+                                            }
+                                        case 5:
+                                            {
+                                            <text>Finalizado</text>
+                                                break;
+                                            }
+                                        case 6:
+                                            {
+                                            <text> Rellenar Comentarios</text>
+                                                break;
+                                            }
+                                        default:
+                                            {
+                                            <text>Cancelado</text>
+                                                break;
+                                            }
+                                                    }
+                                        }
                                         }
                                     </td>
                                     <td>
@@ -150,15 +151,15 @@
                                 </tr>
                                 <tr>
                                     <th></th>
-                                    <th>Nama Paket</th>
-                                    <th>Customer</th>
-                                    <th>Jumlah Penumpang</th>
-                                    <th>Lama Perjalanan</th>
-                                    <th>Tanggal Sewa</th>
+                                    <th>Nombre del paquete </th>
+                                    <th>Clientes</th>
+                                    <th>Numero de pasajeros</th>
+                                    <th>Longitud de Viaje</th>
+                                    <th>Fecha de arredamiento</th>
                                     <th></th>
-                                    <th>Status Transaksi</th>
+                                    <th>Estado de transaccion</th>
                                     <th>DP</th>
-                                    <th>Harga Total</th>
+                                    <th>Precio Total</th>
                                 </tr>
                             </tfoot>
                         </table>

@@ -19,7 +19,7 @@
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="@Url.Action("Pesanan", "Customer")">Pesanan</a>
+                <a href="@Url.Action("Pesanan", "Customer")">Orden</a>
             </li>
         </ul>
     </div>
@@ -27,10 +27,10 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Transaksi</h5>
+                <h5 class="card-header">Detalles de transaccion</h5>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Harga Total</p>
+                        <p class="m-0 font-weight-bold">Precio Total</p>
                         <p class="m-0 text-danger font-weight-bold">@Html.DisplayFor(model => model.Harga_total)</p>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -38,7 +38,7 @@
                         <p class="m-0 text-danger font-weight-bold">@string.Format("{0:0,0}", Model.Harga_total / 2)</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Bukti DP</p>
+                        <p class="m-0 font-weight-bold">Prueba DP</p>
                         @if (Model.Bukti_DP != null)
                         {
                             <a href="~/Content/upload/@Model.Bukti_DP" class="m-0 font-weight-bold">@Model.Bukti_DP</a>
@@ -49,7 +49,7 @@
                         }
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Bukti Pelunasan</p>
+                        <p class="m-0 font-weight-bold">Prueba de Pago</p>
                         @if (Model.Bukti_Pelunasan != null)
                         {
                             <a href="~/Content/upload/@Model.Bukti_Pelunasan" class="m-0 font-weight-bold">@Model.Bukti_Pelunasan</a>
@@ -60,49 +60,49 @@
                         }
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Status Transaksi</p>
+                        <p class="m-0 font-weight-bold">Estado de Trransaccion</p>
                         <p class="m-0">
                             @{
                                 switch (Model.Status_Transaksi)
                                 {
                                     case 0:
                                         {
-                                            <text>Menunggu Pembayaran DP</text>
+                                            <text>Esperando el pago Inicial</text>
                                             break;
                                         }
                                     case 1:
                                         {
-                                            <text>Pembayaran DP diproses</text>
+                                            <text>Se procesa el pago Incial</text>
                                             break;
                                         }
                                     case 2:
                                         {
-                                            <text>Menunggu Pelunasan</text>
+                                            <text>Esperando la Redencion</text>
                                             break;
                                         }
                                     case 3:
                                         {
-                                            <text>Pelunasan diproses</text>
+                                            <text>El pago es Procesado </text>
                                             break;
                                         }
                                     case 4:
                                         {
-                                            <text>Lunas</text>
+                                            <text>Pagado</text>
                                             break;
                                         }
                                     case 5:
                                         {
-                                            <text>Selesai</text>
+                                            <text>Finalizado</text>
                                             break;
                                         }
                                     case 6:
                                         {
-                                            <text>Isi Feedback</text>
+                                            <text>Rellenar Comentarios </text>
                                             break;
                                         }
                                     default:
                                         {
-                                            <text>Cancelado</text>
+                                            <text>Cancelado </text>
                                             break;
                                         }
                                 }
@@ -110,14 +110,14 @@
                         </p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Tanggal Pemesanan</p>
+                        <p class="m-0 font-weight-bold">Fecha de Orden</p>
                         <p class="m-0">@Html.DisplayFor(model => model.CreatedDate)</p>
                     </div>
                     <div class="d-flex flex-column justify-content-between">
-                        <p class="m-0 font-weight-bold">Ulasan</p>
+                        <p class="m-0 font-weight-bold">Revisar</p>
                         @if (ViewBag.Feedback == null)
                         {
-                            <p>Belum ada ulasan</p>
+                            <p>Aun no hay reseñas </p>
                         }
                         else
                         {
@@ -138,7 +138,7 @@
                         {
                             <form action="@Url.Action("KonfirmasiDP", "Transaksi")" method="post">
                                 <div class="d-flex flex-column justify-content-between">
-                                    <p class="m-0 font-weight-bold">Konfirmasi Pembayaran DP</p>
+                                    <p class="m-0 font-weight-bold">Confirmacion de Pago DP</p>
                                     <div class="d-flex">
                                         <input type="hidden" name="ID_Transaksi" value="@Model.ID_Transaksi" />
                                         <input type="submit" name="submit" value="Valid" class="btn btn-success btn-sm mr-3" />
@@ -152,7 +152,7 @@
                         {
                             <form action="@Url.Action("KonfirmasiPelunasan", "Transaksi")" method="post">
                                 <div class="d-flex flex-column justify-content-between">
-                                    <p class="m-0 font-weight-bold">Konfirmasi Pembayaran DP</p>
+                                    <p class="m-0 font-weight-bold">Confirmacion de Pago DP</p>
                                     <div class="d-flex">
                                         <input type="hidden" value="@Model.ID_Transaksi" />
                                         <input type="submit" name="submit" value="Valid" class="btn btn-success btn-sm mr-3" />
@@ -167,31 +167,31 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Paket</h5>
+                <h5 class="card-header">Detalles del paquete</h5>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Nama Paket</p>
+                        <p class="m-0 font-weight-bold">Nombre del paquete</p>
                         <p class="m-0">@Model.Paket.Nama_Paket</p>
                     </div>
                     @*<h5 class="card-title mb-4"></h5>*@
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Konsumsi</p>
+                        <p class="m-0 font-weight-bold">Consumo</p>
                         <p class="m-0">@Model.Paket.Konsumsi x</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Lama Perjalanan</p>
+                        <p class="m-0 font-weight-bold">Duracion del viaje</p>
                         <p class="m-0">@Model.Paket.Lama_Perjalanan Hari</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Harga</p>
+                        <p class="m-0 font-weight-bold">Precio</p>
                         <p class="m-0 text-danger font-weight-bold" id="Harga_paket">@Html.DisplayFor(model => model.Paket.Harga)</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Tanggal Sewa</p>
+                        <p class="m-0 font-weight-bold">Fecha de Alquiler</p>
                         <p>@Html.DisplayFor(model => model.Tanggal_Pesanan)</p>
                     </div>
                     <div class="d-flex flex-column justify-content-between">
-                        <p class="m-0 font-weight-bold">Keterangan</p>
+                        <p class="m-0 font-weight-bold">Informacion</p>
                         <p>@(Model.Paket.Keterangan == null ? "Tidak ada keterangan." : Model.Paket.Keterangan)</p>
                     </div>
 
@@ -203,16 +203,16 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Kendaraan</h5>
+                <h5 class="card-header">Detalles del Vehiculo</h5>
                 <div class="card-body">
                     <div class="row">
                         <table class="table" id="table-bus">
                             <thead>
                                 <tr>
                                     <th>No. </th>
-                                    <th>Nama Bus</th>
-                                    <th>Kapasitas Penumpang</th>
-                                    <th>Harga Sewa</th>
+                                    <th>Nombre del autobus</th>
+                                    <th>Capacidad de pasajeros </th>
+                                    <th>Precio del alquiler</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -246,15 +246,15 @@
 
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Destinasi</h5>
+                <h5 class="card-header">Detalles del destino </h5>
                 <div class="card-body">
                     <div class="row">
                         <table class="table" id="table-bus">
                             <thead>
                                 <tr>
                                     <th>No. </th>
-                                    <th>Nama Destinasi</th>
-                                    <th>Kota</th>
+                                    <th>Nombre del destino </th>
+                                    <th>Cuidad </th>
                                 </tr>
                             </thead>
                             <tbody>

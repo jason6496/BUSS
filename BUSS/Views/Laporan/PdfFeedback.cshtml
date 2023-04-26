@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>PdfPesanan</title>
+    <title>PdfPedido</title>
     <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/assets/css/print.css" rel="stylesheet" />
 </head>
@@ -22,9 +22,9 @@
                     <img src="~/Content/assets/img/favicon.png" alt="Logo" class="imgPrint" />
                 </div>
                 <div class="col-xs-8 header-title">
-                    <h2>PT. BUSS Travel</h2>
-                    <p class="mb-2">Jl. Jati V D No. 8, Sungai Bambu, Jakarta Utara, 14330</p>
-                    <p class="mb-2">Tlp. (021) 651-95647, Fax (021) 651-9821</p>
+                    <h2>PT. Viajes en autobus  </h2>
+                    <p class="mb-2">jl. Teca V D No. 8, Sungai Bambu, Yakarta del Norte, 14330</p>
+                    <p class="mb-2">tel.  651-95647 Fax 02651-9821</p>
                 </div>
                 <div class="col-xs-2 text-center">
                     <img src="~/Content/assets/img/favicon.png" alt="Logo" class="imgPrint" />
@@ -36,11 +36,11 @@
         <div class="mt-5">
             <div class="content-title mb-5">
                 <div class="d-flex justify-content-between flexrow">
-                    <p>Nomor Surat : BSS/PN/@DateTime.Now.ToString("MM/yyyy")</p>
+                    <p>Numero referencia : BSS/PN/@DateTime.Now.ToString("MM/yyyy")</p>
                     <p class="text-right">@DateTime.Now.ToString("dd-MM-yyyy")</p>
                 </div>
 
-                <h1 class="text-center font-weight-bold">Laporan Feedback</h1>
+                <h1 class="text-center font-weight-bold">Informe del destino </h1>
                 <p class="text-center font-weight-bold h4">
                     @(ViewBag.Paket == null ? "-" : ViewBag.Paket)
                 </p>
@@ -50,11 +50,11 @@
                 <thead class="bg-black">
                     <tr>
                         <th class="text-center">No.</th>
-                        <th class="text-center">Nama Paket</th>
-                        <th class="text-center">Customer</th>
-                        <th class="text-center">Tgl. Feedback</th>
-                        <th class="text-center">Isi Feedback</th>
-                        <th class="text-center">Rating</th>
+                        <th class="text-center">Nombre del Paquete</th>
+                        <th class="text-center">Clientes</th>
+                        <th class="text-center">Fecha Comentarios</th>
+                        <th class="text-center">Rellenar Comentarios </th>
+                        <th class="text-center">Valoraciones </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,7 +83,7 @@
                 </tbody>
                 <tfoot class="bg-black">
                     <tr>
-                        <th>Rata-Rata</th>
+                        <th>Promedio</th>
                         <th></th>
                         <th></th>
                         <th></th>

@@ -11,31 +11,31 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <h5 class="card-header">Detail Paket</h5>
+                    <h5 class="card-header">Detalles del Paquete </h5>
                     <div class="card-body">
                         <h5 class="card-title mb-4">@Model.Paket.Nama_Paket</h5>
                         <div class="d-flex justify-content-between">
-                            <p class="m-0 font-weight-bold">Konsumsi</p>
+                            <p class="m-0 font-weight-bold">Consumo</p>
                             <p class="m-0">@Model.Paket.Konsumsi x</p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p class="m-0 font-weight-bold">Lama Perjalanan</p>
+                            <p class="m-0 font-weight-bold">Duracion Del Viaje</p>
                             <p class="m-0">@Model.Paket.Lama_Perjalanan Hari</p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p class="m-0 font-weight-bold">Harga</p>
+                            <p class="m-0 font-weight-bold">Precio</p>
                             <p class="m-0 text-danger font-weight-bold" id="Harga_paket">@string.Format("{0:0,0}", Model.Paket.Harga)</p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p class="m-0 font-weight-bold">Menginap</p>
+                            <p class="m-0 font-weight-bold">Pasar la noche</p>
                             <p class="m-0">@(Model.Paket.Penginapan == 0 ? "Tidak" : "Ya")</p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p class="m-0 font-weight-bold">Tanggal Sewa</p>
+                            <p class="m-0 font-weight-bold">Fecha de Alquiler</p>
                             <p>@Html.DisplayFor(model => model.Tanggal_Pesanan)</p>
                         </div>
                         <div class="d-flex flex-column justify-content-between">
-                            <p class="m-0 font-weight-bold">Keterangan</p>
+                            <p class="m-0 font-weight-bold">Informacion</p>
                             <p>@(Model.Paket.Keterangan == null ? "Tidak ada keterangan." : Model.Paket.Keterangan)</p>
                         </div>
 
@@ -47,7 +47,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Pilih Bus</label>
+                            <label>Seleccionar autobuses </label>
                             <div class="d-flex">
                                 <select name="kendaraan" id="kendaraan" class="form-control">
                                     @foreach (var kend in ViewBag.Kendaraan)
@@ -57,7 +57,7 @@
                                         </option>
                                     }
                                 </select>
-                                <button type="button" id="tambahBus" class="btn btn-primary ml-3">Tambah Bus</button>
+                                <button type="button" id="tambahBus" class="btn btn-primary ml-3">Añadir autobuses </button>
                             </div>
                         </div>
                         <div class="row">
@@ -65,10 +65,10 @@
                                 <thead>
                                     <tr>
                                         <th>No. </th>
-                                        <th>Nama Bus</th>
-                                        <th>Kapasitas Penumpang</th>
-                                        <th>Harga Sewa</th>
-                                        <th>Aksi</th>
+                                        <th>Nombre del Autobus</th>
+                                        <th>Capacidad de Pasajeros </th>
+                                        <th>Precio del Alquiler</th>
+                                        <th>Accion </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -110,11 +110,11 @@
                         </div>
 
                         <div>
-                            <h2 class="d-inline text-danger">Total Harga Pesanan : </h2>
+                            <h2 class="d-inline text-danger">Precio total del pedido  : </h2>
                             <h2 class="d-inline text-danger" id="txtTotalHarga">0</h2>
                         </div>
                         <div class="form-group d-flex">
-                            <button type="submit" id="btnSubmit" class="btn btn-warning text-center font-weight-bold mr-2">Pesan</button>
+                            <button type="submit" id="btnSubmit" class="btn btn-warning text-center font-weight-bold mr-2">Mensaje</button>
                             @if (ViewBag.ID_Destinasi == null)
                             {
                         <a href="@Url.Action("LihatPaket", "Home", new { id = Model.Paket.ID_Paket })" class="btn btn-danger text-center font-weight-bold">Cancelar</a>

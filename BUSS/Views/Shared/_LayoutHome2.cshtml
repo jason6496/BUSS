@@ -30,10 +30,10 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav align-items-center">
-                    <a class="nav-item-2" href="@Url.Action("Index", "Home")">Home</a>
-                    <a class="nav-item-2" href="@Url.Action("Destinasi", "Home")">Destinasi</a>
-                    <a class="nav-item-2" href="@Url.Action("Paket", "Home")">Paket</a>
-                    <a class="nav-item-2" href="@Url.Action("CustomPaket", "Home")">Custom Paket</a>
+                    <a class="nav-item-2" href="@Url.Action("Index", "Home")">Hogar</a>
+                    <a class="nav-item-2" href="@Url.Action("Destinasi", "Home")">Destinos</a>
+                    <a class="nav-item-2" href="@Url.Action("Paket", "Home")">Paquetes</a>
+                    <a class="nav-item-2" href="@Url.Action("CustomPaket", "Home")">Paquetes Personalizados</a>
 
                     @if (Session["IsCustomer"] != null && (bool)Session["IsCustomer"] == true)
                     {
@@ -68,13 +68,13 @@
             <div class="col-xs-12 col-sm-6 col-md-2 list">
                 <h5 class="list-title">Menu</h5>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Destinasi</a></li>
+                    <li><a href="#">Hogar </a></li>
+                    <li><a href="#">Destinos</a></li>
                     <li><a href="#">Blog</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3 list">
-                <h5 class="list-title">Kontak Kami</h5>
+                <h5 class="list-title">Contactenos</h5>
                 <ul>
                     <li>
                         <a href="#">
@@ -111,7 +111,7 @@
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-2 list">
-                <h5 class="list-title">Ikuti Kami</h5>
+                <h5 class="list-title">Siganos</h5>
                 <ul>
                     <li>
                         <a href="#">

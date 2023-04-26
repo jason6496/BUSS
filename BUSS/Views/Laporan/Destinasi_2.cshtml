@@ -30,18 +30,18 @@
                     <h3 class="card-title">Data @ViewBag.Title</h3>
                     <form action="@Url.Action("PrintDestinasi", "Laporan")" method="get" class="d-inline">
                         <input type="hidden" value="@(ViewBag.Kota_Terpilih == null ? "" : ViewBag.Kota_Terpilih)" name="Kota" />
-                        <button type="submit" class="btn btn-success"><i class="fa fa-print"></i> Cetak</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-print"></i> Imprimir </button>
                     </form>
                 </div>
                 <div class="card-body">
                     <form action="@Url.Action("Destinasi", "Laporan")" method="get">
                         <div class="d-flex">
                             <div class="form-group">
-                                <label>Kota</label>
+                                <label>Cuidad</label>
                                 @Html.DropDownList("ID_Kota", null, "Pilih Kota", htmlAttributes: new { @class = "form-control" })
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary mt-4"><i class="fa fa-search"></i> Cari</button>
+                                <button type="submit" class="btn btn-primary mt-4"><i class="fa fa-search"></i>Buscar</button>
                             </div>
                         </div>
                     </form>
@@ -62,9 +62,9 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.Jam_tutup)
                                     </th>
-                                    <th>Status Data</th>
-                                    <th>Rating</th>
-                                    <th>Harga Tiket</th>
+                                    <th>Estado de datos </th>
+                                    <th>Valoraciones</th>
+                                    <th>Precios de Entradas</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -99,7 +99,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Rata-rata</th>
+                                    <th>Promedio</th>
                                     <th></th>
                                     <th></th>
                                     <th></th>

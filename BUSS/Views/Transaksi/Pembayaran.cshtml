@@ -10,12 +10,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header">Detail Pembayaran</h5>
+                <h5 class="card-header">Detalles de pago</h5>
                 <div class="card-body">
-                    <h3>Silahkan melakukan pembayaran DP sejumlah <text class="text-danger font-weight-bold">@string.Format("Rp{0:0,0}", Model.Harga_total/2)</text> ke</h3>
-                    <h5 class="text-center mt-2 mb-4">Rekening BRI <text class="text-danger font-weight-bold">6355612388123</text> A.N PT. Travel BUSS</h5>
+                    <h3>Realice un pago de DP de una cierta cantidad <text class="text-danger font-weight-bold">@string.Format("Rp{0:0,0}", Model.Harga_total/2)</text> ke</h3>
+                    <h5 class="text-center mt-2 mb-4">Cuenta BRI <text class="text-danger font-weight-bold">6355612388123</text> A.N PT. Travel BUSS</h5>
                     <div class="d-flex justify-content-center">
-                        <a href="@Url.Action("UploadDP", "Transaksi", new { id = Model.ID_Transaksi })" class="btn btn-primary d-inline-block">Unggah Bukti Transfer</a>
+                        <a href="@Url.Action("UploadDP", "Transaksi", new { id = Model.ID_Transaksi })" class="btn btn-primary d-inline-block">Cargar prueba de transferencia</a>
                     </div>
                 </div>
             </div>
@@ -24,10 +24,10 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Transaksi</h5>
+                <h5 class="card-header">Detalles de la transacción</h5>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Harga Total</p>
+                        <p class="m-0 font-weight-bold">Precio Total</p>
                         <p class="m-0 text-danger font-weight-bold">@Html.DisplayFor(model => model.Harga_total)</p>
                     </div>
                     <div class="d-flex justify-content-between">
@@ -35,22 +35,22 @@
                         <p class="m-0 text-danger font-weight-bold">@string.Format("Rp{0:0,0}", Model.Harga_total/2)</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Status Transaksi</p>
+                        <p class="m-0 font-weight-bold">estado de la transacción</p>
                         <p class="m-0">
                             @{
                                 switch (Model.Status_Transaksi)
                                 {
-                                    case 0: <text>Menunggu Pembayaran DP</text> break;
-                                    case 1: <text>Menunggu Pelunasan</text> break;
-                                    case 2: <text>Lunas</text> break;
-                                    case 3: <text>Selesai</text> break;
-                                    default: <text>Cancelado</text> break;
+                                    case 0: <text>Pago en espera DP</text> break;
+                                    case 1: <text>Esperando la redención</text> break;
+                                    case 2: <text>Pagado</text> break;
+                                    case 3: <text>Finalizado</text> break;
+                                    default: <text>Caancelado</text> break;
                                 }
                             }
                         </p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Tanggal Pemesanan</p>
+                        <p class="m-0 font-weight-bold">Fecha de Orden</p>
                         <p class="m-0">@Html.DisplayFor(model => model.CreatedDate)</p>
                     </div>
                 </div>
@@ -58,31 +58,31 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Paket</h5>
+                <h5 class="card-header">Detalles del Paquete</h5>
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Nama Paket</p>
+                        <p class="m-0 font-weight-bold">Nombre del paquete </p>
                         <p class="m-0">@Model.Paket.Nama_Paket</p>
                     </div>
                     @*<h5 class="card-title mb-4"></h5>*@
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Konsumsi</p>
+                        <p class="m-0 font-weight-bold">Consumo</p>
                         <p class="m-0">@Model.Paket.Konsumsi x</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Lama Perjalanan</p>
+                        <p class="m-0 font-weight-bold">Duracion del viaje </p>
                         <p class="m-0">@Model.Paket.Lama_Perjalanan Hari</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Harga</p>
+                        <p class="m-0 font-weight-bold">Precio</p>
                         <p class="m-0 text-danger font-weight-bold" id="Harga_paket">@Html.DisplayFor(model => model.Paket.Harga)</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="m-0 font-weight-bold">Tanggal Sewa</p>
+                        <p class="m-0 font-weight-bold">Fecha de Alquiler</p>
                         <p>@Html.DisplayFor(model => model.Tanggal_Pesanan)</p>
                     </div>
                     <div class="d-flex flex-column justify-content-between">
-                        <p class="m-0 font-weight-bold">Keterangan</p>
+                        <p class="m-0 font-weight-bold">Informacion</p>
                         <p>@(Model.Paket.Keterangan == null ? "Tidak ada keterangan." : Model.Paket.Keterangan)</p>
                     </div>
 
@@ -94,16 +94,16 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Kendaraan</h5>
+                <h5 class="card-header">Detalles del vehiculo</h5>
                 <div class="card-body">
                     <div class="row">
                         <table class="table" id="table-bus">
                             <thead>
                                 <tr>
                                     <th>No. </th>
-                                    <th>Nama Bus</th>
-                                    <th>Kapasitas Penumpang</th>
-                                    <th>Harga Sewa</th>
+                                    <th>Nombre del autobus</th>
+                                    <th>Capacidad de pasajeros </th>
+                                    <th>Precio del alquiler</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -137,15 +137,15 @@
 
         <div class="col-md-6">
             <div class="card">
-                <h5 class="card-header">Detail Destinasi</h5>
+                <h5 class="card-header">Detalle del Destino </h5>
                 <div class="card-body">
                     <div class="row">
                         <table class="table" id="table-bus">
                             <thead>
                                 <tr>
                                     <th>No. </th>
-                                    <th>Nama Destinasi</th>
-                                    <th>Kota</th>
+                                    <th>Nombre del destino </th>
+                                    <th>Cuidad </th>
                                 </tr>
                             </thead>
                             <tbody>

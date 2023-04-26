@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>PdfPesanan</title>
+    <title>PdfPedido</title>
     <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/assets/css/print.css" rel="stylesheet" />
 </head>
@@ -22,9 +22,9 @@
                     <img src="~/Content/assets/img/favicon.png" alt="Logo" class="imgPrint" />
                 </div>
                 <div class="col-xs-8 header-title">
-                    <h2>PT. BUSS Travel</h2>
-                    <p class="mb-2">Jl. Jati V D No. 8, Sungai Bambu, Jakarta Utara, 14330</p>
-                    <p class="mb-2">Tlp. (021) 651-95647, Fax (021) 651-9821</p>
+                    <h2>PT. Viajes en autobus  </h2>
+                    <p class="mb-2">jl. Teca V D No. 8, Sungai Bambu, Yakarta del Norte, 14330</p>
+                    <p class="mb-2">tel.  651-95647 Fax 02651-9821</p>
                 </div>
                 <div class="col-xs-2 text-center">
                     <img src="~/Content/assets/img/favicon.png" alt="Logo" class="imgPrint" />
@@ -40,7 +40,7 @@
                     <p class="text-right">@DateTime.Now.ToString("dd-MM-yyyy")</p>
                 </div>
 
-                <h1 class="text-center font-weight-bold">Laporan Transaksi</h1>
+                <h1 class="text-center font-weight-bold">Informe del destino </h1>
                 <p class="text-center font-weight-bold h4">
                     @(ViewBag.date_1 == null ? "" : ViewBag.date_1.ToString("dd/MM/yyyy")) -
                     @(ViewBag.date_2 == null ? "" : ViewBag.date_2.ToString("dd/MM/yyyy"))
@@ -55,13 +55,13 @@
                         <th class="align-middle">
                             @Html.DisplayNameFor(model => model.Paket.Nama_Paket)
                         </th>
-                        <th class="align-middle">Customer</th>
-                        <th class="align-middle">Jumlah Penumpang</th>
-                        <th class="align-middle">Lama Perjalanan</th>
-                        <th class="align-middle">Tanggal Sewa</th>
-                        <th class="align-middle">Status Transaksi</th>
+                        <th class="align-middle">Cliente</th>
+                        <th class="align-middle">Numero de Pasajeros </th>
+                        <th class="align-middle">¨Longitud del viaje</th>
+                        <th class="align-middle">Fecha de Arrendamiento</th>
+                        <th class="align-middle">Estado de la Transaccion</th>
                         <th class="align-middle">DP</th>
-                        <th class="align-middle">Harga Total</th>
+                        <th class="align-middle">Precio  Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,37 +91,37 @@
                                     {
                                         case 0:
                                             {
-                                                <text>Menunggu Pembayaran DP</text>
+                                                <text>Esperando el pago inicial</text>
                                                 break;
                                             }
                                         case 1:
                                             {
-                                                <text>Pembayaran DP diproses</text>
+                                                <text>Se procesa el pago inicial</text>
                                                 break;
                                             }
                                         case 2:
                                             {
-                                                <text>Menunggu Pelunasan</text>
+                                                <text>Esperando la redención</text>
                                                 break;
                                             }
                                         case 3:
                                             {
-                                                <text>Pelunasan diproses</text>
+                                                <text>El pago es procesado</text>
                                                 break;
                                             }
                                         case 4:
                                             {
-                                                <text>Lunas</text>
+                                                <text>Pagado</text>
                                                 break;
                                             }
                                         case 5:
                                             {
-                                                <text>Selesai</text>
+                                                <text>Finalizado</text>
                                                 break;
                                             }
                                         case 6:
                                             {
-                                                <text>Isi Feedback</text>
+                                                <text> Rellenar Comentarios</text>
                                                 break;
                                             }
                                         default:
